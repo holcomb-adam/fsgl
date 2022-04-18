@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="src\Core">
+      <UniqueIdentifier>{b31f1a92-fddb-44bb-aa4d-b6efffedd8e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Rendering">
+      <UniqueIdentifier>{c14a9975-e46e-48bb-b3ea-451655bd4426}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Rendering\Graphics">
+      <UniqueIdentifier>{0fc50cbb-a07f-4577-bde4-5288db0ed55f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Rendering\Graphics\3D">
+      <UniqueIdentifier>{ea092a7b-b7d1-44fd-a5b7-2c5c05cece96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Rendering\Graphics\2D">
+      <UniqueIdentifier>{e3861649-852b-4a07-a971-4e8dd5101d98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Math">
+      <UniqueIdentifier>{bbff16d3-d087-44d3-ba20-8415dbef4a9c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utils">
+      <UniqueIdentifier>{20575bf6-ba3c-471e-a4e9-ca3ff45fd9be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utils\StateMachine">
+      <UniqueIdentifier>{f5981478-0895-482d-9a52-9740a4fb7330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EngineUI">
+      <UniqueIdentifier>{a7c5a212-f0a7-4597-92a1-ca13d894b4d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EngineUI\EngineStates">
+      <UniqueIdentifier>{060bc761-03d8-44cf-845e-8d65bbc474c0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Core\EngineBase.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rendering\EngineRenderer.h">
+      <Filter>src\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rendering\Color.h">
+      <Filter>src\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rendering\Graphics\3D\Mesh.h">
+      <Filter>src\Rendering\Graphics\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Vector2.h">
+      <Filter>src\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Vector3.h">
+      <Filter>src\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Matrix.h">
+      <Filter>src\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\FiniteStateMachine\FiniteStateMachine.h">
+      <Filter>src\Utils\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\UniqueID.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\NonCopyable.h">
+      <Filter>src\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EngineUI\EngineState.h">
+      <Filter>src\EngineUI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EngineUI\EngineStates\GameScene.h">
+      <Filter>src\EngineUI\EngineStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rendering\Graphics\3D\Camera.h">
+      <Filter>src\Rendering\Graphics\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Trigonometry.h">
+      <Filter>src\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Constants.h">
+      <Filter>src\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Algebra.h">
+      <Filter>src\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rendering\Graphics\3D\Renderable3D.h">
+      <Filter>src\Rendering\Graphics\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rendering\Graphics\2D\Drawable2D.h">
+      <Filter>src\Rendering\Graphics\2D</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Rendering\EngineRenderer.cpp">
+      <Filter>src\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rendering\Graphics\3D\Mesh.cpp">
+      <Filter>src\Rendering\Graphics\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\EngineBase.cpp">
+      <Filter>src\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utils\FiniteStateMachine\FiniteStateMachine.cpp">
+      <Filter>src\Utils\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EngineUI\EngineStates\GameScene.cpp">
+      <Filter>src\EngineUI\EngineStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rendering\Graphics\3D\Camera.cpp">
+      <Filter>src\Rendering\Graphics\3D</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
