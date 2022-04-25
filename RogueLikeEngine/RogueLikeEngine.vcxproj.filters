@@ -91,6 +91,9 @@
     <ClInclude Include="src\Rendering\Graphics\2D\Drawable2D.h">
       <Filter>src\Rendering\Graphics\2D</Filter>
     </ClInclude>
+    <ClInclude Include="src\Rendering\Graphics\3D\Transform.h">
+      <Filter>src\Rendering\Graphics\3D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Rendering\EngineRenderer.cpp">
@@ -112,6 +115,9 @@
       <Filter>src\EngineUI\EngineStates</Filter>
     </ClCompile>
     <ClCompile Include="src\Rendering\Graphics\3D\Camera.cpp">
+      <Filter>src\Rendering\Graphics\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rendering\Graphics\3D\Transform.cpp">
       <Filter>src\Rendering\Graphics\3D</Filter>
     </ClCompile>
   </ItemGroup>

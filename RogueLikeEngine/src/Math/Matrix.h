@@ -21,7 +21,7 @@ namespace rle
 		// - CONSTRUCTORS / DESTRUCTORS ------------------------------------------------
 
 		// default ctor
-		Matrix() = default;
+		Matrix();
 
 		// initializes from a set values
 		Matrix(const std::array<T, C * R>& raw);
@@ -72,11 +72,21 @@ namespace rle
 		template<std::size_t S, std::size_t D,
 			std::enable_if_t<C == D, int> = 0 // make sure the matricies can be multiplied
 		>
-		Matrix<T, S, D> operator*(const Matrix<T, S, D>& other) const;
+		Matrix<T, C, D> operator*(const Matrix<T, S, D>& other) const;
 
 	private:
 		std::array<row_t, C> m_Mat;
 	};
+
+
+
+	template<class T, std::size_t C, std::size_t R>
+	inline Matrix<T, C, R>::Matrix()
+	{
+		for (auto& a : m_Mat)
+			for (auto& e : a)
+				e = 0;
+	}
 
 
 
@@ -162,9 +172,16 @@ namespace rle
 	template<std::size_t S, std::size_t D,
 		std::enable_if_t<C == D, int>
 	>
-	inline Matrix<T, S, D> Matrix<T, C, R>::operator*(const Matrix<T, S, D>& other) const
+	inline Matrix<T, C, D> Matrix<T, C, R>::operator*(const Matrix<T, S, D>& other) const
 	{
-		return Matrix<T, S, D>();
+		Matrix<T, C, D> mmat;
+
+		for (std::size_t i = 0; i < C; i++)
+			for (std::size_t j = 0; j < D; j++)
+				for (std::size_t k = 0; k < S; k++)
+					mmat[j][i] += at(i, k) * other.at(k, j);
+				
+		return mmat;
 	}
 
 
