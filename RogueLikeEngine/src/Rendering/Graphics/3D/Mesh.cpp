@@ -52,25 +52,21 @@ const std::vector<rle::Mesh::Triangle>& rle::Mesh::triangles() const
 bool rle::Mesh::render3D(const EngineRenderer& target, const Camera& camera) const
 {
 	// temp, eventually need to create a TriangleProjected class
-	struct tri_proj
-	{
-		Vector2f p1;
-		Vector2f p2;
-		Vector2f p3;
-	};
+	Vector2f p1;
+	Vector2f p2;
+	Vector2f p3;
 
 
 
 	for (const auto& tri : m_Verticies)
 	{
-		tri_proj p = {};
-		p.p1 = camera.project3D(target, tri.p1);
-		p.p2 = camera.project3D(target, tri.p2);
-		p.p3 = camera.project3D(target, tri.p3);
+		p1 = camera.project3D(target, tri.p1);
+		p2 = camera.project3D(target, tri.p2);
+		p3 = camera.project3D(target, tri.p3);
 
-		target.drawLine(p.p1, p.p2, color_constants::WHITE);
-		target.drawLine(p.p2, p.p3, color_constants::WHITE);
-		target.drawLine(p.p1, p.p3, color_constants::WHITE);
+		target.drawLine(p1, p2, color_constants::WHITE);
+		target.drawLine(p2, p3, color_constants::WHITE);
+		target.drawLine(p1, p3, color_constants::WHITE);
 	}
 
 	return true;
