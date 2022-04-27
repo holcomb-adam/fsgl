@@ -35,6 +35,9 @@
     <Filter Include="src\EngineUI\EngineStates">
       <UniqueIdentifier>{060bc761-03d8-44cf-845e-8d65bbc474c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Log">
+      <UniqueIdentifier>{c35ec46a-2604-4e4f-b30b-d253acd4ce65}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\EngineBase.h">
@@ -93,6 +96,9 @@
     </ClInclude>
     <ClInclude Include="src\Rendering\Graphics\3D\Transform.h">
       <Filter>src\Rendering\Graphics\3D</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Version.h">
+      <Filter>src\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

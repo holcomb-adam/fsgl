@@ -1,8 +1,9 @@
 #pragma once
 
 #include "EngineUI/EngineState.h"
-#include "Rendering/Graphics/3D/Mesh.h"
 #include "Rendering/Graphics/3D/Camera.h"
+#include "Rendering/Graphics/3D/Mesh.h"
+#include "Rendering/Graphics/3D/Transform.h"
 
 
 
@@ -33,6 +34,7 @@ namespace rle
 
 	private:
 		Mesh m_Cube;
+		Transform m_CubeTransform;
 
 		Camera m_Camera;
 	};

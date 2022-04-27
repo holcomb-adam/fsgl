@@ -2,6 +2,7 @@
 
 #include "Color.h"
 #include "Math/Vector2.h"
+#include "Graphics/3D/Transform.h"
 
 
 
@@ -44,7 +45,7 @@ namespace rle
 		void draw2D(const Drawable2D& drawable) const;
 
 		// renders a 3D object
-		void render3D(const Renderable3D& renderable, const Camera& camera) const;
+		void render3D(const Renderable3D& renderable, const Camera& camera, Transform transform) const;
 
 
 
