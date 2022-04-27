@@ -26,7 +26,7 @@ namespace rle
 
 
 		////////////////////////////////////////////////////////////////////////////////
-		// - SETTERS / GETTERS ---------------------------------------------------------
+		// - TRANSLATION OPERATIONS ----------------------------------------------------
 
 		// get position of the transform
 		Vector3f position() const;
@@ -39,10 +39,10 @@ namespace rle
 
 
 
+		////////////////////////////////////////////////////////////////////////////////
+		// - ARITHMETIC OPERATIONS ----------------------------------------------------
 
-		Vector3f project(const Matrix44f& view_mat) const;
-
-
+		// calculate the point to transform
 
 
 	private:

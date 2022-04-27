@@ -99,6 +99,7 @@
     <ClInclude Include="src\Log\Log.h" />
     <ClInclude Include="src\RLE.h" />
     <ClInclude Include="src\Core\EngineBase.h" />
+    <ClInclude Include="src\Core\Version.h" />
     <ClInclude Include="src\EngineUI\EngineState.h" />
     <ClInclude Include="src\EngineUI\EngineStates\GameScene.h" />
     <ClInclude Include="src\Math\Algebra.h" />

@@ -37,9 +37,9 @@ void rle::EngineRenderer::draw2D(const Drawable2D& drawable) const
 	drawable.draw(*this);
 }
 
-void rle::EngineRenderer::render3D(const Renderable3D& renderable, const Camera& camera) const
+void rle::EngineRenderer::render3D(const Renderable3D& renderable, const Camera& camera, Transform transform) const
 {
-	renderable.render3D(*this, camera);
+	renderable.render3D(*this, camera, transform);
 }
 
 void rle::EngineRenderer::clear(const Color& clear_color) const

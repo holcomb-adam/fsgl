@@ -6,16 +6,9 @@
 
 namespace rle
 {
-	template<class T, std::size_t C, std::size_t R>
+	template<class T, std::size_t M, std::size_t N>
 	class Matrix final
 	{
-	public:
-		////////////////////////////////////////////////////////////////////////////////
-		// - PUBLIC MEMBERS ------------------------------------------------------------
-
-		// row class
-		using row_t = std::array<T, R>;
-
 	public:
 		////////////////////////////////////////////////////////////////////////////////
 		// - CONSTRUCTORS / DESTRUCTORS ------------------------------------------------
@@ -24,7 +17,7 @@ namespace rle
 		Matrix();
 
 		// initializes from a set values
-		Matrix(const std::array<T, C * R>& raw);
+		Matrix(const std::array<T, M * N>& raw);
 
 		// default dtor
 		~Matrix() = default;
@@ -54,28 +47,28 @@ namespace rle
 		// read element at location
 		const T& at(const std::size_t c, const std::size_t r) const;
 
-		// access row at location
-		row_t& operator[](const std::size_t c);
 
-		// access row at location
-		const row_t& operator[](const std::size_t c) const;
 
+
+		////////////////////////////////////////////////////////////////////////////////
+		// - ARITHMETIC OPERATTIONS ----------------------------------------------------
+
+		// calculate a dot product from a vector
+		std::array<T, M> dotProduct(const std::array<T, M>& vec) const;
 
 
 		////////////////////////////////////////////////////////////////////////////////
 		// - ARITHMETIC OPERATORS ------------------------------------------------------
 
 		// multiply by a scalar value
-		Matrix<T, C, R> operator*(const T scalar) const;
+		Matrix<T, M, N> operator*(const T scalar) const;
 
 		// multiply by another matrix
-		template<std::size_t S, std::size_t D,
-			std::enable_if_t<C == D, int> = 0 // make sure the matricies can be multiplied
-		>
-		Matrix<T, C, D> operator*(const Matrix<T, S, D>& other) const;
+		template<std::size_t P>
+		Matrix<T, M, P> operator*(const Matrix<T, N, P>& other) const;
 
 	private:
-		std::array<row_t, C> m_Mat;
+		std::array<T, M * N> m_Mat;
 	};
 
 
@@ -83,105 +76,95 @@ namespace rle
 	template<class T, std::size_t C, std::size_t R>
 	inline Matrix<T, C, R>::Matrix()
 	{
-		for (auto& a : m_Mat)
-			for (auto& e : a)
-				e = 0;
+		m_Mat.fill(0);
 	}
 
 
 
-	template<class T, std::size_t C, std::size_t R>
-	inline Matrix<T, C, R>::Matrix(const std::array<T, C * R>& raw)
+	template<class T, std::size_t M, std::size_t N>
+	inline Matrix<T, M, N>::Matrix(const std::array<T, M * N>& raw) : 
+		m_Mat(raw)
 	{
-		for (std::size_t i = 0; i < C; i++)
-			for (std::size_t j = 0; j < R; j++)
-				m_Mat[i][j] = raw[i * C + j];
+
 	}
 
 
 
-	template<class T, std::size_t C, std::size_t R>
-	inline constexpr std::size_t Matrix<T, C, R>::rows()
+	template<class T, std::size_t M, std::size_t N>
+	inline constexpr std::size_t Matrix<T, M, N>::rows()
 	{
-		return R;
+		return N;
 	}
 
 
 
-	template<class T, std::size_t C, std::size_t R>
-	inline constexpr std::size_t Matrix<T, C, R>::columns()
+	template<class T, std::size_t M, std::size_t N>
+	inline constexpr std::size_t Matrix<T, M, N>::columns()
 	{
-		return C;
+		return M;
 	}
 
 
 
-	template<class T, std::size_t C, std::size_t R>
-	inline constexpr std::size_t Matrix<T, C, R>::size()
+	template<class T, std::size_t M, std::size_t N>
+	inline constexpr std::size_t Matrix<T, M, N>::size()
 	{
-		return R * C;
+		return M * N;
 	}
 
 
 
-	template<class T, std::size_t C, std::size_t R>
-	inline T& Matrix<T, C, R>::at(const std::size_t c, const std::size_t r)
+	template<class T, std::size_t M, std::size_t N>
+	inline T& Matrix<T, M, N>::at(const std::size_t c, const std::size_t r)
 	{
-		return m_Mat[c][r];
+		return m_Mat[r * M + c];
 	}
 
 
 
-	template<class T, std::size_t C, std::size_t R>
-	inline const T& Matrix<T, C, R>::at(const std::size_t c, const std::size_t r) const
+	template<class T, std::size_t M, std::size_t N>
+	inline const T& Matrix<T, M, N>::at(const std::size_t c, const std::size_t r) const
 	{
-		return m_Mat[c][r];
+		return m_Mat[r * M + c];
 	}
 
 
 
-	template<class T, std::size_t C, std::size_t R>
-	inline Matrix<T, C, R>::row_t& Matrix<T, C, R>::operator[](const std::size_t c)
+	template<class T, std::size_t M, std::size_t N>
+	inline std::array<T, M> Matrix<T, M, N>::dotProduct(const std::array<T, M>& vec) const
 	{
-		return m_Mat[c];
+		std::array<T, M> vec;
+		vec.fill(0);
+
+		return vec;
 	}
 
 
 
-	template<class T, std::size_t C, std::size_t R>
-	inline const Matrix<T, C, R>::row_t& Matrix<T, C, R>::operator[](const std::size_t c) const
+	template<class T, std::size_t M, std::size_t N>
+	inline Matrix<T, M, N> Matrix<T, M, N>::operator*(const T scalar) const
 	{
-		return m_Mat[c];
-	}
+		Matrix<T, M, N> rmat;
 
-
-
-	template<class T, std::size_t C, std::size_t R>
-	inline Matrix<T, C, R> Matrix<T, C, R>::operator*(const T scalar) const
-	{
-		Matrix<T, C, R> rmat;
-
-		for (std::size_t i = 0; i < C; i++)
-			for (std::size_t j = 0; j < R; j++)
-				rmat = m_Mat[i][j] * scalar;
+		for (std::size_t i = 0; i < N; i++)
+			for (std::size_t j = 0; j < M; j++)
+				rmat = m_Mat[i * M + j] * scalar;
 
 		return rmat;
 	}
 
 
-
-	template<class T, std::size_t C, std::size_t R>
-	template<std::size_t S, std::size_t D,
-		std::enable_if_t<C == D, int>
-	>
-	inline Matrix<T, C, D> Matrix<T, C, R>::operator*(const Matrix<T, S, D>& other) const
+	
+	template<class T, std::size_t M, std::size_t N>
+	template<std::size_t P>
+	inline Matrix<T, M, P> Matrix<T, M, N>::operator*(const Matrix<T, N, P>& other) const
 	{
-		Matrix<T, C, D> mmat;
+		Matrix<T, M, P> mmat;
 
-		for (std::size_t i = 0; i < C; i++)
-			for (std::size_t j = 0; j < D; j++)
-				for (std::size_t k = 0; k < S; k++)
-					mmat[j][i] += at(i, k) * other.at(k, j);
+		for (std::size_t i = 0; i < N; i++)
+			for (std::size_t j = 0; j < P; j++)
+				for (std::size_t k = 0; k < N; k++)
+					mmat.at(j, i) += at(i, k) * other.at(k, j);
 				
 		return mmat;
 	}
@@ -193,6 +176,7 @@ namespace rle
 	
 	using Matrix44f = Matrix<float, 4, 4>;
 	using Matrix44i = Matrix<int, 4, 4>;
+
 	using Matrix33f = Matrix<float, 3, 3>;
 	using Matrix33i = Matrix<int, 3, 3>;
 }

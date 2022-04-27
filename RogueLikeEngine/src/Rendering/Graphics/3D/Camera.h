@@ -3,7 +3,6 @@
 #include "Math/Matrix.h"
 #include "Math/Vector2.h"
 #include "Math/Vector3.h"
-#include "Rendering/Graphics/3D/Transform.h"
 
 
 
@@ -11,6 +10,7 @@ namespace rle
 {
 	// rle forward declaration
 	class EngineRenderer;
+	class Transform;
 
 
 
@@ -18,13 +18,13 @@ namespace rle
 	{
 	public:
 		// get a 3D Persepctive Projection Matrix
-		static Matrix44f getPrespeciveProjMat
+		/*static Matrix44f getPrespeciveProjMat
 		(
 			const float aspect,
 			const float fov,
 			const float far,
 			const float near
-		);
+		);*/
 
 	public:
 		////////////////////////////////////////////////////////////////////////////////
@@ -64,8 +64,12 @@ namespace rle
 		////////////////////////////////////////////////////////////////////////////////
 		// - 3D PROJECTION CALULCATIONS ------------------------------------------------
 
-		// project a 3D point and transform to space to the 2D plane defined by
-		Vector2f project3D(const EngineRenderer& renderer, const Vector3f& p3d, const Transform& transform) const;
+		// project a 3D point to a 2D plane defined by the camera
+		void project3D(
+			const EngineRenderer& renderer,
+			const Vector3f& in,
+			Vector2f& out,
+			const Transform& transform) const;
 
 	private:
 		// Camera will default to facing North

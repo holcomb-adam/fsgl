@@ -39,7 +39,10 @@ namespace rle
 		const std::vector<Triangle>& triangles() const;
 
 		// Inherited via Renderable3D
-		virtual bool render3D(const EngineRenderer& target, const Camera& camera) const override;
+		virtual bool render3D(
+			const EngineRenderer& target,
+			const Camera& camera,
+			Transform transform) const override;
 
 	private:
 		std::vector<Triangle> m_Verticies;
