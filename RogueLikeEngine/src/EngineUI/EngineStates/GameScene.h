@@ -36,6 +36,9 @@ namespace rle
 		Mesh m_Cube;
 		Transform m_CubeTransform;
 
+		Mesh m_Table;
+		Transform m_TableTransform;
+
 		Camera m_Camera;
 	};
 }

@@ -18,13 +18,16 @@ namespace rle
 	{
 	public:
 		// get a 3D Persepctive Projection Matrix
-		/*static Matrix44f getPrespeciveProjMat
+		static Matrix44f getPrespeciveProjMat
 		(
 			const float aspect,
 			const float fov,
 			const float far,
 			const float near
-		);*/
+		);
+
+		// multiply a 3D vector with a 4x4 Matrix
+		static float multiplyVecMat(const Vector3f& in, Vector3f& out, const Matrix44f& m);
 
 	public:
 		////////////////////////////////////////////////////////////////////////////////
@@ -70,6 +73,8 @@ namespace rle
 			const Vector3f& in,
 			Vector2f& out,
 			const Transform& transform) const;
+
+	private:
 
 	private:
 		// Camera will default to facing North
