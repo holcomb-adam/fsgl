@@ -25,7 +25,11 @@ void rle::GameScene::onEnter()
 		{ { 1.0f, 0.0f, 1.0f }, { 0.0f, 0.0f, 0.0f }, { 1.0f, 0.0f, 0.0f } }
 	};
 
-	m_CubeTransform.setPosition(0.0f, 0.0f, 2.0f);
+	m_CubeTransform.setPosition(0.0f, 0.0f, 3.0f);
+	m_CubeTransform.setScale({ .2f, .2f, .2f });
+
+	m_Table.load("testing_table.obj");
+	m_TableTransform.setPosition(0.0f, 0.0f, 100.0f);
 }
 
 void rle::GameScene::onExit()
@@ -41,12 +45,14 @@ void rle::GameScene::update(const float delta)
 	const auto tx = cos(r);
 	const auto ty = sin(r);
 
-	m_CubeTransform.setPosition(tx * 2.99f, 0.0f, ty * 2.99f + 3.0f);
+	//m_CubeTransform.setPosition(0.0f, ty * 3.0f, 3.0f);
+	m_CubeTransform.setRotation({ 0.0f, r * math::constants::PI_F, 0.0f});
 }
 
 bool rle::GameScene::draw(const EngineRenderer& renderer) const
 {
-	renderer.render3D(m_Cube, m_Camera, m_CubeTransform);
+	//renderer.render3D(m_Cube, m_Camera, m_CubeTransform);
+	renderer.render3D(m_Table, m_Camera, m_TableTransform);
 
 	return true;
 }

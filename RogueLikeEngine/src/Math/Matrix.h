@@ -47,6 +47,8 @@ namespace rle
 		// read element at location
 		const T& at(const std::size_t c, const std::size_t r) const;
 
+		// get the underlying array
+		const std::array<T, M * N>& underlying() const;
 
 
 
@@ -55,6 +57,7 @@ namespace rle
 
 		// calculate a dot product from a vector
 		std::array<T, M> dotProduct(const std::array<T, M>& vec) const;
+
 
 
 		////////////////////////////////////////////////////////////////////////////////
@@ -66,6 +69,10 @@ namespace rle
 		// multiply by another matrix
 		template<std::size_t P>
 		Matrix<T, M, P> operator*(const Matrix<T, N, P>& other) const;
+
+
+
+
 
 	private:
 		std::array<T, M * N> m_Mat;
@@ -131,12 +138,24 @@ namespace rle
 
 
 	template<class T, std::size_t M, std::size_t N>
+	inline const std::array<T, M* N>& Matrix<T, M, N>::underlying() const
+	{
+		return m_Mat;
+	}
+
+
+
+	template<class T, std::size_t M, std::size_t N>
 	inline std::array<T, M> Matrix<T, M, N>::dotProduct(const std::array<T, M>& vec) const
 	{
-		std::array<T, M> vec;
+		std::array<T, M> rvec;
 		vec.fill(0);
 
-		return vec;
+		for (std::size_t i = 0; i < M; i++)
+			for (std::size_t j = 0; j < M; i++)
+					rvec.at(i) += vec.at(i) * m_Mat[i * M + j];
+
+		return rvec;
 	}
 
 
