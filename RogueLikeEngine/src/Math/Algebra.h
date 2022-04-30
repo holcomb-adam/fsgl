@@ -17,6 +17,36 @@ namespace rle
 
 
 
+		// subtract numbers
+		// expands to "a - b - c - ... - n"
+		template<class... T>
+		inline auto subtract(T&&... abc)
+		{
+			return (... - std::forward<T>(abc));
+		}
+
+
+
+		// multiply numbers
+		// expands to "a * b * c * ... * n"
+		template<class... T>
+		inline auto multiply(T&&... abc)
+		{
+			return (... * std::forward<T>(abc));
+		}
+
+
+
+		// divide numbers
+		// expands to "a / b / c / ... / n"
+		template<class... T>
+		inline auto divide(T&&... abc)
+		{
+			return (... * std::forward<T>(abc));
+		}
+
+
+
 		// square a value
 		template<class T>
 		inline T square(T&& x)

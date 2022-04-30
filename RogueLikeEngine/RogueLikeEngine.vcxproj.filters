@@ -35,6 +35,9 @@
     <Filter Include="src\EngineUI\EngineStates">
       <UniqueIdentifier>{060bc761-03d8-44cf-845e-8d65bbc474c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Log">
+      <UniqueIdentifier>{c35ec46a-2604-4e4f-b30b-d253acd4ce65}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\EngineBase.h">
@@ -91,16 +94,19 @@
     <ClInclude Include="src\Rendering\Graphics\2D\Drawable2D.h">
       <Filter>src\Rendering\Graphics\2D</Filter>
     </ClInclude>
-    <ClInclude Include="src\RLE.h">
-      <Filter>src</Filter>
+    <ClInclude Include="src\Rendering\Graphics\3D\Transform.h">
+      <Filter>src\Rendering\Graphics\3D</Filter>
     </ClInclude>
-    <ClInclude Include="src\Log\Log.h" />
-    <ClInclude Include="src\Core\EntryPoint.h" />
-    <ClInclude Include="src\Core\PP.h" />
+    <ClInclude Include="src\Core\Version.h">
+      <Filter>src\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Rendering\EngineRenderer.cpp">
       <Filter>src\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Rendering\Graphics\3D\Mesh.cpp">
       <Filter>src\Rendering\Graphics\3D</Filter>
@@ -117,11 +123,8 @@
     <ClCompile Include="src\Rendering\Graphics\3D\Camera.cpp">
       <Filter>src\Rendering\Graphics\3D</Filter>
     </ClCompile>
-    <ClCompile Include="src\Log\Log.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\rle_main.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="src\Rendering\Graphics\3D\Transform.cpp">
+      <Filter>src\Rendering\Graphics\3D</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
