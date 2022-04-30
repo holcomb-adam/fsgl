@@ -2,10 +2,10 @@
 
 rle::Transform::Transform()
 {
-	m_ModelMat.at(0, 0) = 1;
-	m_ModelMat.at(1, 1) = 1;
-	m_ModelMat.at(2, 2) = 1;
-	m_ModelMat.at(3, 3) = 1;
+	// apply default transformations
+	setRotation({ 0.0f, 0.0f, 0.0f });
+	setScale({ 1.0f, 1.0f, 1.0f });
+	setPosition(0.0f, 0.0f, 0.0f);
 }
 
 rle::Transform::Transform(const Vector3f& pos)

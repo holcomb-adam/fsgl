@@ -77,9 +77,6 @@ namespace rle
 	private:
 
 	private:
-		// Camera will default to facing North
-		Vector3f m_Directional = { 0.0f, 0.0f, 1.0f };
-
 		float m_Near = 0.1f;
 		float m_Far = 1000.0f;
 		float m_Fov = 90.0f;

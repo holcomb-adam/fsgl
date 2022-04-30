@@ -11,13 +11,13 @@ namespace rle
 {
     namespace log
     {
+        namespace detail
+        {
 
 // this directive frees some memory from defines and
 // static allocations
 #ifdef RLE_LOGGING
 
-        namespace detail
-        {
             static const std::unordered_map<std::uint8_t, std::string> severity_tags
             {
                 { INFO, "[INFO]" },
@@ -26,42 +26,40 @@ namespace rle
             };
 
             static std::ofstream ofs;
-        }
 
 
 
-        bool init(const std::string& path)
-        {
-            if (detail::ofs.is_open())
-                detail::ofs.close();
+            bool init(const std::string& path)
+            {
+                if (ofs.is_open())
+                    ofs.close();
 
-            detail::ofs.open(path, std::ios_base::app);
-            return detail::ofs.is_open();
-        }
+                ofs.open(path, std::ios_base::app);
+                return ofs.is_open();
+            }
 
-        void out(const std::uint8_t severity, const std::string& msg)
-        {
-            if (!detail::ofs.is_open())
-                return;
+            void out(const std::uint8_t severity, const std::string& msg)
+            {
+                if (!ofs.is_open())
+                    return;
 
-            if (detail::severity_tags.find(severity) == detail::severity_tags.end())
-                detail::ofs << "[UNKNOWN] ";
-            else
-                detail::ofs << detail::severity_tags.at(severity);
+                if (severity_tags.find(severity) == severity_tags.end())
+                    ofs << "[UNKNOWN] ";
+                else
+                    ofs << severity_tags.at(severity) << ' ';
 
-            std::time_t rawtime = 0;
-            std::tm* info = nullptr;
-            char buf[80] = { 0 };
-
-            std::time(&rawtime);
-            localtime_s(info, &rawtime);
-
-            const auto& strt = std::strftime(buf, 80, "[%Y:%%m:%e:%R:%S]", info);
-            detail::ofs << strt << msg << std::endl;
-            detail::ofs.flush();
-        }
+                // get local time
+                std::time_t t = time(NULL);
+                struct tm buf;
+                char str[26] = { 0 };
+                localtime_s(&buf, &t);
+                strftime(str, sizeof(str), "[%x-%X]", &buf);
+                ofs << str << ' ' << msg << std::endl;
+                ofs.flush();
+            }
 
 #endif // RLE_LOGGING
 
+        }
     }
 }

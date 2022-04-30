@@ -4,6 +4,7 @@
 #include <sstream>
 
 #include "Camera.h"
+#include "Log/Log.h"
 #include "Math/Constants.h"
 #include "Rendering/EngineRenderer.h"
 
@@ -43,30 +44,54 @@ bool rle::Mesh::load(const std::string& str)
 		std::string delim;
 		iss >> delim;
 
-		// check if we are reading vertex data
+		// check what data we are reading
 		if (delim == "v") // vertex delimiter
 		{
 			Vector3f v;
 			iss >> v.x >> v.y >> v.z;
 			verts.push_back(std::move(v));
 		}
+		else if (delim == "f")
+		{
+			// get the face definitions
+			std::vector<std::size_t> f;
+			std::string vb;
+			for (std::size_t i = 0; iss >> vb; i++)
+				f.push_back(std::stoi(vb.substr(0, vb.find_first_of('/'))));
+
+			// define the face
+			// determine if we are working with triangles or quads
+			switch (f.size())
+			{
+			case 3: // working with triangles
+				m_Verticies.push_back({
+					verts[f[0] - 1],
+					verts[f[1] - 1],
+					verts[f[2] - 1] });
+				break;
+
+			case 4: // working with quads
+				m_Verticies.push_back({
+					verts[f[0] - 1],
+					verts[f[1] - 1],
+					verts[f[2] - 1] });
+				m_Verticies.push_back({
+					verts[f[1] - 1],
+					verts[f[2] - 1],
+					verts[f[3] - 1] });
+				break;
+
+			default:
+				RLE_LOG_OUT(log::ERR, "Loading wavefront (.obj), recieved invalid amount of verticies!"
+					"RLE meshes only support 3 and 4 vertex faces!");
+				return false;
+				break;
+			}
+		}
 	}
 
 	// close file
 	ifs.close();
-
-	// load the verticies into the object
-	// verticies are stored in a counterclockwise fashion so we
-	// loop through the verticies backwards
-	for (std::size_t i = verts.size() - 1; i > 1; i--)
-	{
-		Triangle tri;
-		tri.p1 = verts[i];
-		tri.p2 = verts[i - 1];
-		tri.p3 = verts[i - 2];
-
-		m_Verticies.push_back(std::move(tri));
-	}
 
 	return true;
 }

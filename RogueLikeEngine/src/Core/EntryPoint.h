@@ -1,12 +1,14 @@
 #pragma once
 
-#include <SDL.h>
+// sdl2 forward declarations
+struct SDL_Renderer;
+struct SDL_Window;
 
 
 
 namespace rle
 {
-	// RLE forward declarations
+	// rle forward declarations
 	class EngineBase;
 
 

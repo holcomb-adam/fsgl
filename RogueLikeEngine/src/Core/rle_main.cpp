@@ -1,6 +1,6 @@
-#include "EntryPoint.h"
+#include <SDL.h>
 
-#include "EngineBase.h"
+#include "RLE.h"
 #include "Log/Log.h"
 
 int main(int argc, char* argv[])
@@ -45,6 +45,9 @@ int main(int argc, char* argv[])
 		RLE_LOG_OUT(rle::log::ERR, "Failed to create SDL_Window!");
 		return -5;
 	}
+
+	// initialize the client
+	client->init();
 
 	// begin the application
 	client->exec();

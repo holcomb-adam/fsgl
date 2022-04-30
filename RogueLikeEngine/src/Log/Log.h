@@ -21,7 +21,7 @@
 	#define RLE_LOG_OUT(severity, msg) \
 		rle::log::detail::out(severity, msg)
 #else
-	#define RLE_LOG_OPEN(...) true
+	#define RLE_LOG_INIT(...) true
 	#define RLE_LOG_OUT(...)
 #endif // RLE_LOGGING
 

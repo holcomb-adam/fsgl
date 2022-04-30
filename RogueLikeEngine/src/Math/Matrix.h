@@ -47,6 +47,9 @@ namespace rle
 		// read element at location
 		const T& at(const std::size_t c, const std::size_t r) const;
 
+		// get the underlying array
+		const std::array<T, M * N>& underlying() const;
+
 
 
 
@@ -131,15 +134,18 @@ namespace rle
 
 
 	template<class T, std::size_t M, std::size_t N>
+	inline const std::array<T, M* N>& Matrix<T, M, N>::underlying() const
+	{
+		return m_Mat;
+	}
+
+
+
+	template<class T, std::size_t M, std::size_t N>
 	inline std::array<T, M> Matrix<T, M, N>::dotProduct(const std::array<T, M>& vec) const
 	{
 		std::array<T, M> vec;
 		vec.fill(0);
-
-	template<class T, std::size_t C, std::size_t R>
-	inline const Matrix<T, C, R>::row_t& Matrix<T, C, R>::operator[](const std::size_t c) const
-	{
-		return m_Mat[c];
 	}
 
 
