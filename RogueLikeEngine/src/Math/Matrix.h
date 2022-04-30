@@ -136,6 +136,8 @@ namespace rle
 		return m_Mat[c];
 	}
 
+
+
 	template<class T, std::size_t C, std::size_t R>
 	inline const Matrix<T, C, R>::row_t& Matrix<T, C, R>::operator[](const std::size_t c) const
 	{

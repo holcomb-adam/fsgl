@@ -24,7 +24,12 @@ rle::Vector2i rle::EngineRenderer::windowSize() const
 void rle::EngineRenderer::drawLine(const Vector2f& s, const Vector2f& e, const Color& color) const
 {
 	SDL_SetRenderDrawColor(m_SDL_Renderer, color.red, color.green, color.blue, color.alpha);
-	SDL_RenderDrawLine(m_SDL_Renderer, s.x, s.y, e.x, e.y);
+	SDL_RenderDrawLine(m_SDL_Renderer, 
+		static_cast<int>(s.x),
+		static_cast<int>(s.y),
+		static_cast<int>(e.x),
+		static_cast<int>(e.y)
+	);
 }
 
 void rle::EngineRenderer::draw2D(const Drawable2D& drawable) const

@@ -91,13 +91,16 @@
     <ClInclude Include="src\Rendering\Graphics\2D\Drawable2D.h">
       <Filter>src\Rendering\Graphics\2D</Filter>
     </ClInclude>
+    <ClInclude Include="src\RLE.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Log\Log.h" />
+    <ClInclude Include="src\Core\EntryPoint.h" />
+    <ClInclude Include="src\Core\PP.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Rendering\EngineRenderer.cpp">
       <Filter>src\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="src\main.cpp">
-      <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Rendering\Graphics\3D\Mesh.cpp">
       <Filter>src\Rendering\Graphics\3D</Filter>
@@ -113,6 +116,12 @@
     </ClCompile>
     <ClCompile Include="src\Rendering\Graphics\3D\Camera.cpp">
       <Filter>src\Rendering\Graphics\3D</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Log\Log.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\rle_main.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

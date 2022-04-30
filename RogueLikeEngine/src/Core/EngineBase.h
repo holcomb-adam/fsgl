@@ -1,7 +1,12 @@
 #pragma once
 
+// external includes
 #include <SDL_events.h>
 
+// Standard Library includes
+#include <chrono>
+
+// RLE includes
 #include "EngineUI/EngineState.h"
 #include "Rendering/EngineRenderer.h"
 #include "Rendering/Graphics/3D/Mesh.h"
@@ -11,9 +16,12 @@
 
 namespace rle
 {
-	// this class represents the base of the engine
+	// this class represents the base or application of the engine
 	class EngineBase : public FiniteStateMachine<EngineState>
 	{
+	public:
+		static const std::chrono::system_clock::time_point ENGINE_EPOCH;
+
 	public:
 		// ctor
 		// takes an SDL_Renderer and an SDL_Window

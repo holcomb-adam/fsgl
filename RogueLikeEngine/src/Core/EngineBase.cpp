@@ -2,6 +2,9 @@
 
 #include <chrono>
 
+// the very start of the application
+const std::chrono::system_clock::time_point rle::EngineBase::ENGINE_EPOCH = std::chrono::system_clock::now();
+
 rle::EngineBase::EngineBase(SDL_Renderer* sdl_ren, SDL_Window* sdl_win) : 
 	m_Renderer(sdl_ren, sdl_win)
 {

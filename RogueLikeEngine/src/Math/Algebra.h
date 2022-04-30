@@ -21,7 +21,7 @@ namespace rle
 		template<class T>
 		inline T square(T&& x)
 		{
-			return x * x;
+			return std::forward<T>(x) * std::forward<T>(x);
 		}
 
 

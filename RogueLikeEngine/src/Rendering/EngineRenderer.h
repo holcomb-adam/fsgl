@@ -31,7 +31,6 @@ namespace rle
 		EngineRenderer(SDL_Renderer* sdl_ren, SDL_Window* sdl_win);
 
 		// explicit default dtor
-		// frees the renderer and the window memory
 		~EngineRenderer() = default;
 
 		// get window size
