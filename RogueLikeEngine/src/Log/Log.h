@@ -35,8 +35,8 @@ namespace rle
 		constexpr std::uint8_t WARN = 1;
 		constexpr std::uint8_t ERR  = 2;
 
-		// basic for now
-		constexpr auto GENERAL_PATH = "log.txt";
+		// general logging
+		constexpr auto GENERAL_PATH = "logs/rle_start.log";
 
 
 
