@@ -63,14 +63,14 @@ bool rle::Mesh::load(const std::string& str)
 			// determine if we are working with triangles or quads
 			switch (f.size())
 			{
-			case 3: // working with triangles
+			case math::constants::TRI_VERTS: // working with triangles
 				m_Verticies.push_back({
 					verts[f[0] - 1],
 					verts[f[1] - 1],
 					verts[f[2] - 1] });
 				break;
 
-			case 4: // working with quads
+			case math::constants::QUAD_VERTS: // working with quads
 				m_Verticies.push_back({
 					verts[f[0] - 1],
 					verts[f[1] - 1],
