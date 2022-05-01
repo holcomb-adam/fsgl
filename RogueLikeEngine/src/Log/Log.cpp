@@ -1,5 +1,6 @@
 #include "Log.h"
 
+#include <filesystem>
 #include <fstream>
 #include <thread>
 #include <unordered_map>
@@ -33,6 +34,9 @@ namespace rle
             {
                 if (ofs.is_open())
                     ofs.close();
+
+                // make sure the log directory is created
+                std::filesystem::create_directories("./logs");
 
                 ofs.open(path, std::ios_base::app);
                 return ofs.is_open();

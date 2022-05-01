@@ -33,7 +33,7 @@ std::size_t rle::b_ren::Sandbox::init()
 	game_scene.addObject(&m_Cube);
 
 	// output to logs
-	RLE_LOG_OUT(log::INFO, "RLE Rendering Branch client successfully initialized!");
+	RLE_LOG_OUT(log::INFO, "RLE client successfully initialized!");
 
 	return 0;
 }

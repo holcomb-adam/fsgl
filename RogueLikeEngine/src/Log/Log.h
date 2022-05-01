@@ -36,7 +36,7 @@ namespace rle
 		constexpr std::uint8_t ERR  = 2;
 
 		// general logging
-		constexpr auto GENERAL_PATH = "logs/rle_start.log";
+		constexpr auto GENERAL_PATH = "./logs/rle_start.log";
 
 
 
