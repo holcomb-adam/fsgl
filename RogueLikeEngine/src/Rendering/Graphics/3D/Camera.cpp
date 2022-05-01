@@ -1,48 +1,102 @@
 #include "Camera.h"
 
+#include "Transform.h"
 #include "Math/Trigonometry.h"
 #include "Rendering/EngineRenderer.h"
 
-rle::Vector2f rle::Camera::project3D(const EngineRenderer& renderer, const Vector3f& p3d) const
+rle::Matrix44f rle::Camera::getPrespeciveProjMat(const float aspect, const float fov, const float far, const float near)
 {
-    const auto& win_s = renderer.windowSize();
-    const auto aspect = static_cast<float>(win_s.y) / static_cast<float>(win_s.x);
-    const auto adj_fov = 1.0f / math::degToRad(m_Fov / 2.0f);
-
-    // hopefully temp, but at this point, idc...
-    const Matrix44f proj_mat = std::array{
-        aspect * adj_fov, 0.0f, 0.0f, 0.0f,
-        0.0f, adj_fov * 1.0f, 0.0f, 0.0f,
-        0.0f, 0.0f, m_Far / (m_Far - m_Near), 0.0f,
-        0.0f, 0.0f, 1.0f, 0.0f
-    };
-
-    auto proj = tempFunc(p3d.getUnitVector(), proj_mat);
-
-    // scale the vector into the view
-    proj.x += 1.0f;
-    proj.y += 1.0f;
-
-    proj.x *= 0.5f * static_cast<float>(win_s.x);
-    proj.y *= 0.0f * static_cast<float>(win_s.y);
-
-    return { proj.x, proj.y };
+    const auto q = far / (far - near);
+    return Matrix44f
+    (
+        {
+            aspect * fov, 0.0f,     0.0f,      0.0f,
+            0.0f,         fov,      0.0f,      0.0f,
+            0.0f,         0.0f,     q,         1.0f,
+            0.0f,         0.0f,     q * -near, 0.0f
+        }
+    );
 }
 
-rle::Vector3f rle::Camera::tempFunc(const Vector3f& i, const Matrix44f& pmat) const
+float rle::Camera::multiplyVecMat(const Vector3f& in, Vector3f& out, const Matrix44f& m)
 {
-    Vector3f vec;
-    vec.x = i.x * pmat[0][0] + i.y * pmat[1][0] + i.z * pmat[2][0] + pmat[3][0];
-    vec.y = i.x * pmat[0][1] + i.y * pmat[1][1] + i.z * pmat[2][1] + pmat[3][1];
-    vec.z = i.z * pmat[0][2] + i.y * pmat[1][2] + i.z * pmat[2][2] + pmat[3][2];
-    const auto w = i.x * pmat[0][3] + i.y * pmat[1][3] + i.z * pmat[2][3] + pmat[3][3];
+    const auto& u = m.underlying();
 
+    out.x = in.x * u[0] + in.y * u[4] + in.z * u[8] + u[12];
+    out.y = in.x * u[1] + in.y * u[5] + in.z * u[9] + u[13];
+    out.z = in.x * u[2] + in.y * u[6] + in.z * u[10] + u[14];
+    return in.x * u[3] + in.y * u[7] + in.z * u[11] + u[15];
+}
+
+float rle::Camera::nearClipping() const
+{
+    return m_Near;
+}
+
+void rle::Camera::setNearClipping(const float near)
+{
+    m_Near = near;
+}
+
+float rle::Camera::farClipping() const
+{
+    return m_Far;
+}
+
+void rle::Camera::setFarClipping(const float far)
+{
+    m_Far = far;
+}
+
+float rle::Camera::fov() const
+{
+    return m_Fov;
+}
+
+void rle::Camera::setFov(const float fov)
+{
+    m_Fov = fov;
+}
+
+void rle::Camera::project3D(const EngineRenderer& renderer, const Vector3f& in, Vector2f& out, const Transform& transform) const
+{
+    // starting values needed to get the projection matrix
+    const auto& win_s = renderer.windowSize();
+    const auto aspect = static_cast<float>(win_s.y) / static_cast<float>(win_s.x);
+    const auto adj_fov = 1.0f / tan(math::degToRad(m_Fov) * 0.5f);
+
+    // get the projection matrix
+    const auto& m = getPrespeciveProjMat(aspect, adj_fov, m_Far, m_Near);
+
+    // apply the rotations to the vector
+    Vector3f vrz, vry, vrx;
+    multiplyVecMat(in, vrz, transform.zRotMatrix());
+    multiplyVecMat(vrz, vry, transform.yRotMatrix());
+    multiplyVecMat(vry, vrx, transform.xRotMatrix());
+
+    // apply the translation to the vector
+    Vector3f vt;
+    multiplyVecMat(vrx, vt, transform.modelMatrix());
+
+    // temp placeholder for our vector that needs to be projected
+    Vector3f vp;
+    const auto w = multiplyVecMat(vt, vp, m);
+
+    // normalize the projection vector
     if (w != 0.0f)
     {
-        vec.x /= w;
-        vec.y /= w;
-        vec.z /= w;
+        vp.x /= w;
+        vp.y /= w;
+        vp.z /= w;
     }
 
-    return vec;
+    // scale the new point into the view
+    vp.x += 1.0f; 
+    vp.x *= 0.5f * static_cast<float>(win_s.x);
+    vp.y += 1.0f; 
+    vp.y *= 0.5f * static_cast<float>(win_s.y);
+
+    // set the output vector
+    out.x = vp.x;
+    out.y = vp.y;
 }

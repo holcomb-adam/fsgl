@@ -30,15 +30,23 @@ namespace rle
 		// begins the engine's application loop
 		int exec();
 
+		// for post-instantiation initialization
+		// returns code (0 is considered a safe return)
+		virtual std::size_t init() = 0;
+
 	protected:
+		// update the client engine and then all proceeding panels / states
+		virtual void update(const float delta) = 0;
+
+		// render the engine states
+		virtual bool render() const = 0;
+
+	private:
 		// handle inputs given from the user
 		void handleInput(const SDL_Event& event);
 
-		// update the engine and then all proceeding panels / states
-		void update(const float delta);
-
-		// render the engine states
-		bool render() const;
+		void engine_update(const float delta);
+		void engine_render() const;
 
 	private:
 		EngineRenderer m_Renderer;

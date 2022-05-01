@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -30,6 +30,9 @@
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -66,7 +69,8 @@
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>C:\Users\terma\source\repos\RogueLikeEngine\external\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -90,17 +94,18 @@
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>C:\Users\terma\source\repos\RogueLikeEngine\external\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Core\EngineBase.h" />
     <ClInclude Include="src\Core\EntryPoint.h" />
     <ClInclude Include="src\Core\PP.h" />
-    <ClInclude Include="src\Log\Log.h" />
-    <ClInclude Include="src\RLE.h" />
-    <ClInclude Include="src\Core\EngineBase.h" />
+    <ClInclude Include="src\Core\Version.h" />
     <ClInclude Include="src\EngineUI\EngineState.h" />
     <ClInclude Include="src\EngineUI\EngineStates\GameScene.h" />
+    <ClInclude Include="src\Log\Log.h" />
     <ClInclude Include="src\Math\Algebra.h" />
     <ClInclude Include="src\Math\Constants.h" />
     <ClInclude Include="src\Math\Matrix.h" />
@@ -111,8 +116,11 @@
     <ClInclude Include="src\Rendering\EngineRenderer.h" />
     <ClInclude Include="src\Rendering\Graphics\2D\Drawable2D.h" />
     <ClInclude Include="src\Rendering\Graphics\3D\Camera.h" />
+    <ClInclude Include="src\Rendering\Graphics\3D\GameSceneObject.h" />
     <ClInclude Include="src\Rendering\Graphics\3D\Mesh.h" />
     <ClInclude Include="src\Rendering\Graphics\3D\Renderable3D.h" />
+    <ClInclude Include="src\Rendering\Graphics\3D\Transform.h" />
+    <ClInclude Include="src\RLE.h" />
     <ClInclude Include="src\Utils\FiniteStateMachine\FiniteStateMachine.h" />
     <ClInclude Include="src\Utils\NonCopyable.h" />
     <ClInclude Include="src\Utils\UniqueID.h" />
@@ -125,6 +133,7 @@
     <ClCompile Include="src\Rendering\EngineRenderer.cpp" />
     <ClCompile Include="src\Rendering\Graphics\3D\Camera.cpp" />
     <ClCompile Include="src\Rendering\Graphics\3D\Mesh.cpp" />
+    <ClCompile Include="src\Rendering\Graphics\3D\Transform.cpp" />
     <ClCompile Include="src\Utils\FiniteStateMachine\FiniteStateMachine.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

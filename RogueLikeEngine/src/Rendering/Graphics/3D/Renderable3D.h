@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Transform.h"
+
 
 
 namespace rle
@@ -21,6 +23,6 @@ namespace rle
 		virtual ~Renderable3D() = default;
 
 		// performs 3D rendering operations on the object
-		virtual bool render3D(const EngineRenderer&, const Camera&) const = 0;
+		virtual bool render3D(const EngineRenderer&, const Camera&, Transform transform) const = 0;
 	};
 }

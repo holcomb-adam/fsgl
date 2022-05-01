@@ -29,15 +29,17 @@ int rle::EngineBase::exec()
 
 		const auto recent_time = std::chrono::steady_clock::now();
 		const auto elapsed_delta = (recent_time - last_elapsed).count();
+		const auto elapsed_delta_f = static_cast<float>(elapsed_delta) * 1e-6f;
 
-		// update
-		update(static_cast<float>(elapsed_delta) * 1e-6f);
+		// update this engine level first...
+		// then the client engine level
+		engine_update(elapsed_delta_f);
 
 		// set the last elapsed time
 		last_elapsed = recent_time;
 
-		// render
-		render();
+		// same process as the updating
+		engine_render();
 	}
 
 	return 0;
@@ -53,20 +55,23 @@ void rle::EngineBase::handleInput(const SDL_Event& event)
 	}
 }
 
-void rle::EngineBase::update(const float delta)
+void rle::EngineBase::engine_update(const float delta)
 {
+	update(delta);
+
 	if (!empty())
 		topState().update(delta);
 }
 
-bool rle::EngineBase::render() const
+void rle::EngineBase::engine_render() const
 {
 	m_Renderer.clear(rle::color_constants::BLACK);
+
+	// render engine first
+	render();
 
 	if (!empty())
 		topState().draw(m_Renderer);
 
 	m_Renderer.present();
-
-	return true;
 }
