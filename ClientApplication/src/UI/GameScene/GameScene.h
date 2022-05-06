@@ -21,6 +21,9 @@ namespace rle
 	class GameScene final : public EngineState
 	{
 	public:
+		static constexpr float CAMERA_MOVE_SPEED = 0.01f;
+
+	public:
 		////////////////////////////////////////////////////////////////////////////////
 		// - CONSTRUCTORS / DESTRUCTORS ------------------------------------------------
 
@@ -41,13 +44,17 @@ namespace rle
 
 
 		////////////////////////////////////////////////////////////////////////////////
-		// - ENGINE STATE OVERRIDES ----------------------------------------------------
+		// - ENGINE BASE OVERRIDES -----------------------------------------------------
 
 		// Inherited via EngineState
 		virtual void onEnter() override;
 		virtual void onExit() override;
 		virtual void update(const float delta) override;
 		virtual bool draw(const EngineRenderer& renderer) const override;
+
+	protected:
+		// Event handle overrides
+		virtual void keyPressEvent(const SDL_KeyboardEvent& event) override;
 
 	private:
 		Camera m_Camera;

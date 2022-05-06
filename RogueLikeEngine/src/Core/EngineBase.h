@@ -6,7 +6,7 @@
 // Standard Library includes
 #include <chrono>
 
-// RLE includes
+// rle library includes
 #include "EngineUI/EngineState.h"
 #include "Rendering/EngineRenderer.h"
 #include "Rendering/Graphics/3D/Mesh.h"
@@ -35,17 +35,21 @@ namespace rle
 		virtual std::size_t init() = 0;
 
 	protected:
-		// update the client engine and then all proceeding panels / states
+		// update the client engine
 		virtual void update(const float delta) = 0;
 
 		// render the engine states
+		// client side rendering possible as well
 		virtual bool render() const = 0;
 
 	private:
 		// handle inputs given from the user
 		void handleInput(const SDL_Event& event);
 
+		// update the engine
 		void engine_update(const float delta);
+
+		// render the engine
 		void engine_render() const;
 
 	private:

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Math/Matrix.h"
-#include "Math/Vector3.h"
+#include "Math/Vector.h"
 
 
 
@@ -44,6 +44,9 @@ namespace rle
 
 		// set position of the transform
 		void setPosition(const float x, const float y, const float z);
+
+		// move the camera by unit
+		void move(const float x, const float y, const float z);
 
 		// get the rotation of the transform
 		// this returns a 3D vector of angles in radians

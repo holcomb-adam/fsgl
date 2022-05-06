@@ -15,9 +15,7 @@ rle::EngineRenderer::EngineRenderer(SDL_Renderer* sdl_ren, SDL_Window* sdl_win) 
 rle::Vector2i rle::EngineRenderer::windowSize() const
 {
 	Vector2i size;
-
 	SDL_GetWindowSize(m_SDL_Window, &size.x, &size.y);
-
 	return size;
 }
 

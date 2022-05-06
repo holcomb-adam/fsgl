@@ -102,16 +102,16 @@
     <ClInclude Include="src\Core\EngineBase.h" />
     <ClInclude Include="src\Core\EntryPoint.h" />
     <ClInclude Include="src\Core\PP.h" />
+    <ClInclude Include="src\Core\System\base_token.h" />
     <ClInclude Include="src\Core\Version.h" />
     <ClInclude Include="src\EngineUI\EngineState.h" />
-    <ClInclude Include="src\EngineUI\EngineStates\GameScene.h" />
     <ClInclude Include="src\Log\Log.h" />
     <ClInclude Include="src\Math\Algebra.h" />
     <ClInclude Include="src\Math\Constants.h" />
     <ClInclude Include="src\Math\Matrix.h" />
+    <ClInclude Include="src\Math\Shapes\Triangle.h" />
     <ClInclude Include="src\Math\Trigonometry.h" />
-    <ClInclude Include="src\Math\Vector2.h" />
-    <ClInclude Include="src\Math\Vector3.h" />
+    <ClInclude Include="src\Math\Vector.h" />
     <ClInclude Include="src\Rendering\Color.h" />
     <ClInclude Include="src\Rendering\EngineRenderer.h" />
     <ClInclude Include="src\Rendering\Graphics\2D\Drawable2D.h" />
@@ -123,18 +123,17 @@
     <ClInclude Include="src\RLE.h" />
     <ClInclude Include="src\Utils\FiniteStateMachine\FiniteStateMachine.h" />
     <ClInclude Include="src\Utils\NonCopyable.h" />
+    <ClInclude Include="src\Utils\ref.h" />
     <ClInclude Include="src\Utils\UniqueID.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\EngineBase.cpp" />
-    <ClCompile Include="src\Core\rle_main.cpp" />
-    <ClCompile Include="src\EngineUI\EngineStates\GameScene.cpp" />
+    <ClCompile Include="src\Core\System\rle_main.cpp" />
     <ClCompile Include="src\Log\Log.cpp" />
     <ClCompile Include="src\Rendering\EngineRenderer.cpp" />
     <ClCompile Include="src\Rendering\Graphics\3D\Camera.cpp" />
     <ClCompile Include="src\Rendering\Graphics\3D\Mesh.cpp" />
     <ClCompile Include="src\Rendering\Graphics\3D\Transform.cpp" />
-    <ClCompile Include="src\Utils\FiniteStateMachine\FiniteStateMachine.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "Math/Vector3.h"
+#include "Math/Shapes/Triangle.h"
 #include "Renderable3D.h"
 
 
@@ -14,20 +14,12 @@ namespace rle
 	class Mesh final : public Renderable3D
 	{
 	public:
-		struct Triangle final
-		{
-			Vector3f p1;
-			Vector3f p2;
-			Vector3f p3;
-		};
-
-	public:
 		// default ctor
 		Mesh() = default;
 
 		// ctor
 		// takes a list of Vector3 objects
-		Mesh(const std::initializer_list<Triangle>& verticies);
+		Mesh(const std::initializer_list<Triangle3f>& verticies);
 
 		// default dtor
 		~Mesh() = default;
@@ -36,7 +28,7 @@ namespace rle
 		bool load(const std::string& str);
 
 		// get a const refernece to the underlying vector of triangles
-		const std::vector<Triangle>& triangles() const;
+		const std::vector<Triangle3f>& triangles() const;
 
 		// Inherited via Renderable3D
 		virtual bool render3D(
@@ -45,7 +37,7 @@ namespace rle
 			Transform transform) const override;
 
 	private:
-		std::vector<Triangle> m_Verticies;
+		std::vector<Triangle3f> m_Verticies;
 	};
 }
 

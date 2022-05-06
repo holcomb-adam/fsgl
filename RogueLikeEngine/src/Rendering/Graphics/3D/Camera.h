@@ -1,8 +1,9 @@
 #pragma once
 
+#include "Transform.h"
 #include "Math/Matrix.h"
-#include "Math/Vector2.h"
-#include "Math/Vector3.h"
+#include "Math/Vector.h"
+#include "Math/Shapes/Triangle.h"
 
 
 
@@ -10,11 +11,10 @@ namespace rle
 {
 	// rle forward declaration
 	class EngineRenderer;
-	class Transform;
 
 
 
-	class Camera final
+	class Camera final : public Transform
 	{
 	public:
 		// get a 3D Persepctive Projection Matrix
@@ -44,6 +44,12 @@ namespace rle
 		////////////////////////////////////////////////////////////////////////////////
 		// - SETTERS / GETTERS ---------------------------------------------------------
 
+		// get whether or not the camera is in wireframe mode
+		bool isWireFrame() const;
+
+		// set whether or not the camera is in wireframe mode
+		void setWireFrame(const bool b);
+
 		// get the distance to the near clipping plane
 		float nearClipping() const;
 
@@ -68,15 +74,16 @@ namespace rle
 		// - 3D PROJECTION CALULCATIONS ------------------------------------------------
 
 		// project a 3D point to a 2D plane defined by the camera
-		void project3D(
+		bool project3D(
 			const EngineRenderer& renderer,
-			const Vector3f& in,
-			Vector2f& out,
+			const Triangle3f& in,
+			Triangle2f& out,
 			const Transform& transform) const;
 
 	private:
+		bool m_WireFrame = false;
+		bool m_Lights = false;
 
-	private:
 		float m_Near = 0.1f;
 		float m_Far = 1000.0f;
 		float m_Fov = 90.0f;

@@ -52,6 +52,11 @@ void rle::EngineBase::handleInput(const SDL_Event& event)
 	case SDL_QUIT:
 		m_Executing = false;
 		break;
+
+	// THIS NEEDS TO BE CHANGED EVENTUALLY
+	case SDL_KEYDOWN:
+		topState().keyPressEvent(event.key);
+		break;
 	}
 }
 

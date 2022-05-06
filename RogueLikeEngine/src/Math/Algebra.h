@@ -1,6 +1,7 @@
 #pragma once
 
-#include <cmath>
+// rle library includes
+#include "Constants.h"
 
 
 
@@ -8,6 +9,9 @@ namespace rle
 {
 	namespace math
 	{
+		////////////////////////////////////////////////////////////////////////////////
+		// - GENERAL OPERATIONS --------------------------------------------------------
+		
 		// add numbers together
 		template<class... T>
 		inline auto add(T&&... abc)

@@ -1,9 +1,13 @@
 #include "Sandbox.h"
 
 // rle library includes
-#include "EngineUI/EngineStates/GameScene.h"
 #include "Log/Log.h"
 #include "Math/Constants.h"
+
+// client includes
+#include "UI/GameScene/GameScene.h"
+
+#include <iostream>
 
 
 
@@ -22,6 +26,8 @@ rle::b_ren::Sandbox::Sandbox(RLE_CTOR_ARGS) : RLE_ENGINE_CONSTRUCT
 
 std::size_t rle::b_ren::Sandbox::init()
 {
+	rle::Vector<double, 5> vec;
+
 	// add game scene state
 	auto& game_scene = pushState<GameScene>();
 

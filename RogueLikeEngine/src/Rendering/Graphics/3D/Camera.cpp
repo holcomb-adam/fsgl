@@ -28,6 +28,16 @@ float rle::Camera::multiplyVecMat(const Vector3f& in, Vector3f& out, const Matri
     return in.x * u[3] + in.y * u[7] + in.z * u[11] + u[15];
 }
 
+bool rle::Camera::isWireFrame() const
+{
+    return m_WireFrame;
+}
+
+void rle::Camera::setWireFrame(const bool b)
+{
+    m_WireFrame = b;
+}
+
 float rle::Camera::nearClipping() const
 {
     return m_Near;
@@ -58,45 +68,53 @@ void rle::Camera::setFov(const float fov)
     m_Fov = fov;
 }
 
-void rle::Camera::project3D(const EngineRenderer& renderer, const Vector3f& in, Vector2f& out, const Transform& transform) const
+bool rle::Camera::project3D(const EngineRenderer& renderer, const Triangle3f& in, Triangle2f& out, const Transform& transform) const
 {
     // starting values needed to get the projection matrix
     const auto& win_s = renderer.windowSize();
     const auto aspect = static_cast<float>(win_s.y) / static_cast<float>(win_s.x);
-    const auto adj_fov = 1.0f / tan(math::degToRad(m_Fov) * 0.5f);
+    const auto adj_fov = 1.0f / tanf(math::degToRad(m_Fov) * 0.5f);
 
     // get the projection matrix
     const auto& m = getPrespeciveProjMat(aspect, adj_fov, m_Far, m_Near);
 
-    // apply the rotations to the vector
-    Vector3f vrz, vry, vrx;
-    multiplyVecMat(in, vrz, transform.zRotMatrix());
-    multiplyVecMat(vrz, vry, transform.yRotMatrix());
-    multiplyVecMat(vry, vrx, transform.xRotMatrix());
+    // transformation buffers
+    Vector3f vrz, vry, vrx, vt, vp;
 
-    // apply the translation to the vector
-    Vector3f vt;
-    multiplyVecMat(vrx, vt, transform.modelMatrix());
-
-    // temp placeholder for our vector that needs to be projected
-    Vector3f vp;
-    const auto w = multiplyVecMat(vt, vp, m);
-
-    // normalize the projection vector
-    if (w != 0.0f)
+    for (std::size_t i = 0; i < in.size(); i++)
     {
-        vp.x /= w;
-        vp.y /= w;
-        vp.z /= w;
+        // apply the rotations to the vector
+        multiplyVecMat(in[i], vrz, transform.zRotMatrix());
+        multiplyVecMat(vrz, vry, transform.yRotMatrix());
+        multiplyVecMat(vry, vrx, transform.xRotMatrix());
+
+        // apply the translation to the vector
+        multiplyVecMat(vrx, vt, transform.modelMatrix());
+
+        // apply the camera transformations
+        vt -= position();
+
+        // temp placeholder for our vector that needs to be projected
+        const auto w = multiplyVecMat(vt, vp, m);
+
+        // normalize the projection vector
+        if (w != 0.0f)
+        {
+            vp.x /= w;
+            vp.y /= w;
+            vp.z /= w;
+        }
+
+        // scale the new point into the view
+        vp.x += 1.0f;
+        vp.x *= 0.5f * static_cast<float>(win_s.x);
+        vp.y += 1.0f;
+        vp.y *= 0.5f * static_cast<float>(win_s.y);
+
+        // set the output vector
+        out[i].x = vp.x;
+        out[i].y = vp.y;
     }
 
-    // scale the new point into the view
-    vp.x += 1.0f; 
-    vp.x *= 0.5f * static_cast<float>(win_s.x);
-    vp.y += 1.0f; 
-    vp.y *= 0.5f * static_cast<float>(win_s.y);
-
-    // set the output vector
-    out.x = vp.x;
-    out.y = vp.y;
+    return true;
 }

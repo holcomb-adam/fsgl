@@ -94,9 +94,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Application\Sandbox.h" />
+    <ClInclude Include="src\UI\GameScene\GameScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application\Sandbox.cpp" />
+    <ClCompile Include="src\UI\GameScene\GameScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
