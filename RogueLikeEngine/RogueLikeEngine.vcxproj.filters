@@ -1,126 +1,137 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="external">
+      <UniqueIdentifier>{2839F3DC-1406-4EE8-3D1F-3C90294B8376}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external\GLAD">
+      <UniqueIdentifier>{AFECA743-1BAD-237A-E4E7-6CF750676856}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external\GLAD\src">
+      <UniqueIdentifier>{466A387A-B280-3610-FBF7-C131674D0798}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Core">
-      <UniqueIdentifier>{b31f1a92-fddb-44bb-aa4d-b6efffedd8e0}</UniqueIdentifier>
+    <Filter Include="src\RLE">
+      <UniqueIdentifier>{5FA62FA9-CB85-AE44-D49D-391B40FC14A6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Rendering">
-      <UniqueIdentifier>{c14a9975-e46e-48bb-b3ea-451655bd4426}</UniqueIdentifier>
+    <Filter Include="src\RLE\Core">
+      <UniqueIdentifier>{179EFAD7-0301-8A7C-AC86-C23298C855FF}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Rendering\Graphics">
-      <UniqueIdentifier>{0fc50cbb-a07f-4577-bde4-5288db0ed55f}</UniqueIdentifier>
+    <Filter Include="src\RLE\Debug">
+      <UniqueIdentifier>{15BC5AD7-817C-D60D-4AB7-1F8BB6361BEA}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Rendering\Graphics\3D">
-      <UniqueIdentifier>{ea092a7b-b7d1-44fd-a5b7-2c5c05cece96}</UniqueIdentifier>
+    <Filter Include="src\RLE\Events">
+      <UniqueIdentifier>{63913CC6-4F5F-30CC-38F3-A0F224600C31}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Rendering\Graphics\2D">
-      <UniqueIdentifier>{e3861649-852b-4a07-a971-4e8dd5101d98}</UniqueIdentifier>
+    <Filter Include="src\RLE\Platform">
+      <UniqueIdentifier>{937DC463-7F76-E3B5-A8A8-C83A9400C3C1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Math">
-      <UniqueIdentifier>{bbff16d3-d087-44d3-ba20-8415dbef4a9c}</UniqueIdentifier>
+    <Filter Include="src\RLE\Platform\Windows">
+      <UniqueIdentifier>{CD0A7414-B92F-C394-E27A-A824CEFEC1B2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Utils">
-      <UniqueIdentifier>{20575bf6-ba3c-471e-a4e9-ca3ff45fd9be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Utils\StateMachine">
-      <UniqueIdentifier>{f5981478-0895-482d-9a52-9740a4fb7330}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\EngineUI">
-      <UniqueIdentifier>{a7c5a212-f0a7-4597-92a1-ca13d894b4d8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\EngineUI\EngineStates">
-      <UniqueIdentifier>{060bc761-03d8-44cf-845e-8d65bbc474c0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Log">
-      <UniqueIdentifier>{c35ec46a-2604-4e4f-b30b-d253acd4ce65}</UniqueIdentifier>
+    <Filter Include="src\RLE\UI">
+      <UniqueIdentifier>{2CD10A2A-1889-4C77-8190-25D36D67E767}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Core\EngineBase.h">
-      <Filter>src\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Rendering\EngineRenderer.h">
-      <Filter>src\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Rendering\Color.h">
-      <Filter>src\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Rendering\Graphics\3D\Mesh.h">
-      <Filter>src\Rendering\Graphics\3D</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Math\Matrix.h">
-      <Filter>src\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utils\FiniteStateMachine\FiniteStateMachine.h">
-      <Filter>src\Utils\StateMachine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utils\UniqueID.h">
-      <Filter>src\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utils\NonCopyable.h">
-      <Filter>src\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\EngineUI\EngineState.h">
-      <Filter>src\EngineUI</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Rendering\Graphics\3D\Camera.h">
-      <Filter>src\Rendering\Graphics\3D</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Math\Trigonometry.h">
-      <Filter>src\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Math\Constants.h">
-      <Filter>src\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Math\Algebra.h">
-      <Filter>src\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Rendering\Graphics\3D\Renderable3D.h">
-      <Filter>src\Rendering\Graphics\3D</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Rendering\Graphics\2D\Drawable2D.h">
-      <Filter>src\Rendering\Graphics\2D</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Rendering\Graphics\3D\Transform.h">
-      <Filter>src\Rendering\Graphics\3D</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Core\Version.h">
-      <Filter>src\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Core\EntryPoint.h" />
-    <ClInclude Include="src\Core\PP.h" />
-    <ClInclude Include="src\Log\Log.h" />
-    <ClInclude Include="src\RLE.h" />
-    <ClInclude Include="src\Rendering\Graphics\3D\GameSceneObject.h" />
-    <ClInclude Include="src\Math\Vector.h" />
-    <ClInclude Include="src\Math\Shapes\Triangle.h" />
-    <ClInclude Include="src\Core\System\base_token.h" />
-    <ClInclude Include="src\Utils\ref.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Rendering\EngineRenderer.cpp">
-      <Filter>src\Rendering</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Graphics\3D\Mesh.cpp">
-      <Filter>src\Rendering\Graphics\3D</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Core\EngineBase.cpp">
-      <Filter>src\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Graphics\3D\Camera.cpp">
-      <Filter>src\Rendering\Graphics\3D</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Rendering\Graphics\3D\Transform.cpp">
-      <Filter>src\Rendering\Graphics\3D</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Log\Log.cpp">
+    <ClInclude Include="src\RLE.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\Core\Core.h">
+      <Filter>src\RLE\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\Core\Engine.h">
+      <Filter>src\RLE\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\Core\EntryPoint.h">
+      <Filter>src\RLE\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\Core\Window.h">
+      <Filter>src\RLE\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\Debug\Log.h">
+      <Filter>src\RLE\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\Events\Event.h">
+      <Filter>src\RLE\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\Events\EventDispatcher.h">
+      <Filter>src\RLE\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\Events\Eventable.h">
+      <Filter>src\RLE\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\Events\Events.h">
+      <Filter>src\RLE\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\Events\KeyPressEvent.h">
+      <Filter>src\RLE\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\Events\KeyReleaseEvent.h">
+      <Filter>src\RLE\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\Events\MouseMoveEvent.h">
+      <Filter>src\RLE\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\Events\MousePressEvent.h">
+      <Filter>src\RLE\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\Events\MouseReleaseEvent.h">
+      <Filter>src\RLE\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\Events\MouseScrollEvent.h">
+      <Filter>src\RLE\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\Events\TextInputEvent.h">
+      <Filter>src\RLE\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\Events\WindowCloseEvent.h">
+      <Filter>src\RLE\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\Events\WindowSizeEvent.h">
+      <Filter>src\RLE\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\Platform\Windows\Win64_Window.h">
+      <Filter>src\RLE\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\UI\Layer.h">
+      <Filter>src\RLE\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLE\UI\LayerStack.h">
+      <Filter>src\RLE\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RLEpch.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="external\GLAD\src\glad.c">
+      <Filter>external\GLAD\src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Core\System\rle_main.cpp">
+    <ClCompile Include="src\RLE\Core\Engine.cpp">
+      <Filter>src\RLE\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RLE\Core\Window.cpp">
+      <Filter>src\RLE\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RLE\Core\rle_main.cpp">
+      <Filter>src\RLE\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RLE\Debug\Log.cpp">
+      <Filter>src\RLE\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RLE\Events\Eventable.cpp">
+      <Filter>src\RLE\Events</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RLE\Platform\Windows\Win64_Window.cpp">
+      <Filter>src\RLE\Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RLE\UI\LayerStack.cpp">
+      <Filter>src\RLE\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RLEpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

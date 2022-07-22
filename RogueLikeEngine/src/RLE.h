@@ -4,10 +4,18 @@
 
 
 
+// Rogue-Like Engine, or "RLE" for short, is a lightweight 3D graphics/game
+// engine specialized for indie rogue-like games. RLE is written in and uses
+// C++ and leverages the standard library
+
+
+
 ////////////////////////////////////////////////////////////////////////////////
-// - RLE ENGINE BASE -----------------------------------------------------------
-#include "Core/EngineBase.h"
+// - RLE ENGINE ----------------------------------------------------------------
+#include "RLE/Core/Engine.h"
+
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // - RLE ENTRY POINT -----------------------------------------------------------
-#include "Core/EntryPoint.h"
+#include "RLE/Core/EntryPoint.h"

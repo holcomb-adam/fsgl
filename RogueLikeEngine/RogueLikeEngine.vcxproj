@@ -9,11 +9,15 @@
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Dist|x64">
+      <Configuration>Dist</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{627E4944-CE09-B708-D71A-3AFD43251309}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{e5b3dc20-6b80-4fcb-9ad7-7ac13df289f5}</ProjectGuid>
     <RootNamespace>RogueLikeEngine</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -21,23 +25,23 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
-  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
-  <ImportGroup Label="Shared">
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -45,95 +49,135 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\bin\Debug-windows-x86_64\RogueLikeEngine\</OutDir>
+    <IntDir>..\bin-int\Debug-windows-x86_64\RogueLikeEngine\</IntDir>
+    <TargetName>RogueLikeEngine</TargetName>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\bin\Release-windows-x86_64\RogueLikeEngine\</OutDir>
+    <IntDir>..\bin-int\Release-windows-x86_64\RogueLikeEngine\</IntDir>
+    <TargetName>RogueLikeEngine</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <OutDir>..\bin\Dist-windows-x86_64\RogueLikeEngine\</OutDir>
+    <IntDir>..\bin-int\Dist-windows-x86_64\RogueLikeEngine\</IntDir>
+    <TargetName>RogueLikeEngine</TargetName>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>RLEpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>RLE_WIN64_SUPPORT;RLE_DEBUG;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>C:\Users\terma\source\repos\RogueLikeEngine\RogueLikeEngine\src;C:\Users\terma\source\repos\RogueLikeEngine\external\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>RLE_OS_WIN64;RLE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;..\external\spdlog\include;external\GLFW\include;external\GLAD\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\terma\source\repos\RogueLikeEngine\external\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>external\GLFW\lib\glfw3_mt.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>RLEpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>RLE_OS_WIN64;RLE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;..\external\spdlog\include;external\GLFW\include;external\GLAD\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>RLE_WIN64_SUPPORT;RLE_RELEASE;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <AdditionalIncludeDirectories>C:\Users\terma\source\repos\RogueLikeEngine\RogueLikeEngine\src;C:\Users\terma\source\repos\RogueLikeEngine\external\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\terma\source\repos\RogueLikeEngine\external\SDL2\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>external\GLFW\lib\glfw3_mt.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>RLEpch.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>RLE_OS_WIN64;RLE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;..\external\spdlog\include;external\GLFW\include;external\GLAD\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>external\GLFW\lib\glfw3_mt.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Core\EngineBase.h" />
-    <ClInclude Include="src\Core\EntryPoint.h" />
-    <ClInclude Include="src\Core\PP.h" />
-    <ClInclude Include="src\Core\System\base_token.h" />
-    <ClInclude Include="src\Core\Version.h" />
-    <ClInclude Include="src\EngineUI\EngineState.h" />
-    <ClInclude Include="src\Log\Log.h" />
-    <ClInclude Include="src\Math\Algebra.h" />
-    <ClInclude Include="src\Math\Constants.h" />
-    <ClInclude Include="src\Math\Matrix.h" />
-    <ClInclude Include="src\Math\Shapes\Triangle.h" />
-    <ClInclude Include="src\Math\Trigonometry.h" />
-    <ClInclude Include="src\Math\Vector.h" />
-    <ClInclude Include="src\Rendering\Color.h" />
-    <ClInclude Include="src\Rendering\EngineRenderer.h" />
-    <ClInclude Include="src\Rendering\Graphics\2D\Drawable2D.h" />
-    <ClInclude Include="src\Rendering\Graphics\3D\Camera.h" />
-    <ClInclude Include="src\Rendering\Graphics\3D\GameSceneObject.h" />
-    <ClInclude Include="src\Rendering\Graphics\3D\Mesh.h" />
-    <ClInclude Include="src\Rendering\Graphics\3D\Renderable3D.h" />
-    <ClInclude Include="src\Rendering\Graphics\3D\Transform.h" />
     <ClInclude Include="src\RLE.h" />
-    <ClInclude Include="src\Utils\FiniteStateMachine\FiniteStateMachine.h" />
-    <ClInclude Include="src\Utils\NonCopyable.h" />
-    <ClInclude Include="src\Utils\ref.h" />
-    <ClInclude Include="src\Utils\UniqueID.h" />
+    <ClInclude Include="src\RLE\Core\Core.h" />
+    <ClInclude Include="src\RLE\Core\Engine.h" />
+    <ClInclude Include="src\RLE\Core\EntryPoint.h" />
+    <ClInclude Include="src\RLE\Core\Window.h" />
+    <ClInclude Include="src\RLE\Debug\Log.h" />
+    <ClInclude Include="src\RLE\Events\Event.h" />
+    <ClInclude Include="src\RLE\Events\EventDispatcher.h" />
+    <ClInclude Include="src\RLE\Events\Eventable.h" />
+    <ClInclude Include="src\RLE\Events\Events.h" />
+    <ClInclude Include="src\RLE\Events\KeyPressEvent.h" />
+    <ClInclude Include="src\RLE\Events\KeyReleaseEvent.h" />
+    <ClInclude Include="src\RLE\Events\MouseMoveEvent.h" />
+    <ClInclude Include="src\RLE\Events\MousePressEvent.h" />
+    <ClInclude Include="src\RLE\Events\MouseReleaseEvent.h" />
+    <ClInclude Include="src\RLE\Events\MouseScrollEvent.h" />
+    <ClInclude Include="src\RLE\Events\TextInputEvent.h" />
+    <ClInclude Include="src\RLE\Events\WindowCloseEvent.h" />
+    <ClInclude Include="src\RLE\Events\WindowSizeEvent.h" />
+    <ClInclude Include="src\RLE\Platform\Windows\Win64_Window.h" />
+    <ClInclude Include="src\RLE\UI\Layer.h" />
+    <ClInclude Include="src\RLE\UI\LayerStack.h" />
+    <ClInclude Include="src\RLEpch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Core\EngineBase.cpp" />
-    <ClCompile Include="src\Core\System\rle_main.cpp" />
-    <ClCompile Include="src\Log\Log.cpp" />
-    <ClCompile Include="src\Rendering\EngineRenderer.cpp" />
-    <ClCompile Include="src\Rendering\Graphics\3D\Camera.cpp" />
-    <ClCompile Include="src\Rendering\Graphics\3D\Mesh.cpp" />
-    <ClCompile Include="src\Rendering\Graphics\3D\Transform.cpp" />
+    <ClCompile Include="external\GLAD\src\glad.c">
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\RLE\Core\Engine.cpp" />
+    <ClCompile Include="src\RLE\Core\Window.cpp" />
+    <ClCompile Include="src\RLE\Core\rle_main.cpp" />
+    <ClCompile Include="src\RLE\Debug\Log.cpp" />
+    <ClCompile Include="src\RLE\Events\Eventable.cpp" />
+    <ClCompile Include="src\RLE\Platform\Windows\Win64_Window.cpp" />
+    <ClCompile Include="src\RLE\UI\LayerStack.cpp" />
+    <ClCompile Include="src\RLEpch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
