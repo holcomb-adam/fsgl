@@ -3,7 +3,7 @@ project "RogueLikeEngine"
 	kind "StaticLib"
 	language "C++"
 	cppdialect "C++20"
-	staticruntime "on"
+	staticruntime "off"
 
 	targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
@@ -30,7 +30,7 @@ project "RogueLikeEngine"
 
 	links
 	{
-		"external/GLFW/lib/glfw3_mt.lib",
+		"external/GLFW/lib/glfw3.lib",
 		"opengl32.lib"
 	}
 
