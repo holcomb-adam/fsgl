@@ -2,6 +2,7 @@
 
 // RLE Library includes
 #include "Event.h"
+#include "RLE/Core/KeyCodes.h"
 
 
 
@@ -19,8 +20,8 @@ namespace rle
 
 		// Constructor
 		// - 'code': The scancode of the key that was pressed
-		KeyReleaseEvent(const int code) :
-			m_Scancode(code)
+		KeyReleaseEvent(const KeyCode code) :
+			m_Code(code)
 		{ }
 
 		~KeyReleaseEvent() = default;
@@ -31,11 +32,11 @@ namespace rle
 		// - GETTERS -------------------------------------------------------------------
 
 		// Get the scancode
-		inline int scancode() const { return m_Scancode; }
+		inline KeyCode scancode() const { return m_Code; }
 
 
 
 	private:
-		int m_Scancode = 0;
+		KeyCode m_Code = KeyCode::Unknown;
 	};
 }

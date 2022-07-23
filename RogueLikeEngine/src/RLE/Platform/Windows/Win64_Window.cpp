@@ -9,6 +9,7 @@
 #include <cassert> // TODO: create custom assertion
 
 // RLE Library includes
+#include "RLE/Core/KeyCodes.h"
 #include "RLE/Debug/Log.h"
 #include "RLE/Events/Events.h"
 
@@ -59,26 +60,27 @@ namespace rle
     void keyCallback(GLFWwindow* win, const int key, const int scancode, const int action, const int mods)
     {
         const auto win64 = getWin64GLFW(win);
+        const auto code = to_key(key);
 
         switch (action)
         {
         case GLFW_PRESS: // Keyboard key is pressed
             {
-                rle::KeyPressEvent event(key, false);
+                rle::KeyPressEvent event(code, false);
                 win64->m_EventCallback(event);
                 break;
             }
 
-        case GLFW_RELEASE: // Keyboard key is released
+        case GLFW_RELEASE: // Keyboard key is released                  
             {
-                rle::KeyReleaseEvent event(key);
+                rle::KeyReleaseEvent event(code);
                 win64->m_EventCallback(event);
                 break;
             }
 
         case GLFW_REPEAT: // Keyboard key is being repeated
             {
-                rle::KeyPressEvent event(key, true);
+                rle::KeyPressEvent event(code, true);
                 win64->m_EventCallback(event);
                 break;
             }

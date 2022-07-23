@@ -2,6 +2,7 @@
 
 // RLE Library includes
 #include "Event.h"
+#include "RLE/Core/KeyCodes.h"
 
 
 
@@ -18,10 +19,10 @@ namespace rle
 		// - CONSTRUCTORS / DESTRUCTORS ------------------------------------------------
 
 		// Contructor
-		// - 'code': The scancode of the key that was pressed
+		// - 'code': The code of the key that was pressed
 		// - 'repeat': Whether or not the key is being repeated
-		KeyPressEvent(const int code, const bool repeat) : 
-			m_Scancode(code),
+		KeyPressEvent(const KeyCode code, const bool repeat) :
+			m_Code(code),
 			m_Repeat(repeat)
 		{ }
 
@@ -34,7 +35,7 @@ namespace rle
 		// - GETTERS -------------------------------------------------------------------
 
 		// Get the scancode
-		inline int scancode() const { return m_Scancode; }
+		inline KeyCode code() const { return m_Code; }
 
 		// Get whether or not the key is repeating
 		inline bool repeating() const { return m_Repeat; }
@@ -42,7 +43,7 @@ namespace rle
 
 
 	private:
-		int m_Scancode = 0;
+		KeyCode m_Code = KeyCode::Unknown;
 		bool m_Repeat = false;
 	};
 }
