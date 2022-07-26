@@ -61,11 +61,11 @@ int rle::Engine::exec()
 	{
 		// Calculate the time elapsed
 		const auto recent_time = std::chrono::steady_clock::now();
-		const auto elapsed_delta = static_cast<float>((recent_time - last_elapsed).count() * 1e-6f);
+		const auto elapsed_delta = std::chrono::duration_cast<std::chrono::duration<float, std::milli>>(recent_time - last_elapsed).count();
 		last_elapsed = recent_time;
 
 		// update the engine
-		update(elapsed_delta);
+		update(static_cast<float>(elapsed_delta));
 	}
 
 	// Destroy the window

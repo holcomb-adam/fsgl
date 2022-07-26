@@ -36,9 +36,6 @@ void rle::ImGuiLayer::onEnter()
 	// Initialize ImGui backends
 	ImGui_ImplGlfw_InitForOpenGL(glfw_win, true);
 	ImGui_ImplOpenGL3_Init("#version 460");
-
-
-	// Test
 }
 
 void rle::ImGuiLayer::onExit()

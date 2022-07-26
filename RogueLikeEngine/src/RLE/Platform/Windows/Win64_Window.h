@@ -23,6 +23,8 @@ namespace rle
 		friend void scrollCallback(GLFWwindow*, const double, const double);
 		friend void sizeCallback(GLFWwindow*, const int, const int);
 
+
+
 	public:
 		////////////////////////////////////////////////////////////////////////////////
 		// - CONSTRUCTORS / DESTRUCTORS ------------------------------------------------

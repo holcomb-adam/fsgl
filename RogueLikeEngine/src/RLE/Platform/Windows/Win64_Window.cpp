@@ -132,9 +132,13 @@ namespace rle
 
     void sizeCallback(GLFWwindow* win, const int x, const int y)
     {
-        const auto win64 = getWin64GLFW(win);
+        auto win64 = getWin64GLFW(win);
         rle::WindowSizeEvent event(x, y);
         win64->m_EventCallback(event);
+
+        // adjust window sizes
+        win64->m_Width = x;
+        win64->m_Height = y;
     }
 }
 

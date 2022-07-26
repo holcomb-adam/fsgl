@@ -15,10 +15,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 -- Global directories for projects
 libs = {}
-libs["GLAD"] = "%{wks.location}/RogueLikeEngine/external/GLAD/"
-libs["GLFW"] = "%{wks.location}/RogueLikeEngine/external/GLFW/"
-libs["ImGui"] = "%{wks.location}/RogueLikeEngine/external/ImGui/"
-libs["spdlog"] = "%{wks.location}/external/spdlog/"
+libs["GLAD"] = "%{wks.location}/RogueLikeEngine/external/GLAD"
+libs["GLFW"] = "%{wks.location}/RogueLikeEngine/external/GLFW"
+libs["ImGui"] = "%{wks.location}/RogueLikeEngine/external/ImGui"
+libs["spdlog"] = "%{wks.location}/external/spdlog"
 
 -- Global directories for include paths
 lib_includes = {}
