@@ -2,12 +2,18 @@
 #include "Engine.h"
 
 // Standard Library includes
+#include <cassert>
 #include <chrono>
 
 // RLE Library includes
 #include "RLE/Debug/Log.h"
 #include "RLE/Events/EventDispatcher.h"
 #include "RLE/UI/Layer.h"
+
+
+
+// TEMP:
+#include <gl/GL.h>
 
 
 
@@ -91,11 +97,25 @@ void rle::Engine::onEvent(const Event& event)
 	}
 }
 
+std::unique_ptr<rle::Window>& rle::Engine::window()
+{
+	return m_Window;
+}
+
+const std::unique_ptr<rle::Window>& rle::Engine::window() const
+{
+	return m_Window;
+}
+
 void rle::Engine::update(const float delta)
 {
 	// update our window
 	// this will handle event polling for us
 	m_Window->update();
+
+	// Bad Evil temp
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
 
 	// Iterate through and update the layers
 	for (auto* layer : m_LayerStack)

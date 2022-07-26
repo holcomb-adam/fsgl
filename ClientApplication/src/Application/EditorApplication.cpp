@@ -2,6 +2,11 @@
 
 
 
+// TEMP:
+#include "RLE/UI/ImGuiLayer.h"
+
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // - RLE LIBRARY ENTRANCE ------------------------------------------------------
 
@@ -25,10 +30,10 @@ client::EditorApplication::EditorApplication() :
 
 std::size_t client::EditorApplication::init()
 {
+	push(new rle::ImGuiLayer());
 	return 0;
 }
 
 void client::EditorApplication::onUpdate(const float delta)
 {
-
 }

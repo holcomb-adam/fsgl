@@ -18,6 +18,7 @@ namespace rle
 
 
 
+	public:
 		////////////////////////////////////////////////////////////////////////////////
 		// - PUBLIC STATIC MEMBERS -----------------------------------------------------
 
@@ -74,6 +75,17 @@ namespace rle
 
 		// Called when the window recieves any events
 		void onEvent(const Event& event);
+
+
+
+		////////////////////////////////////////////////////////////////////////////////
+		// - GETTERS -------------------------------------------------------------------
+
+		// Get a ref to a unique_ptr to a window
+		std::unique_ptr<Window>& window();
+
+		// Get a const ref to a unique_ptr to a window
+		const std::unique_ptr<Window>& window() const;
 
 
 

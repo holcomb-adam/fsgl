@@ -1,5 +1,8 @@
 #pragma once
 
+// Standard Library includes
+#include <string>
+
 // RLE Library includes
 #include "RLE/Events/Eventable.h"
 
@@ -14,7 +17,7 @@ namespace rle
 		// - CONSTRUCTORS / DESTRUCTORS ------------------------------------------------
 
 		// Default constructor
-		Layer() = default;
+		Layer(const std::string& name = "Layer");
 
 		// Virtual default destructor
 		virtual ~Layer() = default;
@@ -32,5 +35,18 @@ namespace rle
 
 		// Called once every frame to update the layer
 		virtual void onUpdate(const float delta) = 0;
+
+
+
+		////////////////////////////////////////////////////////////////////////////////
+		// - GETTERS -------------------------------------------------------------------
+
+		// Get the name of the layer
+		const std::string& name() const;
+
+
+
+	private:
+		std::string m_DebugName = "";
 	};
 }
