@@ -34,6 +34,6 @@ std::size_t client::EditorApplication::init()
 	return 0;
 }
 
-void client::EditorApplication::onUpdate(const float delta)
+void client::EditorApplication::onUpdate(const rle::time::step_ms delta)
 {
 }

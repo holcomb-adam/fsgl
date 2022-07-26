@@ -21,7 +21,7 @@ namespace client
 
 		// Inherited via EngineBase
 		virtual std::size_t init() override;
-		virtual void onUpdate(const float delta) override;
+		virtual void onUpdate(const rle::time::step_ms delta) override;
 	};
 }
 

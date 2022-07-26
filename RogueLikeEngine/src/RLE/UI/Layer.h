@@ -4,6 +4,7 @@
 #include <string>
 
 // RLE Library includes
+#include "RLE/Core/Time.h"
 #include "RLE/Events/Eventable.h"
 
 
@@ -34,7 +35,7 @@ namespace rle
 		virtual void onExit() = 0;
 
 		// Called once every frame to update the layer
-		virtual void onUpdate(const float delta) = 0;
+		virtual void onUpdate(const time::step_ms delta) = 0;
 
 
 

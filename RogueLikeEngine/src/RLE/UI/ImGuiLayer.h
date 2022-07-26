@@ -27,6 +27,6 @@ namespace rle
 		// Inherited via Layer
 		virtual void onEnter() override;
 		virtual void onExit() override;
-		virtual void onUpdate(const float delta) override;
+		virtual void onUpdate(const time::step_ms delta) override;
 	};
 }

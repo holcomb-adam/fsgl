@@ -45,7 +45,7 @@ void rle::ImGuiLayer::onExit()
 	ImGui::DestroyContext();
 }
 
-void rle::ImGuiLayer::onUpdate(const float delta)
+void rle::ImGuiLayer::onUpdate(const time::step_ms delta)
 {
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui::NewFrame();
@@ -54,7 +54,9 @@ void rle::ImGuiLayer::onUpdate(const float delta)
 	Engine* engine = Engine::get();
 	io.DisplaySize = ImVec2(engine->window()->width(), engine->window()->height());
 
-	io.DeltaTime = delta;
+	const auto delta_sec = std::chrono::duration_cast<time::step_sec>(delta);
+	const auto d = delta_sec.count() > 0.0f ? delta_sec.count() : 1.0f / 60.0f;
+	io.DeltaTime = d;
 
 	static bool show = true;
 	ImGui::ShowDemoWindow(&show);

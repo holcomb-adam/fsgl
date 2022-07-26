@@ -3,7 +3,6 @@
 
 // Standard Library includes
 #include <cassert>
-#include <chrono>
 
 // RLE Library includes
 #include "RLE/Debug/Log.h"
@@ -54,18 +53,18 @@ int rle::Engine::exec()
 	m_Running = true;
 
 	// get a starting point to
-	auto last_elapsed = std::chrono::steady_clock::now();
+	auto last_elapsed = time::now();
 
 	// being the application loop
 	while (m_Running)
 	{
 		// Calculate the time elapsed
-		const auto recent_time = std::chrono::steady_clock::now();
-		const auto elapsed_delta = std::chrono::duration_cast<std::chrono::duration<float, std::milli>>(recent_time - last_elapsed).count();
+		const auto recent_time = time::now();
+		const auto elapsed_delta = recent_time - last_elapsed;
 		last_elapsed = recent_time;
 
 		// update the engine
-		update(static_cast<float>(elapsed_delta));
+		update(elapsed_delta);
 	}
 
 	// Destroy the window
@@ -107,7 +106,7 @@ const std::unique_ptr<rle::Window>& rle::Engine::window() const
 	return m_Window;
 }
 
-void rle::Engine::update(const float delta)
+void rle::Engine::update(const time::step_ms delta)
 {
 	// update our window
 	// this will handle event polling for us

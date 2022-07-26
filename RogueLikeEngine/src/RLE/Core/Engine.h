@@ -2,6 +2,7 @@
 
 // RLE Library includes
 #include "Core.h"
+#include "Time.h"
 #include "Window.h"
 #include "RLE/Events/WindowCloseEvent.h"
 #include "RLE/UI/LayerStack.h"
@@ -48,7 +49,7 @@ namespace rle
 		virtual std::size_t init() = 0;
 
 		// Called once every frame to update the client engine
-		virtual void onUpdate(const float delta) = 0;
+		virtual void onUpdate(const time::step_ms delta) = 0;
 
 
 
@@ -92,7 +93,7 @@ namespace rle
 	private:
 		// Updates the engine and it's layers
 		// - Called once every frame
-		void update(const float delta);
+		void update(const time::step_ms delta);
 
 		// Called when the window close event is recieved
 		bool windowCloseEvent(const WindowCloseEvent& event);
