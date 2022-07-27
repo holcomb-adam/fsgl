@@ -26,15 +26,10 @@ project "RogueLikeEngine"
 		"%{lib_includes.spdlog}",
 		"%{lib_includes.GLAD}",
 		"%{lib_includes.GLFW}",
-		"%{lib_includes.ImGui}",
-
-		-- Not ideal but temporary fix for '#include "imgui.h"' in ImGui backends
-		"%{lib_includes.ImGui}/ImGui/"
 	}
 
 	links
 	{
-		"ImGui",
 		"external/GLFW/lib/glfw3.lib",
 		"opengl32.lib"
 	}

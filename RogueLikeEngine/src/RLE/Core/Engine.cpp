@@ -64,7 +64,10 @@ int rle::Engine::exec()
 		last_elapsed = recent_time;
 
 		// update the engine
-		update(elapsed_delta);
+		impl_update(elapsed_delta);
+
+		// Perform the rendering processes rendering
+		impl_render();
 	}
 
 	// Destroy the window
@@ -106,19 +109,39 @@ const std::unique_ptr<rle::Window>& rle::Engine::window() const
 	return m_Window;
 }
 
-void rle::Engine::update(const time::step_ms delta)
+void rle::Engine::impl_update(const time::step_ms delta)
 {
 	// update our window
 	// this will handle event polling for us
 	m_Window->update();
 
-	// Bad Evil temp
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT);
+	// Update the client engine
+	onUpdate(delta);
 
 	// Iterate through and update the layers
 	for (auto* layer : m_LayerStack)
 		layer->onUpdate(delta);
+}
+
+void rle::Engine::impl_render()
+{
+	// Call client pre-rendering
+	onPreRender();
+
+	// TEMP: Eventually need to have a 'clear()' function that does this within the renderer
+	// Clear the current rendering buffer
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+	// Call client rendering
+	onRender();
+
+	// Draw all the layers
+	for (const auto* layer : m_LayerStack)
+		layer->onRender();
+
+	// Call client post-rendering
+	onPostRender();
 }
 
 bool rle::Engine::windowCloseEvent(const WindowCloseEvent& event)

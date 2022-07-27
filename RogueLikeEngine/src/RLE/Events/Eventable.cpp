@@ -62,3 +62,8 @@ bool rle::Eventable::onWindowCloseEvent(const WindowCloseEvent& event)
 {
 	return false;
 }
+
+bool rle::Eventable::onWindowSizeEvent(const WindowSizeEvent& event)
+{
+	return false;
+}

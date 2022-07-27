@@ -51,6 +51,15 @@ namespace rle
 		// Called once every frame to update the client engine
 		virtual void onUpdate(const time::step_ms delta) = 0;
 
+		// Called before rendering begins
+		virtual void onPreRender() = 0;
+
+		// Called when the rendering process begins
+		virtual void onRender() const = 0;
+
+		// Called after rendering has ended
+		virtual void onPostRender() = 0;
+
 
 
 
@@ -93,7 +102,12 @@ namespace rle
 	private:
 		// Updates the engine and it's layers
 		// - Called once every frame
-		void update(const time::step_ms delta);
+		void impl_update(const time::step_ms delta);
+
+		// Performs the rendering to the client engine and all the layers that are
+		// in the layer stack
+		// - Called once every frame
+		void impl_render();
 
 		// Called when the window close event is recieved
 		bool windowCloseEvent(const WindowCloseEvent& event);

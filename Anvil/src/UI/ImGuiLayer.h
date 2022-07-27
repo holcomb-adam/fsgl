@@ -1,13 +1,13 @@
 #pragma once
 
 // RLE Library include
-#include "Layer.h"
+#include <RLE/UI/Layer.h>
 
 
 
-namespace rle
+namespace anvil
 {
-	class ImGuiLayer final : public Layer
+	class ImGuiLayer final : public rle::Layer
 	{
 	public:
 		////////////////////////////////////////////////////////////////////////////////
@@ -27,6 +27,7 @@ namespace rle
 		// Inherited via Layer
 		virtual void onEnter() override;
 		virtual void onExit() override;
-		virtual void onUpdate(const time::step_ms delta) override;
+		virtual void onUpdate(const rle::time::step_ms delta) override;
+		virtual void onRender() const override;
 	};
 }

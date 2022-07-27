@@ -12,6 +12,7 @@ struct GLFWwindow;
 
 namespace rle
 {
+	// FIXME: Add to "impl" namespace
 	class Win64_Window final : public Window
 	{
 		// Friend functions

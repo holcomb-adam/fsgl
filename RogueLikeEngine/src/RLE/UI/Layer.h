@@ -37,6 +37,9 @@ namespace rle
 		// Called once every frame to update the layer
 		virtual void onUpdate(const time::step_ms delta) = 0;
 
+		// Called once every frame to render the layer
+		virtual void onRender() const = 0;
+
 
 
 		////////////////////////////////////////////////////////////////////////////////

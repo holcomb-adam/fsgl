@@ -47,6 +47,9 @@ namespace rle
 
 
 
+    // TODO: These callbacks should be added to a struct and made static for easy 
+    // friend access
+
     ////////////////////////////////////////////////////////////////////////////////
     // - CALLBACKS -----------------------------------------------------------------
 

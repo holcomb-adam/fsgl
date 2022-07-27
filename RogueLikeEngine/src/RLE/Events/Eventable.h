@@ -55,5 +55,8 @@ namespace rle
 
 		// Called when the window is closed
 		virtual bool onWindowCloseEvent(const WindowCloseEvent& event);
+
+		// Called when the window is resized
+		virtual bool onWindowSizeEvent(const WindowSizeEvent& event);
 	};
 }
