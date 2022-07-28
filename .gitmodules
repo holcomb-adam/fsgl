@@ -1,7 +1,7 @@
 [submodule "external/spdlog"]
 	path = external/spdlog
 	url = https://github.com/gabime/spdlog
-[submodule "RogueLikeEngine/external/ImGui"]
-	path = Anvil/external/ImGui
+[submodule "Anvil/external/ImGui/ImGui"]
+	path = Anvil/external/ImGui/ImGui
 	url = https://github.com/ocornut/imgui
 	branch = docking
