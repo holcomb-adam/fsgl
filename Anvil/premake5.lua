@@ -18,7 +18,7 @@ project "Anvil"
         "src",
 		"%{lib_includes.spdlog}",
 		"%{lib_includes.ImGui}",
-        -- Temporary Fix, doing this because imgui backend files include the root source file
+        -- Temporary Fix, doing this because imgui backend files include the root source file directory
         "%{lib_includes.ImGui}/ImGui",
 
         -- RLE include

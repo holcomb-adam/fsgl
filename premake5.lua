@@ -24,12 +24,16 @@ libs["spdlog"] = "%{wks.location}/external/spdlog"
 lib_includes = {}
 lib_includes["GLAD"] = "%{libs.GLAD}/include"
 lib_includes["GLFW"] = "%{libs.GLFW}/include"
-lib_includes["ImGui"] = "%{libs.ImGui}/include"
+lib_includes["ImGui"] = "%{libs.ImGui}"
 lib_includes["spdlog"] = "%{libs.spdlog}/include"
 
 
 
 -- Setup our projects
-include "Anvil/external/ImGui"
+group "Dependencies"
+	include "Anvil/external/ImGui"
+
+group ""
+
 include "RogueLikeEngine"
 include "Anvil"
