@@ -2,6 +2,7 @@
 
 // RLE Library includes
 #include "RLE/Core/Window.h"
+#include "RLE/Rendering/RenderingContext.h"
 
 
 
@@ -58,7 +59,15 @@ namespace rle
 
 
 		private:
+			// Initialize data
+			void init(const Properties& props);
+
+
+
+		private:
 			GLFWwindow* m_Window = nullptr;
+
+			std::unique_ptr<RenderingContext> m_Context;
 
 			std::string m_Title = "";
 			std::uint32_t m_Width = 0;
@@ -66,9 +75,6 @@ namespace rle
 
 			bool m_VSync = false;
 
-			// TODO: This could eventually be moved to 'rle::Window' and the
-			//       callback functions in the .cpp file could be moved to their own
-			//       file and use 'rle::Window' instead of 'rle::Win64_Window'
 			EventCallback m_EventCallback;
 		};
 	}

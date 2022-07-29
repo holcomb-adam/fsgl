@@ -6,6 +6,7 @@
 // RLE Library includes
 #include "Core.h"
 #include "RLE/Events/Event.h"
+#include "RLE/Rendering/RenderingAPI.h"
 
 
 
@@ -32,6 +33,8 @@ namespace rle
 			std::string title = "";
 			std::uint32_t w = 800;
 			std::uint32_t h = 600;
+
+			RenderingAPI api = RenderingAPI::OpenGL; // OpenGL is the default api
 
 			bool vsync = false;
 		};

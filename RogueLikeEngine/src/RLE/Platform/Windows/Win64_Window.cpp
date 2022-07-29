@@ -2,7 +2,6 @@
 #include "Win64_Window.h"
 
 // External Library includes
-#include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
 // Standard Library includes
@@ -158,39 +157,7 @@ rle::impl::Win64_Window::Win64_Window(const Properties& props) :
     m_Height(props.h),
     m_VSync(props.vsync)
 {
-    // Initialize GLFW
-    if (GLFW_WindowCount == 0)
-    {
-        const auto glfw_success = glfwInit();
-        assert(glfw_success == GLFW_TRUE);
-        glfwSetErrorCallback(&GLFW_errCallback);
-    }
-    RLE_CORE_INFO("Created window");
-
-    // Create a GLFW window
-    m_Window = glfwCreateWindow(
-        m_Width,
-        m_Height,
-        m_Title.c_str(),
-        nullptr,
-        nullptr);
-    glfwMakeContextCurrent(m_Window);
-
-    // Enable GLAD
-    const int glad_success = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-    assert(glad_success);
-
-    // Allow glfw to see our data
-    glfwSetWindowUserPointer(m_Window, this);
-
-    // Set the window callbacks
-    glfwSetKeyCallback(m_Window, &keyCallback);
-    glfwSetCursorPosCallback(m_Window, &mouseMoveCallback);
-    glfwSetMouseButtonCallback(m_Window, &mouseButtonCallback);
-    glfwSetScrollCallback(m_Window, &scrollCallback);
-    glfwSetCharCallback(m_Window, &textCallback);
-    glfwSetWindowCloseCallback(m_Window, &closeCallback);
-    glfwSetWindowSizeCallback(m_Window, &sizeCallback);
+    init(props);
 }
 
 rle::impl::Win64_Window::~Win64_Window()
@@ -201,7 +168,8 @@ rle::impl::Win64_Window::~Win64_Window()
 void rle::impl::Win64_Window::update()
 {
     glfwPollEvents();
-    glfwSwapBuffers(m_Window);
+
+    m_Context->swapBuffers();
 }
 
 std::uint32_t rle::impl::Win64_Window::width() const
@@ -221,13 +189,13 @@ void rle::impl::Win64_Window::setEventCallback(const EventCallback& callback)
 
 void rle::impl::Win64_Window::setVSync(const bool enabled)
 {
-    // enable vsync in openGL
+    // Enable vsync in the rendering context
     if (enabled)
         glfwSwapInterval(1);
     else
         glfwSwapInterval(0);
 
-    // update the window properties
+    // Update the window properties
     m_VSync = enabled;
 }
 
@@ -239,4 +207,40 @@ bool rle::impl::Win64_Window::isVSync() const
 void* rle::impl::Win64_Window::nativeHandle() const
 {
     return m_Window;
+}
+
+void rle::impl::Win64_Window::init(const Properties& props)
+{
+    // Initialize GLFW
+    if (GLFW_WindowCount == 0)
+    {
+        const auto glfw_success = glfwInit();
+        assert(glfw_success == GLFW_TRUE);
+        glfwSetErrorCallback(&GLFW_errCallback);
+    }
+    RLE_CORE_INFO("Created window");
+
+    // Create a GLFW window
+    m_Window = glfwCreateWindow(
+        m_Width,
+        m_Height,
+        m_Title.c_str(),
+        nullptr,
+        nullptr);
+
+    // Allow glfw to see our data
+    glfwSetWindowUserPointer(m_Window, this);
+
+    // Set the window callbacks
+    glfwSetKeyCallback(m_Window, &keyCallback);
+    glfwSetCursorPosCallback(m_Window, &mouseMoveCallback);
+    glfwSetMouseButtonCallback(m_Window, &mouseButtonCallback);
+    glfwSetScrollCallback(m_Window, &scrollCallback);
+    glfwSetCharCallback(m_Window, &textCallback);
+    glfwSetWindowCloseCallback(m_Window, &closeCallback);
+    glfwSetWindowSizeCallback(m_Window, &sizeCallback);
+
+    // Create and initialize the rendering context
+    m_Context = RenderingContext::create(props.api, m_Window);
+    m_Context->init();
 }

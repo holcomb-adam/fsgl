@@ -5,7 +5,7 @@
 
 #   if defined(RLE_OS_WIN64)
 #       include "RLE/Platform/Windows/Win64_Window.h"
-#       define RLE_PLATFORM_WINDOW_INSTANCE rle::Win64_Window
+#       define RLE_PLATFORM_WINDOW_INSTANCE rle::impl::Win64_Window
 
 #   else
 #       define RLE_PLATFORM_WINDOW_INSTANCE nullptr
