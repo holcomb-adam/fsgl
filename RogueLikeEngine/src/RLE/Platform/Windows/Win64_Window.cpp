@@ -19,129 +19,132 @@
 
 namespace rle
 {
-    namespace
+    namespace impl
     {
-        // TODO: This value should be global across all windows
-        // Number of windows currently open via GLFW
-        static std::uint8_t GLFW_WindowCount = 0;
-
-
-
-        // GLFW Error Callback
-        // - Performs logging for glfw errors that might comeback
-        void GLFW_errCallback(const int err, const char* msg)
+        namespace
         {
-            RLE_CORE_ERROR("GLFW error ({0}): {1}", err, msg);
+            // TODO: This value should be global across all windows
+            // Number of windows currently open via GLFW
+            static std::uint8_t GLFW_WindowCount = 0;
+
+
+
+            // GLFW Error Callback
+            // - Performs logging for glfw errors that might comeback
+            void GLFW_errCallback(const int err, const char* msg)
+            {
+                RLE_CORE_ERROR("GLFW error ({0}): {1}", err, msg);
+            }
+
+
+
+            // Retrieve the 'rle::Win64_Window' instance from glfw
+            Win64_Window* getWin64GLFW(GLFWwindow* win)
+            {
+                return static_cast<Win64_Window*>(glfwGetWindowUserPointer(win));
+            }
         }
 
 
 
-        // Retrieve the 'rle::Win64_Window' instance from glfw
-        rle::Win64_Window* getWin64GLFW(GLFWwindow* win)
+
+
+        // TODO: These callbacks should be added to a struct and made static for easy 
+        // friend access
+
+        ////////////////////////////////////////////////////////////////////////////////
+        // - CALLBACKS -----------------------------------------------------------------
+
+        void closeCallback(GLFWwindow* win)
         {
-            return static_cast<rle::Win64_Window*>(glfwGetWindowUserPointer(win));
+            const auto win64 = getWin64GLFW(win);
+            rle::WindowCloseEvent event;
+            win64->m_EventCallback(event);
         }
-    }
-
-
-
-
-
-    // TODO: These callbacks should be added to a struct and made static for easy 
-    // friend access
-
-    ////////////////////////////////////////////////////////////////////////////////
-    // - CALLBACKS -----------------------------------------------------------------
-
-    void closeCallback(GLFWwindow* win)
-    {
-        const auto win64 = getWin64GLFW(win);
-        rle::WindowCloseEvent event;
-        win64->m_EventCallback(event);
-    }
     
-    void keyCallback(GLFWwindow* win, const int key, const int scancode, const int action, const int mods)
-    {
-        const auto win64 = getWin64GLFW(win);
-        const auto code = to_key(key);
-
-        switch (action)
+        void keyCallback(GLFWwindow* win, const int key, const int scancode, const int action, const int mods)
         {
-        case GLFW_PRESS: // Keyboard key is pressed
-            {
-                rle::KeyPressEvent event(code, false);
-                win64->m_EventCallback(event);
-                break;
-            }
+            const auto win64 = getWin64GLFW(win);
+            const auto code = to_key(key);
 
-        case GLFW_RELEASE: // Keyboard key is released                  
+            switch (action)
             {
-                rle::KeyReleaseEvent event(code);
-                win64->m_EventCallback(event);
-                break;
-            }
+            case GLFW_PRESS: // Keyboard key is pressed
+                {
+                    rle::KeyPressEvent event(code, false);
+                    win64->m_EventCallback(event);
+                    break;
+                }
 
-        case GLFW_REPEAT: // Keyboard key is being repeated
-            {
-                rle::KeyPressEvent event(code, true);
-                win64->m_EventCallback(event);
-                break;
+            case GLFW_RELEASE: // Keyboard key is released                  
+                {
+                    rle::KeyReleaseEvent event(code);
+                    win64->m_EventCallback(event);
+                    break;
+                }
+
+            case GLFW_REPEAT: // Keyboard key is being repeated
+                {
+                    rle::KeyPressEvent event(code, true);
+                    win64->m_EventCallback(event);
+                    break;
+                }
             }
         }
-    }
 
-    void textCallback(GLFWwindow* win, const unsigned int code)
-    {
-        const auto win64 = getWin64GLFW(win);
-        rle::TextInputEvent event(code);
-        win64->m_EventCallback(event);
-    }
-
-    void mouseMoveCallback(GLFWwindow* win, const double x, const double y)
-    {
-        const auto win64 = getWin64GLFW(win);
-        rle::MouseMoveEvent event(x, y);
-        win64->m_EventCallback(event);
-    }
-
-    void mouseButtonCallback(GLFWwindow* win, const int button, const int action, const int mods)
-    {
-        const auto win64 = getWin64GLFW(win);
-
-        switch (action)
+        void textCallback(GLFWwindow* win, const unsigned int code)
         {
-        case GLFW_PRESS:
-            {
-                rle::MousePressEvent event(button, mods);
-                win64->m_EventCallback(event);
-                break;
-            }
+            const auto win64 = getWin64GLFW(win);
+            rle::TextInputEvent event(code);
+            win64->m_EventCallback(event);
+        }
 
-        case GLFW_RELEASE:
+        void mouseMoveCallback(GLFWwindow* win, const double x, const double y)
+        {
+            const auto win64 = getWin64GLFW(win);
+            rle::MouseMoveEvent event(x, y);
+            win64->m_EventCallback(event);
+        }
+
+        void mouseButtonCallback(GLFWwindow* win, const int button, const int action, const int mods)
+        {
+            const auto win64 = getWin64GLFW(win);
+
+            switch (action)
             {
-                rle::MouseReleaseEvent event(button, mods);
-                win64->m_EventCallback(event);
-                break;
+            case GLFW_PRESS:
+                {
+                    rle::MousePressEvent event(button, mods);
+                    win64->m_EventCallback(event);
+                    break;
+                }
+
+            case GLFW_RELEASE:
+                {
+                    rle::MouseReleaseEvent event(button, mods);
+                    win64->m_EventCallback(event);
+                    break;
+                }
             }
         }
-    }
 
-    void scrollCallback(GLFWwindow* win, const double xoff, const double yoff)
-    {
-        const auto win64 = getWin64GLFW(win);
-        rle::MouseScrollEvent event(xoff, yoff);
-        win64->m_EventCallback(event);
-    }
+        void scrollCallback(GLFWwindow* win, const double xoff, const double yoff)
+        {
+            const auto win64 = getWin64GLFW(win);
+            rle::MouseScrollEvent event(xoff, yoff);
+            win64->m_EventCallback(event);
+        }
 
-    void sizeCallback(GLFWwindow* win, const int x, const int y)
-    {
-        auto win64 = getWin64GLFW(win);
-        rle::WindowSizeEvent event(x, y);
-        win64->m_EventCallback(event);
+        void sizeCallback(GLFWwindow* win, const int x, const int y)
+        {
+            auto win64 = getWin64GLFW(win);
+            rle::WindowSizeEvent event(x, y);
+            win64->m_EventCallback(event);
 
-        // adjust window sizes
-        win64->m_Width = x;
-        win64->m_Height = y;
+            // adjust window sizes
+            win64->m_Width = x;
+            win64->m_Height = y;
+        }
     }
 }
 
@@ -149,7 +152,7 @@ namespace rle
 
 
 
-rle::Win64_Window::Win64_Window(const Properties& props) :
+rle::impl::Win64_Window::Win64_Window(const Properties& props) :
     m_Title(props.title),
     m_Width(props.w),
     m_Height(props.h),
@@ -190,33 +193,33 @@ rle::Win64_Window::Win64_Window(const Properties& props) :
     glfwSetWindowSizeCallback(m_Window, &sizeCallback);
 }
 
-rle::Win64_Window::~Win64_Window()
+rle::impl::Win64_Window::~Win64_Window()
 {
     glfwDestroyWindow(m_Window);
 }
 
-void rle::Win64_Window::update()
+void rle::impl::Win64_Window::update()
 {
     glfwPollEvents();
     glfwSwapBuffers(m_Window);
 }
 
-std::uint32_t rle::Win64_Window::width() const
+std::uint32_t rle::impl::Win64_Window::width() const
 {
     return m_Width;
 }
 
-std::uint32_t rle::Win64_Window::height() const
+std::uint32_t rle::impl::Win64_Window::height() const
 {
     return m_Height;
 }
 
-void rle::Win64_Window::setEventCallback(const EventCallback& callback)
+void rle::impl::Win64_Window::setEventCallback(const EventCallback& callback)
 {
     m_EventCallback = callback;
 }
 
-void rle::Win64_Window::setVSync(const bool enabled)
+void rle::impl::Win64_Window::setVSync(const bool enabled)
 {
     // enable vsync in openGL
     if (enabled)
@@ -228,12 +231,12 @@ void rle::Win64_Window::setVSync(const bool enabled)
     m_VSync = enabled;
 }
 
-bool rle::Win64_Window::isVSync() const
+bool rle::impl::Win64_Window::isVSync() const
 {
     return m_VSync;
 }
 
-void* rle::Win64_Window::nativeHandle() const
+void* rle::impl::Win64_Window::nativeHandle() const
 {
     return m_Window;
 }
