@@ -1,6 +1,7 @@
 #include "AnvilApplication.h"
 
 // Anvil includes
+#include "UI/DockingLayer.h"
 #include "UI/ImGuiLayer.h"
 
 
@@ -27,6 +28,7 @@ std::size_t anvil::AnvilApplication::init()
 	// Initialize the ImGui renderer
 	m_ImGuiRenderer.init();
 
+	push(new DockingLayer());
 	push(new ImGuiLayer());
 
 	return 0;
@@ -44,6 +46,7 @@ void anvil::AnvilApplication::onPreRender()
 
 void anvil::AnvilApplication::onRender() const
 {
+
 }
 
 void anvil::AnvilApplication::onPostRender()

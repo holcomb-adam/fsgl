@@ -12,7 +12,7 @@
 anvil::ImGuiLayer::ImGuiLayer() :
 	rle::Layer("ImGuiLayer")
 {
-
+	
 }
 
 void anvil::ImGuiLayer::onEnter()

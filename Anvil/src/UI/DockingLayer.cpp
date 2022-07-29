@@ -37,22 +37,35 @@ void anvil::DockingLayer::onRender() const
 
 	// ImGui window data
 	static bool open = true;
-	const ImGuiWindowFlags dock_win_flags =
-		ImGuiWindowFlags_MenuBar |
+	static bool fullscreen = true;
+	const ImGuiWindowFlags win_flags =
+		ImGuiWindowFlags_MenuBar | 
 		ImGuiWindowFlags_NoDocking |
-		ImGuiWindowFlags_NoSavedSettings |
+		ImGuiWindowFlags_NoTitleBar |
 		ImGuiWindowFlags_NoCollapse |
 		ImGuiWindowFlags_NoResize |
-		ImGuiWindowFlags_NoTitleBar |
-		ImGuiWindowFlags_NoMove | 
-		ImGuiWindowFlags_NoBringToFrontOnFocus | 
+		ImGuiWindowFlags_NoMove |
+		ImGuiWindowFlags_NoBringToFrontOnFocus |
 		ImGuiWindowFlags_NoNavFocus;
 
+	// ImGui viewport initialization
+	const ImGuiViewport* viewport = ImGui::GetMainViewport();
+	ImGui::SetNextWindowPos(viewport->WorkPos);
+	ImGui::SetNextWindowSize(viewport->WorkSize);
+	ImGui::SetNextWindowViewport(viewport->ID);
+
 	// This is the entrance to our main docking window
-	if (ImGui::Begin("Test", &open, dock_win_flags))
+	ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, { 0.0f, 0.0f });
+	if (ImGui::Begin("Dockspace Test", &open, win_flags))
 	{
-		ImGui::SetWindowSize(ImVec2(win->width(), win->height()));
-		ImGui::SetWindowPos(ImVec2(0.0f, 0.0f));
+		ImGui::PopStyleVar();
+
+		auto& io = ImGui::GetIO();
+		if (io.ConfigFlags & ImGuiConfigFlags_DockingEnable)
+		{
+			const auto id = ImGui::GetID("Anvil Dockspace");
+			ImGui::DockSpace(id, { 0.0f, 0.0f });
+		}
 
 		if (ImGui::BeginMenuBar())
 		{
@@ -64,6 +77,20 @@ void anvil::DockingLayer::onRender() const
 				ImGui::Separator();
 				if (ImGui::MenuItem("Exit"))
 					rle::Engine::get()->exit();
+
+				ImGui::EndMenu();
+			}
+
+			if (ImGui::BeginMenu("Edit"))
+			{
+
+
+				ImGui::EndMenu();
+			}
+
+			if (ImGui::BeginMenu("View"))
+			{
+				if (ImGui::MenuItem(""))
 
 				ImGui::EndMenu();
 			}
