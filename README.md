@@ -1,5 +1,7 @@
 # RogueLikeEngine
 
+![RLE](/resources/images/RLE-Anvil logo.png?raw=true)
+
 ### Overview
 Welcome to the Rogue-Like Engine! Rogue-Like Engine, or "RLE" for short, is an open-source, lightweight, 2D and 3D graphics/game engine specialized for indie rogue-like games. RLE is written in C++ and leverages the standard library when applicable and practical. Currently, RLE ___only supports Windows 64 bit___ environments and performs rendering via OpenGL3, however, this is all only temporary.
 
