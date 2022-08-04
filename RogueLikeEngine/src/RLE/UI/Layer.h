@@ -1,9 +1,9 @@
 #pragma once
 
-// Standard Library includes
+// --- Standard ---
 #include <string>
 
-// RLE Library includes
+// --- RLE ---
 #include "RLE/Core/Time.h"
 #include "RLE/Events/Eventable.h"
 

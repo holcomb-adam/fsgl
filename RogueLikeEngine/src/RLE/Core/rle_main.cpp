@@ -2,7 +2,7 @@
 
 #include "RLEpch.h"
 
-// RLE Library includes
+// --- RLE ---
 #include "RLE.h" // RLE main header
 #include "Core.h"
 #include "RLE/Debug/Log.h"

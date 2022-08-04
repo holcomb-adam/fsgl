@@ -1,6 +1,6 @@
 #pragma once
 
-// RLE Library include
+// --- RLE ---
 #include "Event.h"
 
 

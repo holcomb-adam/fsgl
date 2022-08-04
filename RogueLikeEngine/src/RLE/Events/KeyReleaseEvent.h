@@ -1,6 +1,6 @@
 #pragma once
 
-// RLE Library includes
+// --- RLE ---
 #include "Event.h"
 #include "RLE/Core/KeyCodes.h"
 

@@ -1,6 +1,6 @@
 #pragma once
 
-// RLE Precompiled Header
+// --- RLE Precompiled Header ---
 
 
 
@@ -11,14 +11,14 @@
 
 
 
-// Standard Library data structures
+// Standard library data structures
 #include <string>
 #include <unordered_map>
 #include <vector>
 
 
 
-// Standard Library utilities
+// Standard library utilities
 #include <algorithm>
 #include <chrono>
 #include <cstddef>

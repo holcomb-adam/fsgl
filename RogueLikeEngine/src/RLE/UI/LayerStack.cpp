@@ -1,8 +1,10 @@
 #include "RLEpch.h"
 #include "LayerStack.h"
 
-// RLE Library includes
+// --- RLE ---
 #include "Layer.h"
+
+
 
 void rle::LayerStack::push(Layer* layer)
 {

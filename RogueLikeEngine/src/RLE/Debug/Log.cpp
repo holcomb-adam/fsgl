@@ -1,7 +1,7 @@
 #include "RLEpch.h"
 #include "Log.h"
 
-// External Library includes
+// --- External ---
 #include <spdlog/sinks/stdout_color_sinks.h>
 
 

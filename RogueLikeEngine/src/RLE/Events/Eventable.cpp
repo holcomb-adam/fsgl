@@ -1,7 +1,7 @@
 #include "RLEpch.h"
 #include "Eventable.h"
 
-// RLE Library includes
+// --- RLE ---
 #include "EventDispatcher.h"
 #include "RLE/Core/Core.h"
 

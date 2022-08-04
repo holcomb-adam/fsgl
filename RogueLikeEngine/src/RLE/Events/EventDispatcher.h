@@ -1,10 +1,10 @@
 #pragma once
 
-// Standard Library includes
+// --- Standard ---
 #include <functional>
 #include <vector>
 
-// RLE Library includes
+// --- RLE ---
 #include "Event.h"
 
 
@@ -47,6 +47,8 @@ namespace rle
 	};
 
 
+	
+	// TODO: This should be placed in a .inl file
 
 	inline EventDispatcher::EventDispatcher(const Event& event) :
 		m_Event(event)

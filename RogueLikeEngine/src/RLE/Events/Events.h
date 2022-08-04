@@ -1,5 +1,6 @@
 #pragma once
 
+// --- RLE ---
 // Include all the event types
 #include "KeyPressEvent.h"
 #include "KeyReleaseEvent.h"

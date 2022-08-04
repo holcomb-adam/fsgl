@@ -1,12 +1,13 @@
 #pragma once
 
-// Standard Library includes
+// --- Standard ---
 #include <functional>
 
-// RLE Library includes
+// --- RLE ---
 #include "Core.h"
+#include "Factory.hpp"
 #include "RLE/Events/Event.h"
-#include "RLE/Rendering/RenderingAPI.h"
+#include "RLE/Rendering/RenderingAPI.hpp"
 
 
 
@@ -25,27 +26,22 @@ namespace rle
 		using EventCallback = std::function<void(Event&)>;
 
 		// Simple POD structure to define the properties of the window
-		// - 'title': The title diplayed at the top of the window
-		// - 'w': The width of the window in pixels
-		// - 'h': The height of the window in pixels
+		// - 'title':	Title diplayed at the top of the window
+		// - 'w':		Width of the window in pixels
+		// - 'h':		Height of the window in pixels
+		// - 'api':		Api to use
+		// - 'vsync':	Vsync flag, true = on, false = off
 		struct Properties final
 		{
 			std::string title = "";
 			std::uint32_t w = 800;
 			std::uint32_t h = 600;
 
-			RenderingAPI api = RenderingAPI::OpenGL; // OpenGL is the default api
+			RenderingAPI::API api = RenderingAPI::API::OpenGL; // OpenGL is the default api
 
 			bool vsync = false;
 		};
 
-
-
-		////////////////////////////////////////////////////////////////////////////////
-		// - STATIC MEMBERS ------------------------------------------------------------
-
-		// Used for creating an instance of the window
-		static std::unique_ptr<Window> create(const Properties& props = Properties{});
 		
 
 	public:
@@ -83,5 +79,20 @@ namespace rle
 
 		// Get the native handle to the window
 		virtual void* nativeHandle() const = 0;
+	};
+
+
+
+
+
+	////////////////////////////////////////////////////////////////////////////////
+	// - FACTORY METHODS -----------------------------------------------------------
+
+	template<>
+	struct factory<Window> final
+	{
+		// Create a window instance for the compiled platform
+		// - 'props': A struct of properties to customize the window
+		static std::unique_ptr<Window> create(const Window::Properties& props = Window::Properties{});
 	};
 }

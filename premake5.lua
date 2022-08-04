@@ -17,6 +17,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 libs = {}
 libs["GLAD"] = "%{wks.location}/RogueLikeEngine/external/GLAD"
 libs["GLFW"] = "%{wks.location}/RogueLikeEngine/external/GLFW"
+libs["glm"] = "%{wks.location}/external/glm"
 libs["ImGui"] = "%{wks.location}/Anvil/external/ImGui"
 libs["spdlog"] = "%{wks.location}/external/spdlog"
 
@@ -24,8 +25,10 @@ libs["spdlog"] = "%{wks.location}/external/spdlog"
 lib_includes = {}
 lib_includes["GLAD"] = "%{libs.GLAD}/include"
 lib_includes["GLFW"] = "%{libs.GLFW}/include"
+lib_includes["glm"] = "%{libs.glm}"
 lib_includes["ImGui"] = "%{libs.ImGui}"
 lib_includes["spdlog"] = "%{libs.spdlog}/include"
+
 
 
 

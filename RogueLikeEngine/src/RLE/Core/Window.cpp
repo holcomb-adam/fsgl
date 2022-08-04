@@ -3,8 +3,9 @@
 
 
 
+// Check if we are compiling for windows
 #   if defined(RLE_OS_WIN64)
-#       include "RLE/Platform/Windows/Win64_Window.h"
+#       include "impl/Platform/Windows/Win64_Window.hpp"
 #       define RLE_PLATFORM_WINDOW_INSTANCE rle::impl::Win64_Window
 
 #   else
@@ -14,7 +15,7 @@
 
 
 
-std::unique_ptr<rle::Window> rle::Window::create(const Properties& props)
+std::unique_ptr<rle::Window> rle::factory<rle::Window>::create(const Window::Properties& props)
 {
-    return std::unique_ptr<Window>(new RLE_PLATFORM_WINDOW_INSTANCE(props));
+	return std::unique_ptr<Window>(new RLE_PLATFORM_WINDOW_INSTANCE(props));
 }

@@ -13,7 +13,8 @@ project "RogueLikeEngine"
 
 	files
 	{
-		"src/**.h",
+		"src/**.h", -- This eventually needs to be removed in favor of **.hpp
+		"src/**.hpp",
 		"src/**.cpp",
 
 		-- Add GLAD source to the project to compile
@@ -26,6 +27,7 @@ project "RogueLikeEngine"
 		"%{lib_includes.spdlog}",
 		"%{lib_includes.GLAD}",
 		"%{lib_includes.GLFW}",
+		"%{lib_includes.glm}"
 	}
 
 	links

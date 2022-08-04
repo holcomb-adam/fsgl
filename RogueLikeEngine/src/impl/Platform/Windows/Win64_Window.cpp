@@ -1,5 +1,5 @@
 #include "RLEpch.h"
-#include "Win64_Window.h"
+#include "Win64_Window.hpp"
 
 // External Library includes
 #include <GLFW/glfw3.h>
@@ -167,9 +167,8 @@ rle::impl::Win64_Window::~Win64_Window()
 
 void rle::impl::Win64_Window::update()
 {
+    glfwSwapBuffers(m_Window);
     glfwPollEvents();
-
-    m_Context->swapBuffers();
 }
 
 std::uint32_t rle::impl::Win64_Window::width() const
@@ -228,6 +227,9 @@ void rle::impl::Win64_Window::init(const Properties& props)
         nullptr,
         nullptr);
 
+    // Make the context current
+    glfwMakeContextCurrent(m_Window);
+
     // Allow glfw to see our data
     glfwSetWindowUserPointer(m_Window, this);
 
@@ -239,8 +241,4 @@ void rle::impl::Win64_Window::init(const Properties& props)
     glfwSetCharCallback(m_Window, &textCallback);
     glfwSetWindowCloseCallback(m_Window, &closeCallback);
     glfwSetWindowSizeCallback(m_Window, &sizeCallback);
-
-    // Create and initialize the rendering context
-    m_Context = RenderingContext::create(props.api, m_Window);
-    m_Context->init();
 }

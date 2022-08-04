@@ -1,10 +1,13 @@
 #pragma once
 
-// RLE Library includes
+// --- RLE ---
 #include "Core.h"
 #include "Time.h"
 #include "Window.h"
 #include "RLE/Events/WindowCloseEvent.h"
+#include "RLE/Rendering/IndexBuffer.hpp"
+#include "RLE/Rendering/VertexArray.hpp"
+#include "RLE/Rendering/VertexBuffer.hpp"
 #include "RLE/UI/LayerStack.h"
 
 
@@ -59,7 +62,6 @@ namespace rle
 
 		// Called after rendering has ended
 		virtual void onPostRender() = 0;
-
 
 
 
@@ -119,5 +121,10 @@ namespace rle
 
 		std::unique_ptr<Window> m_Window;
 		LayerStack m_LayerStack;
+
+		// Temp:
+		std::shared_ptr<rle::VertexArray> m_VAO;
+		std::shared_ptr<rle::VertexBuffer> m_VBO;
+		std::shared_ptr<rle::IndexBuffer> m_IBO;
 	};
 }

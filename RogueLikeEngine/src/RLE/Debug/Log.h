@@ -1,12 +1,12 @@
 #pragma once
 
-// External Library includes
+// --- External ---
 #include <spdlog/spdlog.h>
 
-// Standard Library includes
+// --- Standard ---
 #include <memory>
 
-// RLE Library includes
+// --- RLE ---
 #include "RLE/Core/Core.h"
 
 

@@ -1,9 +1,10 @@
 #pragma once
 
-// RLE Library includes
+// --- RLE ---
 #include <RLE.h>
+#include <RLE/Rendering/Shader.hpp>
 
-// Anvil includes
+// --- Anvil ---
 #include "UI/ImGuiRenderer.h"
 
 
@@ -38,5 +39,6 @@ namespace anvil
 
 	private:
 		ImGuiRenderer m_ImGuiRenderer;
+		std::shared_ptr<rle::Shader> m_Shader;
 	};
 }

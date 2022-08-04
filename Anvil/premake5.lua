@@ -16,10 +16,10 @@ project "Anvil"
     includedirs
     {
         "src",
-		"%{lib_includes.spdlog}",
+		"%{lib_includes.glm}",
 		"%{lib_includes.ImGui}",
-        -- Temporary Fix, doing this because imgui backend files include the root source file directory
-        "%{lib_includes.ImGui}/ImGui",
+        "%{lib_includes.ImGui}/ImGui",  -- Temporary Fix, doing this because imgui backend files include the root source file directory
+		"%{lib_includes.spdlog}",
 
         -- RLE include
 		"%{wks.location}/RogueLikeEngine/src",

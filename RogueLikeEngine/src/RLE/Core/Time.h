@@ -2,7 +2,7 @@
 
 // This file serves as an engine standard to the template madness that is std::chrono
 
-// Standard Library includes
+// --- Standard ---
 #include <chrono>
 
 

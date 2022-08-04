@@ -2,7 +2,6 @@
 
 // RLE Library includes
 #include "RLE/Core/Window.h"
-#include "RLE/Rendering/RenderingContext.h"
 
 
 
@@ -66,8 +65,6 @@ namespace rle
 
 		private:
 			GLFWwindow* m_Window = nullptr;
-
-			std::unique_ptr<RenderingContext> m_Context;
 
 			std::string m_Title = "";
 			std::uint32_t m_Width = 0;
