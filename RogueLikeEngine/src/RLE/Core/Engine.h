@@ -5,9 +5,9 @@
 #include "Time.h"
 #include "Window.h"
 #include "RLE/Events/WindowCloseEvent.h"
-#include "RLE/Rendering/IndexBuffer.hpp"
-#include "RLE/Rendering/VertexArray.hpp"
-#include "RLE/Rendering/VertexBuffer.hpp"
+#include "RLE/Rendering/IndexBuffer.hpp" // temp
+#include "RLE/Rendering/VertexArray.hpp" // temp
+#include "RLE/Rendering/VertexBuffer.hpp" // temp
 #include "RLE/UI/LayerStack.h"
 
 

@@ -41,9 +41,9 @@ namespace rle
 
 
 
-	/// <summary>
-	/// Specialized factory methods for retrieving an IndexBuffer from the rendering API
-	/// </summary>
+	////////////////////////////////////////////////////////////////////////////////
+	// - FACTORY METHODS -----------------------------------------------------------
+
 	template<>
 	struct factory<IndexBuffer> final
 	{
