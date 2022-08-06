@@ -30,7 +30,7 @@ void anvil::ImGuiLayer::onUpdate(const rle::time::step_ms delta)
 
 }
 
-void anvil::ImGuiLayer::onRender() const
+void anvil::ImGuiLayer::onRender(rle::Renderer& renderer) const
 {
 	static bool show = true;
 	ImGui::ShowDemoWindow(&show);

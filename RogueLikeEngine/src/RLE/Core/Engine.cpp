@@ -34,33 +34,8 @@ rle::Engine::Engine(const Window::Properties& props) :
 	// Give the window our event callback functions
 	m_Window->setEventCallback(RLE_BIND_EVENT_FN(Engine::onEvent));
 
-
-
-	// ---------------------------
-	// --- Setup the rendering ---
-	// ---------------------------
-
 	// Initialize the rendering systems
 	RenderCommands::init(props.api);
-
-	// Create the VertexArray object
-	m_VAO = factory<VertexArray>::create();
-
-	// Vertex data
-	const Vertex vertices[3] = 
-	{
-		{ .position = { -0.5f, -0.5f, 0.0f } },
-		{ .position = {  0.5f, -0.5f, 0.0f } },
-		{ .position = {  0.0f,  0.5f, 0.0f }, .color = { 0.57, 0.34, 0.78, 1.0 } }
-	};
-
-	// Create our VBO
-	m_VBO = rle::factory<rle::VertexBuffer>::create(sizeof(vertices), vertices);
-	m_VAO->addVertexBuffer(m_VBO);
-
-	const std::uint32_t indices[3] = { 0, 1, 2 };
-	m_IBO = rle::factory<IndexBuffer>::create(indices, sizeof(indices) / sizeof(std::uint32_t));
-	m_VAO->setIndexBuffer(m_IBO);
 }
 
 void rle::Engine::push(Layer* layer)
@@ -158,15 +133,15 @@ void rle::Engine::impl_render()
 	// Call client pre-rendering
 	onPreRender();
 
-	// Begin the rendering
-	RenderCommands::draw(m_VAO);
-
 	// Call client rendering
 	onRender();
 
 	// Draw all the layers
 	for (const auto* layer : m_LayerStack)
-		layer->onRender();
+		layer->onRender(m_Renderer);
+
+	// End the rendering
+	m_Renderer.endScene();
 
 	// Call client post-rendering
 	onPostRender();

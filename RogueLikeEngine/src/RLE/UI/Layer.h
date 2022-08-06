@@ -11,6 +11,11 @@
 
 namespace rle
 {
+	// RLE Forward Declarations
+	class Renderer;
+
+
+
 	class Layer : public Eventable
 	{
 	public:
@@ -38,7 +43,7 @@ namespace rle
 		virtual void onUpdate(const time::step_ms delta) = 0;
 
 		// Called once every frame to render the layer
-		virtual void onRender() const = 0;
+		virtual void onRender(Renderer& renderer) const = 0;
 
 
 

@@ -39,7 +39,6 @@ namespace rle
 
 		private:
 			std::uint32_t m_ID = 0;
-			
 			std::uint32_t m_Count = 0;
 		};
 	}

@@ -29,7 +29,7 @@ namespace anvil
 		virtual void onEnter() override;
 		virtual void onExit() override;
 		virtual void onUpdate(const rle::time::step_ms delta) override;
-		virtual void onRender() const override;
+		virtual void onRender(rle::Renderer& renderer) const override;
 
 
 

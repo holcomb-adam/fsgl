@@ -30,7 +30,7 @@ void anvil::DockingLayer::onUpdate(const rle::time::step_ms delta)
 
 }
 
-void anvil::DockingLayer::onRender() const
+void anvil::DockingLayer::onRender(rle::Renderer& renderer) const
 {
 	// The window
 	const auto& win = m_Engine->window();

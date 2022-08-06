@@ -39,6 +39,5 @@ namespace anvil
 
 	private:
 		ImGuiRenderer m_ImGuiRenderer;
-		std::shared_ptr<rle::Shader> m_Shader;
 	};
 }

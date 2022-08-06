@@ -1,5 +1,11 @@
 #pragma once
 
+// --- External ---
+#include <glm/mat4x4.hpp>
+
+// --- Standard ---
+#include <string>
+
 // --- RLE ---
 #include "RLE/Core/Factory.hpp"
 
@@ -27,8 +33,11 @@ namespace rle
 		// Bind the shader to underlying rendering API
 		virtual void bind() const = 0;
 
-		// ind the shader to underlying rendering API
+		// Unbind the shader from the underlying rendering API
 		virtual void unbind() const = 0;
+
+		// Upload Matrix 4x4 uniform
+		virtual void uploadUniform(const std::string& name, const glm::mat4& matrix) = 0;
 	};
 
 

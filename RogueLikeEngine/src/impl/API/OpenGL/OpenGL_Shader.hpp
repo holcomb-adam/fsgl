@@ -30,13 +30,12 @@ namespace rle
 
 
 			////////////////////////////////////////////////////////////////////////////////
-			// - OPERATIONS ----------------------------------------------------------------
+			// - OVERRIDES -----------------------------------------------------------------
 
-			// Bind OpenGL to the shader program
+			// Inherited via Shader
 			virtual void bind() const override;
-
-			// Unbind the shader program from OpenGL
 			virtual void unbind() const override;
+			virtual void uploadUniform(const std::string& name, const glm::mat4& matrix) override;
 			
 
 

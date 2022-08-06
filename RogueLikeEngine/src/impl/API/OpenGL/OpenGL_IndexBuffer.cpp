@@ -8,8 +8,12 @@ rle::impl::OpenGL_IndexBuffer::OpenGL_IndexBuffer(const std::uint32_t count, con
 	m_Count(count)
 {
 	glCreateBuffers(1, &m_ID);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ID);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, count * sizeof(std::uint32_t), indices, GL_STATIC_DRAW);
+
+	// Need to use GL_COPY_WRITE_BUFFER here
+	// Using GL_ELEMENT_ARRAY_BUFFER modifies the bound VAO and wont work properly
+	// without binding to the VAO
+	glBindBuffer(GL_COPY_WRITE_BUFFER, m_ID);
+	glBufferData(GL_COPY_WRITE_BUFFER, count * sizeof(std::uint32_t), indices, GL_STATIC_DRAW);
 }
 
 rle::impl::OpenGL_IndexBuffer::~OpenGL_IndexBuffer()

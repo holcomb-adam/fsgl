@@ -1,10 +1,11 @@
 #include "RLEpch.h"
 #include "OpenGL_Shader.hpp"
 
-// External Library includes
+// --- External ---
 #include <glad/glad.h>
+#include <glm/gtc/type_ptr.hpp>
 
-// RLE Library includes
+// --- RLE ---
 #include "RLE/Debug/Log.h"
 
 
@@ -133,4 +134,10 @@ void rle::impl::OpenGL_Shader::bind() const
 void rle::impl::OpenGL_Shader::unbind() const
 {
 	glUseProgram(0);
+}
+
+void rle::impl::OpenGL_Shader::uploadUniform(const std::string& name, const glm::mat4& matrix)
+{
+	const auto location = glGetUniformLocation(m_ID, name.c_str());
+	glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
 }

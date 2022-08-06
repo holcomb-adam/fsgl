@@ -5,15 +5,18 @@
 #include "Time.h"
 #include "Window.h"
 #include "RLE/Events/WindowCloseEvent.h"
-#include "RLE/Rendering/IndexBuffer.hpp" // temp
-#include "RLE/Rendering/VertexArray.hpp" // temp
-#include "RLE/Rendering/VertexBuffer.hpp" // temp
+#include "RLE/Rendering/Renderer.hpp"
 #include "RLE/UI/LayerStack.h"
 
 
 
 namespace rle
 {
+	// Cool color: (0.57, 0.34, 0.78, 1.0)
+	// - Possible RLE secondary theme color
+
+
+
 	// This class represents the base application of the engine
 	class Engine
 	{
@@ -104,6 +107,7 @@ namespace rle
 	private:
 		// Updates the engine and it's layers
 		// - Called once every frame
+		// - 'delta': Time in ms elapsed since last update cycle
 		void impl_update(const time::step_ms delta);
 
 		// Performs the rendering to the client engine and all the layers that are
@@ -121,10 +125,6 @@ namespace rle
 
 		std::unique_ptr<Window> m_Window;
 		LayerStack m_LayerStack;
-
-		// Temp:
-		std::shared_ptr<rle::VertexArray> m_VAO;
-		std::shared_ptr<rle::VertexBuffer> m_VBO;
-		std::shared_ptr<rle::IndexBuffer> m_IBO;
+		Renderer m_Renderer;
 	};
 }
