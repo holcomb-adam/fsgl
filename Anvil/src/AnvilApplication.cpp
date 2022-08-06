@@ -1,6 +1,7 @@
 #include "AnvilApplication.h"
 
 // --- Anvil ---
+#include "UI/DebuggerLayer.hpp"
 #include "UI/DockingLayer.h"
 #include "UI/ImGuiLayer.h"
 #include "UI/TestingLayer.hpp"
@@ -31,10 +32,11 @@ std::size_t anvil::AnvilApplication::init()
 
 	// Push layers onto the stack
 	push(new TestingLayer());
+	pushOverlay(new DebuggerLayer());
 
 	// Disabled for rendering system setup
-	//push(new DockingLayer());
-	//push(new ImGuiLayer());
+	//push(new DockingLayer()); // Disabled for Rendering testing
+	push(new ImGuiLayer());
 
 	return 0;
 }

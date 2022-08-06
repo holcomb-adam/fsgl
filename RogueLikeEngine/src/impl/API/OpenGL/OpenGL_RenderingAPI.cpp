@@ -30,19 +30,19 @@ namespace // private anonymous namespace
 		switch (severity)
 		{
 		case GL_DEBUG_SEVERITY_NOTIFICATION:
-			RLE_CORE_INFO(message);
+			RLE_CORE_INFO("OpenGL[NOTIFICATION]: {0}", message);
 			break;
 
 		case GL_DEBUG_SEVERITY_LOW:
-			RLE_CORE_WARN(message);
+			RLE_CORE_WARN("OpenGL[LOW]: {0}", message);
 			break;
 
 		case GL_DEBUG_SEVERITY_MEDIUM:
-			RLE_CORE_ERROR(message);
+			RLE_CORE_ERROR("OpenGL[MEDIUM]: {0}", message);
 			break;
 
 		case GL_DEBUG_SEVERITY_HIGH:
-			RLE_CORE_CRITICAL(message);
+			RLE_CORE_CRITICAL("OpenGL[HIGH]: {0}", message);
 			break;
 
 		default:
@@ -63,6 +63,7 @@ rle::impl::OpenGL_RenderingAPI::OpenGL_RenderingAPI() :
 
 rle::impl::OpenGL_RenderingAPI::~OpenGL_RenderingAPI()
 {
+
 }
 
 void rle::impl::OpenGL_RenderingAPI::init()
@@ -77,12 +78,12 @@ void rle::impl::OpenGL_RenderingAPI::init()
 	glEnable(GL_DEBUG_OUTPUT);
 	glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
 	glDebugMessageCallback(&gl_onDebugMessage, nullptr);
-	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_TRUE);
+	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION, 0, nullptr, GL_FALSE);
 
 	RLE_CORE_INFO("OpenGL info:");
-	RLE_CORE_INFO("--- \tVendor: {0}", glGetString(GL_VENDOR));
-	RLE_CORE_INFO("--- \tRenderer: {0}", glGetString(GL_RENDERER));
-	RLE_CORE_INFO("--- \tVersion: {0}", glGetString(GL_VERSION));
+	RLE_CORE_INFO("-\tVendor: {0}", glGetString(GL_VENDOR));
+	RLE_CORE_INFO("-\tRenderer: {0}", glGetString(GL_RENDERER));
+	RLE_CORE_INFO("-\tVersion: {0}", glGetString(GL_VERSION));
 }
 
 void rle::impl::OpenGL_RenderingAPI::setClearColor(const Color& color) const
