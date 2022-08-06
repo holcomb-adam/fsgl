@@ -34,7 +34,6 @@ std::size_t anvil::AnvilApplication::init()
 	push(new TestingLayer());
 	pushOverlay(new DebuggerLayer());
 
-	// Disabled for rendering system setup
 	//push(new DockingLayer()); // Disabled for Rendering testing
 	push(new ImGuiLayer());
 
