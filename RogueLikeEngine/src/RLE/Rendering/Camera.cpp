@@ -38,6 +38,11 @@ const glm::mat4& rle::Camera::projectionMatrix() const
 	return m_Projection;
 }
 
+void rle::Camera::setProjectionMatrix(const glm::mat4& proj)
+{
+	m_Projection = proj;
+}
+
 glm::mat4 rle::Camera::calcViewProjectionMatrix() const
 {
 	const auto transform = glm::translate(glm::mat4(1.0f), m_Position) * 

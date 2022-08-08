@@ -61,6 +61,13 @@ namespace rle
 		// Clear the screen
 		virtual void clear() const = 0;
 
+		// Specify the Api viewport
+		virtual void viewport(
+			const std::int32_t x,
+			const std::int32_t y,
+			const std::int32_t width,
+			const std::int32_t height) const = 0;
+
 		// Draw a vertex array object
 		virtual void draw(const std::shared_ptr<VertexArray>& vao) const = 0;
 

@@ -47,6 +47,11 @@ void rle::RenderCommands::clear()
 	s_API->clear();
 }
 
+void rle::RenderCommands::viewport(const std::int32_t x, const std::int32_t y, const std::int32_t width, const std::int32_t height)
+{
+	s_API->viewport(x, y, width, height);
+}
+
 void rle::RenderCommands::draw(const std::shared_ptr<VertexArray>& vao)
 {
 	s_API->draw(vao);

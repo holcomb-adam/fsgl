@@ -56,6 +56,6 @@ namespace rle
 
 
 	private:
-		std::string m_DebugName = "";
+		std::string m_Name = "";
 	};
 }

@@ -1,7 +1,9 @@
 #pragma once
 
 // --- External ---
-#include <spdlog/spdlog.h>
+#pragma warning(push, 0) // Disable MSVC warnings for external libs
+#	include <spdlog/spdlog.h>
+#pragma warning(pop)
 
 // --- Standard ---
 #include <memory>

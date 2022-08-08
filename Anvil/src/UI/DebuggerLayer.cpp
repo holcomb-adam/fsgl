@@ -50,7 +50,7 @@ void anvil::DebuggerLayer::onRender(rle::Renderer& renderer) const
 		ImGui::PlotLines(
 			"Frame Times",
 			m_FrameTimeCounter.data(),
-			m_FrameTimeCounter.size(),
+			static_cast<float>(m_FrameTimeCounter.size()),
 			0,
 			nullptr,
 			0.0f,

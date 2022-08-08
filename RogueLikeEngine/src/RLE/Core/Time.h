@@ -19,13 +19,13 @@ namespace rle
 
 		// A nice type alias for std::chrono::duration<double, std::milli>
 		// - This represents a floating point (double) time step_ms in milliseconds 
-		using step_ms = std::chrono::duration<double, std::milli>;
+		using step_ms = std::chrono::duration<float, std::milli>;
 
 		// Type alias for representing 1 second
 		// - Prefer using this alias over 'std::chrono::seconds' as the time is
 		//   represented using a floating point double rather than the standard 
 		//   implementation which represents the time as long long
-		using step_sec = std::chrono::duration<double>;
+		using step_sec = std::chrono::duration<float>;
 
 		// Type alias for std::chrono::time_point<clock, time_step>
 		using point = std::chrono::time_point<clock, step_ms>;

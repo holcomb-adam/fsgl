@@ -2,12 +2,12 @@
 #include "Layer.h"
 
 rle::Layer::Layer(const std::string& name) : 
-	m_DebugName(name)
+	m_Name(name)
 {
 
 }
 
 const std::string& rle::Layer::name() const
 {
-	return m_DebugName;
+	return m_Name;
 }

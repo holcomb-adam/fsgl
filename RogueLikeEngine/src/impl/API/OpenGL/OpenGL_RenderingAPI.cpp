@@ -96,6 +96,11 @@ void rle::impl::OpenGL_RenderingAPI::clear() const
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
+void rle::impl::OpenGL_RenderingAPI::viewport(const std::int32_t x, const std::int32_t y, const std::int32_t width, const std::int32_t height) const
+{
+	glViewport(x, y, width, height);
+}
+
 void rle::impl::OpenGL_RenderingAPI::draw(const std::shared_ptr<VertexArray>& vao) const
 {
 	vao->bind();

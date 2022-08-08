@@ -3,8 +3,8 @@
 // --- Anvil ---
 #include "UI/DebuggerLayer.hpp"
 #include "UI/DockingLayer.h"
+#include "UI/SceneLayer.hpp"
 #include "UI/ImGui/ImGuiLayer.h"
-#include "UI/TestingLayer.hpp"
 
 
 
@@ -31,10 +31,9 @@ std::size_t anvil::AnvilApplication::init()
 	m_ImGuiRenderer.init();
 
 	// Push layers onto the stack
-	push(new TestingLayer());
+	push(new DockingLayer());
 	pushOverlay(new DebuggerLayer());
-
-	//push(new DockingLayer()); // Disabled for Rendering testing
+	push(new SceneLayer());
 	push(new ImGuiLayer());
 
 	return 0;

@@ -28,6 +28,13 @@ namespace rle
 		// Clear the screen
 		void clear();
 
+		// Specify the API viewport
+		void viewport(
+			const std::int32_t x,
+			const std::int32_t y,
+			const std::int32_t width,
+			const std::int32_t height);
+
 		// Draw a vertex array object
 		void draw(const std::shared_ptr<VertexArray>& vao);
 	}

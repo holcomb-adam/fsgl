@@ -1,9 +1,9 @@
 #include "DockingLayer.h"
 
-// External Library includes
+// --- External ---
 #include <ImGui/imgui.h>
 
-// RLE Library includes
+// --- RLE ---
 #include <RLE/Debug/Log.h>
 
 

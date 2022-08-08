@@ -2,10 +2,7 @@
 
 // --- RLE ---
 #include <RLE/Rendering/Camera.hpp>
-#include <RLE/Rendering/IndexBuffer.hpp>
-#include <RLE/Rendering/Shader.hpp>
-#include <RLE/Rendering/VertexArray.hpp>
-#include <RLE/Rendering/VertexBuffer.hpp>
+#include <RLE/Rendering/FrameBuffer.hpp>
 #include <RLE/UI/Layer.h>
 
 
@@ -20,10 +17,15 @@ namespace rle
 
 namespace anvil
 {
-	// This class is temporary and serves to test new RLE features
+	// This class is temporary and serves to test new RLE Layer features
 	class TestingLayer final : public rle::Layer
 	{
 	public:
+		// Default constructor
+		TestingLayer();
+
+
+
 		// Inherited via Layer
 		virtual void onEnter() override;
 		virtual void onExit() override;
@@ -34,5 +36,9 @@ namespace anvil
 
 	private:
 		std::unique_ptr<rle::Camera> m_Camera;
+		std::shared_ptr<rle::FrameBuffer> m_FBO;
+
+		glm::u32vec2 m_ViewportPosition = { 0, 0 };
+		glm::u64vec2 m_ViewportSize = { 0, 0 };
 	};
 }

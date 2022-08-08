@@ -47,6 +47,9 @@ namespace rle
 		// Get the projection matrix
 		const glm::mat4& projectionMatrix() const;
 
+		// Set the projection matrix
+		void setProjectionMatrix(const glm::mat4& proj);
+
 		// Calculate the view projection matrix
 		glm::mat4 calcViewProjectionMatrix() const;
 
