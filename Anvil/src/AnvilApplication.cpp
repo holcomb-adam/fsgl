@@ -34,7 +34,7 @@ std::size_t anvil::AnvilApplication::init()
 	push(new DockingLayer());
 	pushOverlay(new DebuggerLayer());
 	push(new SceneLayer());
-	push(new ImGuiLayer());
+	//push(new ImGuiLayer());
 
 	return 0;
 }

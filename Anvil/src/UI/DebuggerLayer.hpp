@@ -7,9 +7,10 @@
 
 namespace anvil
 {
-	// Will provide debugging informations
+	// Will provide debugging information through ImGui
 	class DebuggerLayer final : public rle::Layer
 	{
+		static constexpr std::size_t FRAME_TIME_COUNTER_MAX_SIZE = 300;
 	public:
 		// Inherited via Layer
 		virtual void onEnter() override;
@@ -23,7 +24,7 @@ namespace anvil
 		rle::time::step_sec m_Timer;
 		
 		std::vector<float> m_FrameTimeCounter;
-		float m_AverageFrameTime = 0.0f;
+		float m_AverageFrameTime = 0.0;
 
 		mutable bool m_Open = true;
 		mutable bool m_FramePlotPaused = false;

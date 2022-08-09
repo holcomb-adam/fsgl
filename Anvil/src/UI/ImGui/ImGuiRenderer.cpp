@@ -43,12 +43,17 @@ void anvil::ImGuiRenderer::update(const rle::time::step_ms delta)
 	// Get the ImGui io
 	auto& io = ImGui::GetIO();
 
+	// Get engine window
+	const auto& win = m_Engine->window();
+
 	// Convert our delta time to seconds since ImGui takes delta time in seconds
 	const auto delta_sec = std::chrono::duration_cast<rle::time::step_sec>(delta);
 
 	// Update the ImGui data
-	io.DeltaTime = delta_sec.count();
-	io.DisplaySize = ImVec2(m_Engine->window()->width(), m_Engine->window()->height());
+	const auto adj_delta = delta_sec.count() == 0.0 ? 1.0 / 60.0 : delta_sec.count();
+	io.DeltaTime = static_cast<float>(adj_delta);
+	io.DisplaySize = ImVec2(static_cast<float>(win->width()),
+		static_cast<float>(win->height()));
 }
 
 void anvil::ImGuiRenderer::begin() const

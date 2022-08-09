@@ -16,6 +16,7 @@ void rle::LayerStack::push(Layer* layer)
 void rle::LayerStack::pushOverlay(Layer* layer)
 {
 	m_Layers.push_back(layer);
+	layer->onEnter();
 }
 
 rle::LayerStack::iterator rle::LayerStack::begin()

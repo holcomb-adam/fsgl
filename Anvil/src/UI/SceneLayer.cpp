@@ -161,7 +161,7 @@ void anvil::SceneLayer::onRender(rle::Renderer& renderer) const
 		{
 			// Add the rendered scene to the ImGui window draw list
 			ImGui::GetWindowDrawList()->AddImage(
-				(void*)m_FrameBuffer->texture(), // Need to use c-style cast here...
+				reinterpret_cast<void*>(static_cast<std::size_t>(m_FrameBuffer->texture())), // Need to cast to a larger type first
 				cursor_pos,
 				{ cursor_pos.x + m_ViewportSize.x, cursor_pos.y + m_ViewportSize.y },
 				{ 0, 1 }, // Need to invert the coordinate system

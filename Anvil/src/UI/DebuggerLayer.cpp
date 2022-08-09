@@ -7,7 +7,7 @@
 
 void anvil::DebuggerLayer::onEnter()
 {
-
+	m_FrameTimeCounter.resize(FRAME_TIME_COUNTER_MAX_SIZE, 0.0f);
 }
 
 void anvil::DebuggerLayer::onExit()
@@ -25,7 +25,7 @@ void anvil::DebuggerLayer::onUpdate(const rle::time::step_ms delta)
 	{
 		m_FrameTimeCounter.push_back(static_cast<float>(delta.count()));
 
-		if (m_FrameTimeCounter.size() > 300)
+		if (m_FrameTimeCounter.size() > FRAME_TIME_COUNTER_MAX_SIZE)
 			m_FrameTimeCounter.erase(m_FrameTimeCounter.begin());
 	}
 
@@ -50,7 +50,7 @@ void anvil::DebuggerLayer::onRender(rle::Renderer& renderer) const
 		ImGui::PlotLines(
 			"Frame Times",
 			m_FrameTimeCounter.data(),
-			static_cast<float>(m_FrameTimeCounter.size()),
+			static_cast<int>(m_FrameTimeCounter.size()),
 			0,
 			nullptr,
 			0.0f,
