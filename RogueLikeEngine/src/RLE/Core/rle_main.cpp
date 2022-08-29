@@ -13,11 +13,11 @@
 
 int main(int argc, char* argv[])
 {
-	// initialize logging system
+	// Initialize logging system
 	rle::log::init();
 	RLE_CORE_INFO("Initialized Logging System!");
 
-	// create the engine application
+	// Create the engine application
 	auto* client = rle::entry::instance();
 	if (!client)
 	{
@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
 		return -1;
 	}
 
-	// initialize the client
+	// Initialize the client
 	client->init();
 
 	return client->exec();
