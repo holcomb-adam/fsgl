@@ -27,6 +27,7 @@ rle::impl::OpenGL_FrameBuffer::OpenGL_FrameBuffer(const std::uint32_t width, con
 	// Attach the texture to the frame buffer
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_TextureID, 0);
 
+	// Check if the frame buffer is complete
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 		RLE_CORE_CRITICAL("OpenGL FBO is invalid!");
 }
