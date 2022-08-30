@@ -1,5 +1,8 @@
 #pragma once
 
+// --- External ---
+#include <glm/vec4.hpp>
+
 // --- Standard ---
 #include <memory>
 
@@ -9,7 +12,6 @@ namespace rle
 {
 	// RLE Forward Declarations
 	class VertexArray;
-	struct Color;
 
 
 
@@ -56,7 +58,7 @@ namespace rle
 		virtual void init() = 0;
 
 		// Set the color to clear the screen with
-		virtual void setClearColor(const Color& color) const = 0;
+		virtual void setClearColor(const glm::vec4& color) const = 0;
 
 		// Clear the screen
 		virtual void clear() const = 0;

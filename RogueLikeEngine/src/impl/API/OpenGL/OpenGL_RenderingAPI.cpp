@@ -10,7 +10,6 @@
 
 // --- RLE ---
 #include "RLE/Debug/Log.h"
-#include "RLE/Rendering/Color.hpp"
 #include "RLE/Rendering/IndexBuffer.hpp"
 #include "RLE/Rendering/VertexArray.hpp"
 
@@ -86,9 +85,9 @@ void rle::impl::OpenGL_RenderingAPI::init()
 	RLE_CORE_INFO("-\tVersion: {0}", glGetString(GL_VERSION));
 }
 
-void rle::impl::OpenGL_RenderingAPI::setClearColor(const Color& color) const
+void rle::impl::OpenGL_RenderingAPI::setClearColor(const glm::vec4& color) const
 {
-	glClearColor(color.red, color.green, color.blue, color.alpha);
+	glClearColor(color.r, color.g, color.b, color.a);
 }
 
 void rle::impl::OpenGL_RenderingAPI::clear() const

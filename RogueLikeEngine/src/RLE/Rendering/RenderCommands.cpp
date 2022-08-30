@@ -37,7 +37,7 @@ void rle::RenderCommands::init(const RenderingAPI::API api)
 	s_API->init();
 }
 
-void rle::RenderCommands::setClearColor(const Color& color)
+void rle::RenderCommands::setClearColor(const glm::vec4& color)
 {
 	s_API->setClearColor(color);
 }

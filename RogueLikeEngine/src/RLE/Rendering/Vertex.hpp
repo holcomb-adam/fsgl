@@ -1,10 +1,9 @@
 #pragma once
 
 // --- External ---
+#include <glm/vec2.hpp>
 #include <glm/vec3.hpp>
-
-// --- RLE ---
-#include "Color.hpp"
+#include <glm/vec4.hpp>
 
 
 
@@ -20,7 +19,10 @@ namespace rle
 		// NDC position
 		glm::vec3 position;
 
-		// Color at the vertex
-		Color color;
+		// RGB color at the vertex
+		glm::vec4 color;
+
+		// Coordinates of the 2D texture at the vertex
+		glm::vec2 texture_coords;
 	};
 }
