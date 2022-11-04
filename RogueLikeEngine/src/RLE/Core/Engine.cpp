@@ -127,7 +127,7 @@ void rle::Engine::impl_update(const time::step_ms delta)
 void rle::Engine::impl_render()
 {
 	// Clear any current rendering
-	RenderCommands::setClearColor({ 0.1f, 0.1f, 0.10f, 1.0f });
+	RenderCommands::setClearColor({ 1.00f, 0.00f, 1.0f, 1.0f });
 	RenderCommands::clear();
 
 	// Call client pre-rendering
