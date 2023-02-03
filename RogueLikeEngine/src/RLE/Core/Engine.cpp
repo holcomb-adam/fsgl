@@ -8,7 +8,6 @@
 #include "RLE/Debug/Log.h"
 #include "RLE/Events/EventDispatcher.h"
 #include "RLE/Rendering/RenderCommands.hpp"
-#include "RLE/Rendering/Vertex.hpp"
 #include "RLE/UI/Layer.h"
 
 
@@ -134,7 +133,7 @@ void rle::Engine::impl_render()
 	onPreRender();
 
 	// Call client rendering
-	onRender();
+	onRender(m_Renderer);
 
 	// Draw all the layers
 	for (const auto* layer : m_LayerStack)

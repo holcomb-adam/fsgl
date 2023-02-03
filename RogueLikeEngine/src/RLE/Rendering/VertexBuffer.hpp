@@ -7,11 +7,6 @@
 
 namespace rle
 {
-	// RLE Forward Declarations
-	struct Vertex;
-
-
-
 	class VertexBuffer
 	{
 	public:
@@ -36,7 +31,9 @@ namespace rle
 		virtual void unbind() const = 0;
 
 		// Set the data of the VBO
-		virtual void setData(const Vertex* data, const std::size_t size) = 0;
+		// - 'data':    Vector of vertice data being moved to the GPU
+		// - 'size':    Number of vertice in the vector being moved
+		virtual void setData(const void* data, const std::size_t size) = 0;
 	};
 
 
@@ -56,9 +53,9 @@ namespace rle
 		static std::shared_ptr<VertexBuffer> create(const std::size_t size);
 
 		// Creates a VertexBuffer from the current rendering API
-		// - 'size': The size in bytes to allocate on the gpu
 		// - 'data': A pointer to a c-style array of vertex data to be copied to the gpu
+		// - 'size': The size in bytes to allocate on the gpu
 		// - Return: A unique_ptr to a VertexBuffer
-		static std::shared_ptr<VertexBuffer> create(const std::size_t size, const Vertex* data);
+		static std::shared_ptr<VertexBuffer> create(const void* data, const std::size_t size);
 	};
 }

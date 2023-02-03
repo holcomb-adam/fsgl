@@ -10,13 +10,13 @@ std::shared_ptr<rle::VertexBuffer> rle::factory<rle::VertexBuffer>::create(
 	const std::size_t size)
 {
 	// TEMP: Only cuz its a late night...
-	return std::shared_ptr<VertexBuffer>(new impl::OpenGL_VertexBuffer(size));
+	return std::shared_ptr<VertexBuffer>(new impl::OpenGL_VertexBuffer(nullptr, size));
 }
 
 std::shared_ptr<rle::VertexBuffer> rle::factory<rle::VertexBuffer>::create(
-	const std::size_t size,
-	const Vertex* data)
+	const void* data,
+	const std::size_t size)
 {
 	// TEMP: Only cuz its a late night...
-	return std::shared_ptr<VertexBuffer>(new impl::OpenGL_VertexBuffer(size, data));
+	return std::shared_ptr<VertexBuffer>(new impl::OpenGL_VertexBuffer(data, size));
 }

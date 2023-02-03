@@ -3,6 +3,7 @@
 // --- RLE ---
 #include <RLE/Rendering/Camera.hpp>
 #include <RLE/Rendering/Framebuffer.hpp>
+#include <RLE/Scene/Node/Node.hpp>
 #include <RLE/UI/Layer.h>
 
 
@@ -32,7 +33,7 @@ namespace anvil
 		virtual void onUpdate(const rle::time::step_ms delta) override;
 		virtual void onRender(rle::Renderer& renderer) const override;
 
-
+		
 
 	private:
 		// - Rendering -
@@ -44,5 +45,6 @@ namespace anvil
 		// - Scene -
 		std::unique_ptr<rle::Camera> m_Camera;
 		double m_CameraSpeed = 0.02;
+		rle::Node* m_SceneNode = nullptr;
 	};
 }

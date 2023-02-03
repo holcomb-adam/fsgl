@@ -43,3 +43,11 @@
 // Macro to help with event functions
 // This will bind a function with "this" keyword and 1 placeholder argument
 #	define RLE_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+
+// Color constant macros
+// - Produces a comma separated list
+#	define RLE_WHITE 1.0f, 1.0f, 1.0f // White
+#	define RLE_BLACK 0.0f, 0.0f, 0.0f // Black
+#	define RLE_RED   1.0f, 0.0f, 0.0f // Red
+#	define RLE_GREEN 0.0f, 1.0f, 0.0f // Green
+#	define RLE_BLUE  0.0f, 0.0f, 1.0f // Blue

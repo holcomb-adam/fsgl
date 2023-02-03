@@ -10,6 +10,7 @@ project "Anvil"
     files
     {
         "src/**.h",
+        "src/**.hpp",
         "src/**.cpp"
     }
 

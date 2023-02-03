@@ -2,6 +2,7 @@
 #include "Renderer.hpp"
 
 // --- RLE ---
+#include "Renderable.hpp"
 #include "RenderCommands.hpp"
 #include "Camera.hpp"
 #include "Shader.hpp"
@@ -26,4 +27,9 @@ void rle::Renderer::submit(const std::shared_ptr<Shader>& shader, const std::sha
 	
 	vao->bind();
 	RenderCommands::draw(vao);
+}
+
+void rle::Renderer::submit(const Renderable& renderable)
+{
+	renderable.onRender(*this);
 }

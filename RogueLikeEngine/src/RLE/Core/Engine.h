@@ -61,7 +61,7 @@ namespace rle
 		virtual void onPreRender() = 0;
 
 		// Called when the rendering process begins
-		virtual void onRender() const = 0;
+		virtual void onRender(Renderer& renderer) = 0;
 
 		// Called after rendering has ended
 		virtual void onPostRender() = 0;

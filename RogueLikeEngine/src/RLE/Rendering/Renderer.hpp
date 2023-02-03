@@ -12,6 +12,7 @@ namespace rle
 {
 	// RLE Forward Declarations
 	class Camera;
+	class Renderable;
 	class Shader;
 	class VertexArray;
 
@@ -42,6 +43,9 @@ namespace rle
 
 		// Submit an object for rendering
 		void submit(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vao);
+
+		// Submit an object for rendering
+		void submit(const Renderable& renderable);
 
 
 

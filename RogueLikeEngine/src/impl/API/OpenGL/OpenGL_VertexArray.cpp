@@ -1,12 +1,11 @@
 #include "RLEpch.h"
 #include "OpenGL_VertexArray.hpp"
 
-// External Library includes
+// --- GLAD ---
 #include <glad/glad.h>
 
-// RLE Library includes
+// --- RLE ---
 #include "RLE/Rendering/IndexBuffer.hpp"
-#include "RLE/Rendering/Vertex.hpp"
 #include "RLE/Rendering/VertexBuffer.hpp"
 
 
@@ -37,14 +36,8 @@ void rle::impl::OpenGL_VertexArray::addVertexBuffer(const std::shared_ptr<Vertex
 	glBindVertexArray(m_ID);
 	vertex_buffer->bind();
 
-	// Setup vertex attribute pointers for Vertex struct
-	// 1st attrib - position
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), nullptr);
-
-	// 2nd attrib - color
-	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (const void*)offsetof(Vertex, Vertex::color));
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), nullptr);
 
 	// add the buffer to the vector
 	m_VertexBuffers.push_back(vertex_buffer);

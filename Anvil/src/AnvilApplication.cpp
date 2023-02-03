@@ -7,6 +7,9 @@
 #include "UI/ImGui/ImGuiLayer.h"
 
 
+static auto* root = rle::Node::getRoot();
+
+
 
 // Define RLE's creation instance
 RLE_INSTANCE(anvil::AnvilApplication)
@@ -34,6 +37,8 @@ std::size_t anvil::AnvilApplication::init()
 	push(new DockingLayer());
 	pushOverlay(new DebuggerLayer());
 	push(new SceneLayer());
+
+	// - ImGUI Debug - 
 	//push(new ImGuiLayer());
 
 	return 0;
@@ -49,7 +54,7 @@ void anvil::AnvilApplication::onPreRender()
 	m_ImGuiRenderer.begin();
 }
 
-void anvil::AnvilApplication::onRender() const
+void anvil::AnvilApplication::onRender(rle::Renderer& renderer)
 {
 
 }

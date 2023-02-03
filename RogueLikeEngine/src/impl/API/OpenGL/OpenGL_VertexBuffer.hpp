@@ -19,15 +19,10 @@ namespace rle
 			// - CONSTRUCTORS / DESTRUCTORS ------------------------------------------------
 
 			// Constructor
-			// - Generates an underlying empty OpenGL VBO
-			// - 'size': The size of the buffer in bytes to allocate
-			OpenGL_VertexBuffer(const std::size_t size);
-
-			// Constructor
 			// - Generates an underlying OpenGL VBO populated with data
+			// - 'data': The vertex data to be copied into the underlying VBO
 			// - 'size': The number of elements the vertex buffer allocates
-			// - 'data': The vertex data to be copied into the VBO
-			OpenGL_VertexBuffer(const std::size_t size, const Vertex* data);
+			OpenGL_VertexBuffer(const void* data, const std::size_t size);
 
 			// Destructor
 			// - Destroys the underlying VBO
@@ -41,13 +36,7 @@ namespace rle
 			// Inherited via VertexBuffer
 			virtual void bind() const;
 			virtual void unbind() const;
-			virtual void setData(const Vertex* data, const std::size_t size);
-
-
-
-		private:
-			// Initializes the OpenGL vertex buffer
-			void init(const std::size_t size, const Vertex* data);
+			virtual void setData(const void* data, const std::size_t size);
 
 
 

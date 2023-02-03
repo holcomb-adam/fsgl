@@ -8,19 +8,14 @@
 // --- RLE ---
 #include <RLE/Core/Engine.h>
 #include <RLE/Core/Input.hpp>
-#include <RLE/Debug/Log.h>
-#include <RLE/Rendering/IndexBuffer.hpp>
 #include <RLE/Rendering/RenderCommands.hpp>
-#include <RLE/Rendering/Renderer.hpp>
-#include <RLE/Rendering/Shader.hpp>
-#include <RLE/Rendering/Vertex.hpp>
-#include <RLE/Rendering/VertexArray.hpp>
-#include <RLE/Rendering/VertexBuffer.hpp>
+#include <RLE/Scene/Node/2D/ShapeNode.hpp>
+#include <RLE/Resources/CommonShapes.hpp>
 
 
 
-anvil::SceneLayer::SceneLayer() : 
-	rle::Layer("Scene")
+anvil::SceneLayer::SceneLayer() :
+	rle::Layer("Empty Scene")
 {
 
 }
@@ -44,9 +39,9 @@ void anvil::SceneLayer::onEnter()
 
 
 
-	// ----------------------
-	// --- Setup Graphics ---
-	// ----------------------
+	// --------------------------------
+	// --- Setup Graphics and Scene ---
+	// --------------------------------
 
 	// Create a camera
 	m_Camera = rle::factory<rle::Camera>::make_orthographic(
@@ -54,6 +49,18 @@ void anvil::SceneLayer::onEnter()
 		m_ViewportAspect,
 		-1.0f,
 		1.0f);
+
+	// Set the scene to the root node as default if the node isnt already set
+	if (!m_SceneNode)
+		m_SceneNode = rle::Node::getRoot();
+
+
+
+	// - TEMP -
+	// Set up scene node to render a simple square
+	auto* shape_node = new rle::ShapeNode();
+	shape_node->setShape(rle::res::makeRect());
+	m_SceneNode->addNode(shape_node);
 }
 
 void anvil::SceneLayer::onExit()
@@ -123,7 +130,7 @@ void anvil::SceneLayer::onRender(rle::Renderer& renderer) const
 	// Clear the frame buffer rendering
 	rle::RenderCommands::clear();
 
-	// Set the Opengl viewport
+	// Set the rendering viewport
 	rle::RenderCommands::viewport(
 		0,
 		0,
@@ -133,8 +140,9 @@ void anvil::SceneLayer::onRender(rle::Renderer& renderer) const
 	// Begin the rendering scene
 	renderer.beginScene(m_Camera);
 
-	// Submit objects for rendering
-	// ... Need to do somthing here
+	// Submit scene for rendering
+	if (m_SceneNode)
+		renderer.submit(*m_SceneNode);
 
 	// End the rendering scene
 	renderer.endScene();

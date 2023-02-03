@@ -14,8 +14,9 @@ project "RogueLikeEngine"
 	files
 	{
 		"src/**.h", -- This eventually needs to be removed in favor of **.hpp
-		"src/**.hpp",
-		"src/**.cpp",
+		"src/**.hpp", -- RLE Header files
+		"src/**.inl", -- RLE Inline files
+		"src/**.cpp", -- RLE Source files
 
 		-- Add GLAD source to the project to compile
 		"external/GLAD/src/glad.c"
@@ -27,7 +28,8 @@ project "RogueLikeEngine"
 		"%{lib_includes.spdlog}",
 		"%{lib_includes.GLAD}",
 		"%{lib_includes.GLFW}",
-		"%{lib_includes.glm}"
+		"%{lib_includes.glm}",
+		"external/stb_image"
 	}
 
 	links

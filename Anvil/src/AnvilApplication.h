@@ -32,7 +32,7 @@ namespace anvil
 		virtual std::size_t init() override;
 		virtual void onUpdate(const rle::time::step_ms delta) override;
 		virtual void onPreRender() override;
-		virtual void onRender() const override;
+		virtual void onRender(rle::Renderer& renderer) override;
 		virtual void onPostRender() override;
 
 

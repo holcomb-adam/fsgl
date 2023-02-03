@@ -1,25 +1,22 @@
 #include "RLEpch.h"
 #include "OpenGL_VertexBuffer.hpp"
 
-// External Library includes
+// --- External ---
 #include <glad/glad.h>
 
-// Standard Library includes
+// --- Standard ---
 #include <unordered_map>
 
-// RLE Library includes
+// --- RLE ---
 #include "RLE/Debug/Log.h"
 
 
 
-rle::impl::OpenGL_VertexBuffer::OpenGL_VertexBuffer(const std::size_t size)
+rle::impl::OpenGL_VertexBuffer::OpenGL_VertexBuffer(const void* data, const std::size_t size)
 {
-	init(size, nullptr);
-}
-
-rle::impl::OpenGL_VertexBuffer::OpenGL_VertexBuffer(const std::size_t size, const Vertex* data)
-{
-	init(size, data);
+	glCreateBuffers(1, &m_ID);
+	glBindBuffer(GL_ARRAY_BUFFER, m_ID);
+	glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
 }
 
 rle::impl::OpenGL_VertexBuffer::~OpenGL_VertexBuffer()
@@ -37,15 +34,8 @@ void rle::impl::OpenGL_VertexBuffer::unbind() const
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
-void rle::impl::OpenGL_VertexBuffer::setData(const Vertex* data, const std::size_t size)
+void rle::impl::OpenGL_VertexBuffer::setData(const void* data, const std::size_t size)
 {
-	bind();
-	glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
-}
-
-void rle::impl::OpenGL_VertexBuffer::init(const std::size_t size, const Vertex* data)
-{
-	glCreateBuffers(1, &m_ID);
 	glBindBuffer(GL_ARRAY_BUFFER, m_ID);
-	glBufferData(GL_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW);
+	glBufferSubData(GL_ARRAY_BUFFER, 0, size, data);
 }
