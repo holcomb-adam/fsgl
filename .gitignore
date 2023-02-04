@@ -2,9 +2,12 @@
 **/bin/
 **/bin-int/
 
-#Ignore Visual studio files
+#Ignore Visual Studio files
 .vs/
 *.sln
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
+
+#Ignore Visual Studio Code files
+.vscode/
