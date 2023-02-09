@@ -2,12 +2,15 @@
 **/bin/
 **/bin-int/
 
-#Ignore Visual Studio files
+# Ignore Visual Studio files
 .vs/
 *.sln
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
 
-#Ignore Visual Studio Code files
+# Ignore Visual Studio Code files
 .vscode/
+
+# Ignore CMake generated files
+.CMakeFiles/
