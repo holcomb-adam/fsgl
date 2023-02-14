@@ -1,4 +1,4 @@
-#include "RLEpch.h"
+#include "RLEpch.hpp"
 #include "OpenGL_RenderingAPI.hpp"
 
 // --- External ---
@@ -9,7 +9,7 @@
 #include <cassert>
 
 // --- RLE ---
-#include "RLE/Debug/Log.h"
+#include "RLE/Debug/Log.hpp"
 #include "RLE/Rendering/IndexBuffer.hpp"
 #include "RLE/Rendering/VertexArray.hpp"
 

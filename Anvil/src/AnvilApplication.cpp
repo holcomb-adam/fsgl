@@ -1,10 +1,10 @@
-#include "AnvilApplication.h"
+#include "AnvilApplication.hpp"
 
 // --- Anvil ---
 #include "UI/DebuggerLayer.hpp"
-#include "UI/DockingLayer.h"
+#include "UI/DockingLayer.hpp"
 #include "UI/SceneLayer.hpp"
-#include "UI/ImGui/ImGuiLayer.h"
+#include "UI/ImGui/ImGuiLayer.hpp"
 
 
 

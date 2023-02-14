@@ -1,5 +1,5 @@
-#include "RLEpch.h"
-#include "ImGuiLayer.h"
+#include "RLEpch.hpp"
+#include "ImGuiLayer.hpp"
 
 // External Library includes
 #include <ImGui/imgui.h>

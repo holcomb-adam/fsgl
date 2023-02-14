@@ -1,8 +1,8 @@
 #pragma once
 
 // --- RLE ---
-#include "Event.h"
-#include "RLE/Core/KeyCodes.h"
+#include "Event.hpp"
+#include "RLE/Core/KeyCodes.hpp"
 
 
 

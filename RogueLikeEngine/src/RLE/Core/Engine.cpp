@@ -1,14 +1,14 @@
-#include "RLEpch.h" 
-#include "Engine.h"
+#include "RLEpch.hpp" 
+#include "Engine.hpp"
 
 // --- Standard ---
 #include <cassert>
 
 // --- RLE ---
-#include "RLE/Debug/Log.h"
-#include "RLE/Events/EventDispatcher.h"
+#include "RLE/Debug/Log.hpp"
+#include "RLE/Events/EventDispatcher.hpp"
 #include "RLE/Rendering/RenderCommands.hpp"
-#include "RLE/UI/Layer.h"
+#include "RLE/UI/Layer.hpp"
 
 
 

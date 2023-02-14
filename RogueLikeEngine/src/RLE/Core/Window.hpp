@@ -4,9 +4,9 @@
 #include <functional>
 
 // --- RLE ---
-#include "Core.h"
+#include "Core.hpp"
 #include "Factory.hpp"
-#include "RLE/Events/Event.h"
+#include "RLE/Events/Event.hpp"
 #include "RLE/Rendering/RenderingAPI.hpp"
 
 

@@ -1,7 +1,7 @@
 #pragma once
 
 // RLE Library includes
-#include "RLE/Core/Window.h"
+#include "RLE/Core/Window.hpp"
 
 
 

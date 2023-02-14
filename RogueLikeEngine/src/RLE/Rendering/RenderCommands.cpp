@@ -1,8 +1,8 @@
-#include "RLEpch.h"
+#include "RLEpch.hpp"
 #include "RenderCommands.hpp"
 
 // --- RLE ----
-#include "RLE/Debug/Log.h"
+#include "RLE/Debug/Log.hpp"
 
 // --- RLE impl ---
 #include "impl/API/OpenGL/OpenGL_RenderingAPI.hpp"

@@ -1,11 +1,11 @@
 // This file contains the entry point of the Rogue-like Engine
 
-#include "RLEpch.h"
+#include "RLEpch.hpp"
 
 // --- RLE ---
-#include "RLE.h" // RLE main header
-#include "Core.h"
-#include "RLE/Debug/Log.h"
+#include "RLE.hpp" // RLE main header
+#include "Core.hpp"
+#include "RLE/Debug/Log.hpp"
 
 
 

@@ -5,7 +5,7 @@
 #include <vector>
 
 // --- RLE ---
-#include "RLE/Core/Time.h"
+#include "RLE/Core/Time.hpp"
 #include "RLE/Rendering/Renderable.hpp"
 #include "RLE/Utils/UniqueID.hpp"
 

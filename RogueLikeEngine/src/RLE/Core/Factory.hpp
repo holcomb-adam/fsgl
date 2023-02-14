@@ -31,4 +31,4 @@ namespace rle
 #define RLE_FACTORY_NO_CTOR() /*******/ \
 	factory() = delete;					\
 	factory(const factory&) = delete;	\
-	factory(factory&&) = delete;		\
+	factory(factory&&) = delete;		

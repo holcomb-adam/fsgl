@@ -1,9 +1,9 @@
-#include "RLEpch.h"
-#include "Eventable.h"
+#include "RLEpch.hpp"
+#include "Eventable.hpp"
 
 // --- RLE ---
-#include "EventDispatcher.h"
-#include "RLE/Core/Core.h"
+#include "EventDispatcher.hpp"
+#include "RLE/Core/Core.hpp"
 
 
 

@@ -1,8 +1,8 @@
-#include "RLEpch.h"
+#include "RLEpch.hpp"
 #include "Shape.hpp"
 
 // --- RLE ---
-#include "RLE/Debug/Log.h"
+#include "RLE/Debug/Log.hpp"
 
 
 

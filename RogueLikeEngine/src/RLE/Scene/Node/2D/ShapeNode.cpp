@@ -1,8 +1,8 @@
-#include "RLEpch.h"
+#include "RLEpch.hpp"
 #include "ShapeNode.hpp"
 
 // --- RLE ---
-#include "RLE/Core/Core.h"
+#include "RLE/Core/Core.hpp"
 #include "RLE/Rendering/IndexBuffer.hpp"
 #include "RLE/Rendering/Renderer.hpp"
 #include "RLE/Rendering/VertexBuffer.hpp"

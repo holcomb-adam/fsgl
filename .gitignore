@@ -12,5 +12,5 @@
 # Ignore Visual Studio Code files
 .vscode/
 
-# Ignore CMake generated files
-.CMakeFiles/
+# Ignore CMake generated build files
+build/

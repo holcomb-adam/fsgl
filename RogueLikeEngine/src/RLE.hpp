@@ -13,14 +13,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 // - RLE ENGINE ----------------------------------------------------------------
 
-#include "RLE/Core/Engine.h"
+#include "RLE/Core/Engine.hpp"
 
 
 
 ////////////////////////////////////////////////////////////////////////////////
 // - RLE ENTRY POINT -----------------------------------------------------------
 
-#include "RLE/Core/EntryPoint.h"
+#include "RLE/Core/EntryPoint.hpp"
 
 
 
@@ -28,4 +28,4 @@
 // - OTHER USEFUL RLE INCLUDES -------------------------------------------------
 
 // Events
-#include "RLE/Events/Events.h"
+#include "RLE/Events/Events.hpp"

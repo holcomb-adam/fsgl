@@ -1,4 +1,4 @@
-#include "RLEpch.h"
+#include "RLEpch.hpp"
 #include "Win64_Window.hpp"
 
 // External Library includes
@@ -8,9 +8,9 @@
 #include <cassert> // TODO: create custom assertion
 
 // RLE Library includes
-#include "RLE/Core/KeyCodes.h"
-#include "RLE/Debug/Log.h"
-#include "RLE/Events/Events.h"
+#include "RLE/Core/KeyCodes.hpp"
+#include "RLE/Debug/Log.hpp"
+#include "RLE/Events/Events.hpp"
 
 
 

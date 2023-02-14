@@ -1,4 +1,4 @@
-#include "RLEpch.h"
+#include "RLEpch.hpp"
 #include "OpenGL_Shader.hpp"
 
 // --- External ---
@@ -6,7 +6,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 // --- RLE ---
-#include "RLE/Debug/Log.h"
+#include "RLE/Debug/Log.hpp"
 
 
 

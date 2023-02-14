@@ -1,12 +1,12 @@
 #pragma once
 
 // --- RLE ---
-#include "Core.h"
-#include "Time.h"
-#include "Window.h"
-#include "RLE/Events/WindowCloseEvent.h"
+#include "Core.hpp"
+#include "Time.hpp"
+#include "Window.hpp"
+#include "RLE/Events/WindowCloseEvent.hpp"
 #include "RLE/Rendering/Renderer.hpp"
-#include "RLE/UI/LayerStack.h"
+#include "RLE/UI/LayerStack.hpp"
 
 
 

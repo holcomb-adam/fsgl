@@ -1,4 +1,4 @@
-#include "RLEpch.h"
+#include "RLEpch.hpp"
 #include "Renderer.hpp"
 
 // --- RLE ---

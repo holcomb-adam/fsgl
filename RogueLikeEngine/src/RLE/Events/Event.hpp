@@ -4,7 +4,7 @@
 #include <string>
 
 // --- RLE ---
-#include "RLE/Core/Core.h"
+#include "RLE/Core/Core.hpp"
 
 
 

@@ -4,8 +4,8 @@
 #include <string>
 
 // --- RLE ---
-#include "RLE/Core/Time.h"
-#include "RLE/Events/Eventable.h"
+#include "RLE/Core/Time.hpp"
+#include "RLE/Events/Eventable.hpp"
 
 
 

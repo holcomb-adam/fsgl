@@ -1,8 +1,8 @@
-#include "RLEpch.h"
+#include "RLEpch.hpp"
 #include "Node.hpp"
 
 // --- RLE ---
-#include "RLE/Debug/Log.h"
+#include "RLE/Debug/Log.hpp"
 #include "RLE/Rendering/Renderer.hpp"
 
 

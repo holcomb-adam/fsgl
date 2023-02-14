@@ -1,5 +1,5 @@
-#include "RLEpch.h"
-#include "Log.h"
+#include "RLEpch.hpp"
+#include "Log.hpp"
 
 // --- External ---
 #include <spdlog/sinks/stdout_color_sinks.h>

@@ -1,4 +1,4 @@
-#include "ImGuiRenderer.h"
+#include "ImGuiRenderer.hpp"
 
 // External Library includes
 #include <ImGui/imgui.h>

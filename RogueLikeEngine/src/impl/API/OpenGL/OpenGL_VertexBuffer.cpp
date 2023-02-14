@@ -1,4 +1,4 @@
-#include "RLEpch.h"
+#include "RLEpch.hpp"
 #include "OpenGL_VertexBuffer.hpp"
 
 // --- External ---
@@ -8,7 +8,7 @@
 #include <unordered_map>
 
 // --- RLE ---
-#include "RLE/Debug/Log.h"
+#include "RLE/Debug/Log.hpp"
 
 
 

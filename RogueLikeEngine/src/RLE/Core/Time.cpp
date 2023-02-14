@@ -1,5 +1,5 @@
-#include "RLEpch.h"
-#include "Time.h"
+#include "RLEpch.hpp"
+#include "Time.hpp"
 
 rle::time::point rle::time::now()
 {

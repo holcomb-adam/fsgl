@@ -1,11 +1,11 @@
-#include "RLEpch.h"
+#include "RLEpch.hpp"
 #include "OpenGL_FrameBuffer.hpp"
 
 // --- External ---
 #include <glad/glad.h>
 
 // --- RLE ---
-#include "RLE/Debug/Log.h"
+#include "RLE/Debug/Log.hpp"
 
 
 
