@@ -6,8 +6,9 @@ project(RogueLikeEngine LANGUAGES CXX)
 file(GLOB_RECURSE PRJ_SOURCE src/*.cpp)
 
 # - Include Directories -
-include_directories(${PROJECT_SOURCE_DIR}/external/GLAD/include) # - External dir
+include_directories(external/GLAD/include) # - External dir
 include_directories(${GLFW_INCLUDE})
+include_directories(../external/glm)
 
 add_library(${PROJECT_NAME} STATIC ${PRJ_SOURCE})
 

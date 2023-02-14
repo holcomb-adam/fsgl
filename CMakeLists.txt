@@ -27,7 +27,7 @@ endif()
 
 
 
-# Add projects to the CMake list
+# Add projects to build the CMake list
 # - External projects -
 add_subdirectory(external/spdlog)
 add_subdirectory(external/glm)
