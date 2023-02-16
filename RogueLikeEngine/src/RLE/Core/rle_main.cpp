@@ -8,9 +8,6 @@
 #include "RLE/Debug/Log.hpp"
 
 
-
-#	if defined(RLE_OS_WIN64)
-
 int main(int argc, char* argv[])
 {
 	// Initialize logging system
@@ -30,5 +27,3 @@ int main(int argc, char* argv[])
 
 	return client->exec();
 }
-
-#	endif

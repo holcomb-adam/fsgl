@@ -19,11 +19,25 @@
 ////////////////////////////////////////////////////////////////////////////////
 // - RLE API DEFINES -----------------------------------------------------------
 
-// Check the operating system
-#	if defined(RLE_OS_WIN64)
+// Check system OS
+#   if defined(_WIN64)
+#       define RLE_OS_WIN64
+#       define RLE_FUNCSIG __FUNCSIG__
+
+#   elif defined(__linux__)
+#       define RLE_OS_LINUX
+#       define RLE_FUNCSIG __func__
+
 #	else
-#		error Rouge-like Engine only supports Windows!
-#	endif
+#		error Rouge-like Engine currently only supports Windows and Linux systems!
+
+#   endif
+
+// Check external APIs
+#   if !defined(RLE_API_WINDOW_NONE) // Compile RLE with windowing
+#       define RLE_API_WINDOW_GLFW
+
+#   endif
 
 
 

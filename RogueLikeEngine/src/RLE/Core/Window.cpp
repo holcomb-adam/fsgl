@@ -3,13 +3,13 @@
 
 
 
-// Check if we are compiling for windows
-#   if defined(RLE_OS_WIN64)
-#       include "impl/Platform/Windows/Win64_Window.hpp"
-#       define RLE_PLATFORM_WINDOW_INSTANCE rle::impl::Win64_Window
+// Check the windowing API that is being used
+#   if defined(RLE_API_WINDOW_GLFW)
+#       include "impl/API/GLFW/GLFW_Window.hpp"
+#       define RLE_API_WINDOW_T ::rle::impl::GLFW_Window
 
 #   else
-#       define RLE_PLATFORM_WINDOW_INSTANCE nullptr
+#       error RLE doesnt support console windowing yet!
 
 #   endif
 
@@ -17,5 +17,7 @@
 
 std::unique_ptr<rle::Window> rle::factory<rle::Window>::create(const Window::Properties& props)
 {
-	return std::unique_ptr<Window>(new RLE_PLATFORM_WINDOW_INSTANCE(props));
+	// Create API window instance
+	auto api_win = factory<RLE_API_WINDOW_T>::create(props);
+	return std::move(api_win);
 }

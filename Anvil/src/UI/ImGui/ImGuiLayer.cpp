@@ -2,10 +2,10 @@
 #include "ImGuiLayer.hpp"
 
 // External Library includes
-#include <ImGui/imgui.h>
+#include <imgui.h>
 
 // RLE Library includes
-#include <RLE/Core/Engine.h>
+#include <RLE/Core/Engine.hpp>
 
 
 

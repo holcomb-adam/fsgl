@@ -80,9 +80,9 @@ void rle::impl::OpenGL_RenderingAPI::init()
 	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION, 0, nullptr, GL_FALSE);
 
 	RLE_CORE_INFO("OpenGL info:");
-	RLE_CORE_INFO("-\tVendor: {0}", glGetString(GL_VENDOR));
-	RLE_CORE_INFO("-\tRenderer: {0}", glGetString(GL_RENDERER));
-	RLE_CORE_INFO("-\tVersion: {0}", glGetString(GL_VERSION));
+	//RLE_CORE_INFO("-\tVendor: {0}", glGetString(GL_VENDOR));
+	//RLE_CORE_INFO("-\tRenderer: {0}", glGetString(GL_RENDERER));
+	//RLE_CORE_INFO("-\tVersion: {0}", glGetString(GL_VERSION));
 }
 
 void rle::impl::OpenGL_RenderingAPI::setClearColor(const glm::vec4& color) const

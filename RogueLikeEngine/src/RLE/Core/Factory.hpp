@@ -1,5 +1,7 @@
 #pragma once
 
+
+
 namespace rle
 {
 	// Here is the RLE factory class ("struct").

@@ -1,8 +1,8 @@
 #pragma once
 
 // RLE Library includes
-#include <RLE/Core/Engine.h>
-#include <RLE/UI/Layer.h>
+#include <RLE/Core/Engine.hpp>
+#include <RLE/UI/Layer.hpp>
 
 
 

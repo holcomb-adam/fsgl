@@ -2,9 +2,9 @@
 
 // --- RLE ---
 #include <RLE/Rendering/Camera.hpp>
-#include <RLE/Rendering/Framebuffer.hpp>
+#include <RLE/Rendering/FrameBuffer.hpp>
 #include <RLE/Scene/Node/Node.hpp>
-#include <RLE/UI/Layer.h>
+#include <RLE/UI/Layer.hpp>
 
 
 

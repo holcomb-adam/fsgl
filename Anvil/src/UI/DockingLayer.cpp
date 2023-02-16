@@ -1,10 +1,10 @@
 #include "DockingLayer.hpp"
 
 // --- External ---
-#include <ImGui/imgui.h>
+#include <imgui.h>
 
 // --- RLE ---
-#include <RLE/Debug/Log.h>
+#include <RLE/Debug/Log.hpp>
 
 
 

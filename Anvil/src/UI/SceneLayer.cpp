@@ -2,11 +2,11 @@
 
 // --- External ---
 #include <glm/gtc/matrix_transform.hpp>
-#include <ImGui/imgui.h>
-#include <ImGui/imgui_internal.h>
+#include <imgui.h>
+#include <imgui_internal.h>
 
 // --- RLE ---
-#include <RLE/Core/Engine.h>
+#include <RLE/Core/Engine.hpp>
 #include <RLE/Core/Input.hpp>
 #include <RLE/Rendering/RenderCommands.hpp>
 #include <RLE/Scene/Node/2D/ShapeNode.hpp>

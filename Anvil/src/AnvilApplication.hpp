@@ -1,8 +1,7 @@
 #pragma once
 
 // --- RLE ---
-#include <RLE.h>
-#include <RLE/Rendering/Shader.hpp>
+#include <RLE.hpp>
 
 // --- Anvil ---
 #include "UI/ImGui/ImGuiRenderer.hpp"

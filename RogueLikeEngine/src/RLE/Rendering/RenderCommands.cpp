@@ -27,7 +27,7 @@ void rle::RenderCommands::init(const RenderingAPI::API api)
 	default: // -------------------------------------------------- Unknown API
 		RLE_CORE_CRITICAL(
 			"{0} recieved invalid API argument: {1}",
-			__FUNCSIG__,
+			RLE_FUNCSIG,
 			static_cast<std::underlying_type_t<RenderingAPI::API>>(api));
 		assert(false);
 		return;
