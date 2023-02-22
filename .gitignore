@@ -1,6 +1,7 @@
 # Ignore binaries
 **/bin/
 **/bin-int/
+**/build/
 
 # Ignore Visual Studio files
 .vs/
@@ -13,4 +14,14 @@
 .vscode/
 
 # Ignore CMake generated build files
-build/
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps

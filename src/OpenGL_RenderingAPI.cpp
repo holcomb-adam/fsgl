@@ -1,12 +1,11 @@
 #include "RLEpch.hpp"
-#include "OpenGL_RenderingAPI.hpp"
+#include "impl/API/OpenGL/OpenGL_RenderingAPI.hpp"
 
-// --- External ---
-#include <glad/glad.h>
+// --- GLAD ---
+#include <glad/gl.h>
+
+// --- GLFW ---
 #include <GLFW/glfw3.h>
-
-// --- Standard ---
-#include <cassert>
 
 // --- RLE ---
 #include "RLE/Debug/Log.hpp"
@@ -15,7 +14,7 @@
 
 
 
-namespace // private anonymous namespace
+namespace
 {
 	void gl_onDebugMessage(
 		GLenum source,
@@ -68,9 +67,7 @@ rle::impl::OpenGL_RenderingAPI::~OpenGL_RenderingAPI()
 void rle::impl::OpenGL_RenderingAPI::init()
 {
 	// Enable GLAD
-	const int glad_success = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-	assert(glad_success);
-
+	const int version = gladLoadGL(glfwGetProcAddress);
 	RLE_CORE_INFO("GLAD: Successfully loaded glfw proc adress");
 
 	// Enable OpenGL debugging
@@ -80,9 +77,9 @@ void rle::impl::OpenGL_RenderingAPI::init()
 	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION, 0, nullptr, GL_FALSE);
 
 	RLE_CORE_INFO("OpenGL info:");
-	//RLE_CORE_INFO("-\tVendor: {0}", glGetString(GL_VENDOR));
-	//RLE_CORE_INFO("-\tRenderer: {0}", glGetString(GL_RENDERER));
-	//RLE_CORE_INFO("-\tVersion: {0}", glGetString(GL_VERSION));
+	RLE_CORE_INFO("-\tVendor: {0}", (const char*)glGetString(GL_VENDOR));
+	RLE_CORE_INFO("-\tRenderer: {0}", (const char*)glGetString(GL_RENDERER));
+	RLE_CORE_INFO("-\tVersion: {0}", (const char*)glGetString(GL_VERSION));
 }
 
 void rle::impl::OpenGL_RenderingAPI::setClearColor(const glm::vec4& color) const

@@ -1,5 +1,5 @@
 #include "RLEpch.hpp"
-#include "VertexArray.hpp"
+#include "RLE/Rendering/VertexArray.hpp"
 
 // --- RLE impl ---
 #include "impl/API/OpenGL/OpenGL_VertexArray.hpp"

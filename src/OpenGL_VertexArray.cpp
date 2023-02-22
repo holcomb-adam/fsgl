@@ -1,8 +1,8 @@
 #include "RLEpch.hpp"
-#include "OpenGL_VertexArray.hpp"
+#include "impl/API/OpenGL/OpenGL_VertexArray.hpp"
 
 // --- GLAD ---
-#include <glad/glad.h>
+#include <glad/gl.h>
 
 // --- RLE ---
 #include "RLE/Rendering/IndexBuffer.hpp"

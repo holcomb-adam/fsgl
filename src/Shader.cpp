@@ -1,5 +1,5 @@
 #include "RLEpch.hpp"
-#include "Shader.hpp"
+#include "RLE/Rendering/Shader.hpp"
 
 // --- RLE impl ---
 #include "impl/API/OpenGL/OpenGL_Shader.hpp"

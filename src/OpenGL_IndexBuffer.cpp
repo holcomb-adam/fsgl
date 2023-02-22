@@ -1,8 +1,10 @@
 #include "RLEpch.hpp"
-#include "OpenGL_IndexBuffer.hpp"
+#include "impl/API/OpenGL/OpenGL_IndexBuffer.hpp"
 
-// External Library includes
-#include <glad/glad.h>
+// --- GLAD ---
+#include <glad/gl.h>
+
+
 
 rle::impl::OpenGL_IndexBuffer::OpenGL_IndexBuffer(const std::uint32_t count, const std::uint32_t* indices) :
 	m_Count(count)

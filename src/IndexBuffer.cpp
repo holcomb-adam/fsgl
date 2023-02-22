@@ -1,7 +1,7 @@
 #include "RLEpch.hpp"
-#include "IndexBuffer.hpp"
+#include "RLE/Rendering/IndexBuffer.hpp"
 
-// RLE Library oncludes
+// --- RLE ---
 #include "impl/API/OpenGL/OpenGL_IndexBuffer.hpp"
 
 

@@ -43,7 +43,7 @@
 // - 9 [00001001] == RLE_BIT(3) | RLE_BIT(0)
 #	define RLE_BIT(n) 1ULL << n
 
-// Stringize and argument
+// Stringize an argument
 // - For brevity's sake
 #	define RLE_STRINGIZE(arg) #arg
 
@@ -58,3 +58,17 @@
 #	define RLE_RED   1.0f, 0.0f, 0.0f // Red
 #	define RLE_GREEN 0.0f, 1.0f, 0.0f // Green
 #	define RLE_BLUE  0.0f, 0.0f, 1.0f // Blue
+
+
+
+namespace rle
+{
+    namespace core
+    {
+        // Return whether core is initialized or not
+        bool isCoreInitialized();
+        
+        // Initialize core components of the RLE engine
+        bool initialize();
+    }
+}

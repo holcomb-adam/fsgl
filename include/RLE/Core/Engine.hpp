@@ -20,11 +20,6 @@ namespace rle
 	// This class represents the base application of the engine
 	class Engine
 	{
-		// Singleton Engine Instance
-		inline static Engine* s_EngineInstance = nullptr;
-
-
-
 	public:
 		////////////////////////////////////////////////////////////////////////////////
 		// - PUBLIC STATIC MEMBERS -----------------------------------------------------

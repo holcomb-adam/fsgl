@@ -1,7 +1,7 @@
 #include "RLEpch.hpp"
-#include "Log.hpp"
+#include "RLE/Debug/Log.hpp"
 
-// --- External ---
+// --- SPDLOG ---
 #include <spdlog/sinks/stdout_color_sinks.h>
 
 

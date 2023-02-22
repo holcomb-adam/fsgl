@@ -1,5 +1,5 @@
 #include "RLEpch.hpp"
-#include "Shape.hpp"
+#include "RLE/Resources/Shape.hpp"
 
 // --- RLE ---
 #include "RLE/Debug/Log.hpp"

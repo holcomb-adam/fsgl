@@ -1,9 +1,9 @@
 #include "RLEpch.hpp"
-#include "Eventable.hpp"
+#include "RLE/Events/Eventable.hpp"
 
 // --- RLE ---
-#include "EventDispatcher.hpp"
 #include "RLE/Core/Core.hpp"
+#include "RLE/Events/EventDispatcher.hpp"
 
 
 

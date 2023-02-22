@@ -1,8 +1,8 @@
 #include "RLEpch.hpp"
-#include "OpenGL_FrameBuffer.hpp"
+#include "impl/API/OpenGL/OpenGL_FrameBuffer.hpp"
 
-// --- External ---
-#include <glad/glad.h>
+// --- GLAD ---
+#include <glad/gl.h>
 
 // --- RLE ---
 #include "RLE/Debug/Log.hpp"

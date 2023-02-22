@@ -1,5 +1,5 @@
 #include "RLEpch.hpp"
-#include "GLFW_Callback.hpp"
+#include "impl/API/GLFW/GLFW_Callback.hpp"
 
 // --- GLFW ---
 #include <GLFW/glfw3.h>
@@ -9,7 +9,7 @@
 #include "RLE/Events/Events.hpp"
 
 // --- RLE impl ---
-#include "GLFW_Window.hpp"
+#include "impl/API/GLFW/GLFW_Window.hpp"
 
 
 

@@ -1,5 +1,5 @@
 #include "RLEpch.hpp" 
-#include "Engine.hpp"
+#include "RLE/Core/Engine.hpp"
 
 // --- Standard ---
 #include <cassert>
@@ -12,11 +12,19 @@
 
 
 
+namespace
+{
+	static rle::Engine* s_EngineInstance = nullptr;
+}
+
+
 
 rle::Engine* rle::Engine::get()
 {
 	return s_EngineInstance;
 }
+
+
 
 rle::Engine::Engine(const Window::Properties& props) :
 	m_Window(factory<Window>::create(props))

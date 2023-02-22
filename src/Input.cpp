@@ -1,13 +1,13 @@
 // THIS IS ALL TEMP AS THIS USES NON API AGNOSTIC CODE
 
 #include "RLEpch.hpp"
-#include "Input.hpp"
+#include "RLE/Core/Input.hpp"
 
-// --- External --- 
+// --- GLFW --- 
 #include <GLFW/glfw3.h> // non-agnostic
 
 // --- RLE ---
-#include "Engine.hpp"
+#include "RLE/Core/Engine.hpp"
 
 
 

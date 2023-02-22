@@ -1,7 +1,7 @@
 #include "RLEpch.hpp"
-#include "Camera.hpp"
+#include "RLE/Rendering/Camera.hpp"
 
-// --- External ---
+// --- GLM ---
 #include <glm/gtc/matrix_transform.hpp>
 
 

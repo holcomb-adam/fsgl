@@ -1,5 +1,5 @@
 #include "RLEpch.hpp"
-#include "VertexBuffer.hpp"
+#include "RLE/Rendering/VertexBuffer.hpp"
 
 // --- RLE impl ---
 #include "impl/API/OpenGL/OpenGL_VertexBuffer.hpp"

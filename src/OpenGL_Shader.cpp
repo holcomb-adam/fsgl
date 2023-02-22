@@ -1,8 +1,8 @@
 #include "RLEpch.hpp"
-#include "OpenGL_Shader.hpp"
+#include "impl/API/OpenGL/OpenGL_Shader.hpp"
 
 // --- External ---
-#include <glad/glad.h>
+#include <glad/gl.h>
 #include <glm/gtc/type_ptr.hpp>
 
 // --- RLE ---

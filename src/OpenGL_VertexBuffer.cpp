@@ -1,8 +1,8 @@
 #include "RLEpch.hpp"
-#include "OpenGL_VertexBuffer.hpp"
+#include "impl/API/OpenGL/OpenGL_VertexBuffer.hpp"
 
-// --- External ---
-#include <glad/glad.h>
+// --- GLAD ---
+#include <glad/gl.h>
 
 // --- Standard ---
 #include <unordered_map>

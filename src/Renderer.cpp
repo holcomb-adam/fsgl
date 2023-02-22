@@ -1,12 +1,12 @@
 #include "RLEpch.hpp"
-#include "Renderer.hpp"
+#include "RLE/Rendering/Renderer.hpp"
 
 // --- RLE ---
-#include "Renderable.hpp"
-#include "RenderCommands.hpp"
-#include "Camera.hpp"
-#include "Shader.hpp"
-#include "VertexArray.hpp"
+#include "RLE/Rendering/Camera.hpp"
+#include "RLE/Rendering/Renderable.hpp"
+#include "RLE/Rendering/RenderCommands.hpp"
+#include "RLE/Rendering/Shader.hpp"
+#include "RLE/Rendering/VertexArray.hpp"
 
 
 
