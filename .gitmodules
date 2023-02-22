@@ -10,3 +10,7 @@
 [submodule "external/glad"]
 	path = external/glad
 	url = https://github.com/Dav1dde/glad.git
+[submodule "anvil/external/imgui/imgui"]
+	path = anvil/external/imgui/imgui
+	url = https://github.com/ocornut/imgui.git
+	branch = docking
