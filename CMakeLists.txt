@@ -4,10 +4,26 @@ cmake_minimum_required(VERSION 3.1)
 
 
 
-include(external/glad/cmake/CMakeLists.txt)
-include(cmake/CMakeUtils.txt)
+# Ensure git submodules are initialized
+find_package(Git QUIET)
+if (GIT_FOUND AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git")
+    option(RLE_CHECK_GITSUBMODULES "Check submodule statuses during build" ON)
+    if (RLE_CHECK_GITSUBMODULES)
+        message(STATUS "Updating git submodules...")
+        execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive
+                        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+                        RESULT_VARIABLE GIT_SUBMOD_RESULT)
+        if (NOT GIT_SUBMOD_RESULT EQUAL "0")
+            message(FATAL_ERROR "git submodule update --init --recursive failed with ${GIT_SUBMOD_RESULT}, please checkout submodules")
+        endif()
+    endif()
+endif()
 
-# glad
+
+
+# Setup glad library before RLE project because for whatever reason glad will 
+# hijack the root cmake project causing linking issues
+include(external/glad/cmake/CMakeLists.txt)
 glad_add_library(glad_core45 STATIC API gl:core=4.5)
 
 
@@ -49,6 +65,9 @@ option(RLE_BUILD_ANVIL "Build the rle editor Anvil" ON)
 
 message(STATUS "Building rle dependencies...")
 
+# spdlog
+add_subdirectory(external/spdlog)
+
 # glm
 add_subdirectory(external/glm)
 
@@ -58,9 +77,6 @@ set(GLFW_BUILD_TESTS    OFF CACHE INTERNAL "Build the GLFW test programs")
 set(GLFW_BUILD_DOCS     OFF CACHE INTERNAL "Build the GLFW documentation")
 set(GLFW_INSTALL        OFF CACHE INTERNAL "Generate installation target")
 add_subdirectory(external/glfw)
-
-# spdlog
-add_subdirectory(external/spdlog)
 
 
 
@@ -76,7 +92,7 @@ add_library(${PROJECT_NAME} STATIC ${RLE_SOURCE_FILES})
 
 # Set target options
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
-#target_precompile_headers(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/include/RLEpch.hpp)
+target_precompile_headers(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/include/RLEpch.hpp)
 target_link_libraries(${PROJECT_NAME} spdlog)
 target_link_libraries(${PROJECT_NAME} glad_core45)
 target_link_libraries(${PROJECT_NAME} glfw)
@@ -88,7 +104,6 @@ if (RLE_BUILD_ANVIL)
 
     message(STATUS "Building rle-anvil dependencies...")
     add_subdirectory(anvil/external/imgui)
-
 
     message(STATUS "Building rle-anvil...")
     add_executable(rle-anvil ${RLE_ANVIL_SOURCE_FILES})
