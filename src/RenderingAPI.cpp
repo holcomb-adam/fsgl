@@ -3,7 +3,7 @@
 
 
 
-rle::RenderingAPI::API rle::RenderingAPI::api()
+rle::RenderingAPI::API rle::RenderingAPI::getAPI()
 {
     return s_API;
 }

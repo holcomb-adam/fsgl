@@ -29,8 +29,8 @@ void anvil::DebuggerLayer::onUpdate(const rle::time::step_ms delta)
 			m_FrameTimeCounter.erase(m_FrameTimeCounter.begin());
 	}
 
-	// TEMP: rle::time::step_sec(1.0) could eventually be turned into a constant
-	if (m_Timer >= rle::time::step_sec(1.0))
+	// Check if the timer needs to be reset
+	if (m_Timer >= rle::time::s_1<>)
 	{
 		for (const auto time : m_FrameTimeCounter)
 			m_AverageFrameTime += time;

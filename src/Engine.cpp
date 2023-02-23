@@ -39,7 +39,7 @@ rle::Engine::Engine(const Window::Properties& props) :
 
 	
 	// Give the window our event callback functions
-	m_Window->setEventCallback(RLE_BIND_EVENT_FN(Engine::onEvent));
+	m_Window->setEventCallback(RLE_BIND_THIS_FN(Engine::onEvent, std::placeholders::_1));
 
 	// Initialize the rendering systems
 	RenderCommands::init(props.api);
@@ -93,7 +93,7 @@ void rle::Engine::onEvent(const Event& event)
 {
 	// Dispatch events to the proper callers
 	EventDispatcher dispatcher(event);
-	dispatcher.dispatch<WindowCloseEvent>(RLE_BIND_EVENT_FN(Engine::windowCloseEvent));
+	dispatcher.dispatch<WindowCloseEvent>(RLE_BIND_THIS_FN(Engine::windowCloseEvent, std::placeholders::_1));
 
 	// Propagate the events down the layers
 	for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); it++)

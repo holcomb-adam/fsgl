@@ -35,7 +35,7 @@ namespace rle
 		// - PUBLIC STATIC MEMBERS -----------------------------------------------------
 
 		// Get the API
-		static API api();
+		static API getAPI();
 
 
 

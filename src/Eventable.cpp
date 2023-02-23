@@ -13,14 +13,14 @@ void rle::Eventable::onEvent(const Event& event)
 	EventDispatcher dispatcher(event);
 
 	// Dispatch the event to the respective handle
-	dispatcher.dispatch<KeyPressEvent>(RLE_BIND_EVENT_FN(Eventable::onKeyPressEvent));
-	dispatcher.dispatch<KeyReleaseEvent>(RLE_BIND_EVENT_FN(Eventable::onKeyReleaseEvent));
-	dispatcher.dispatch<MouseMoveEvent>(RLE_BIND_EVENT_FN(Eventable::onMouseMoveEvent));
-	dispatcher.dispatch<MousePressEvent>(RLE_BIND_EVENT_FN(Eventable::onMousePressEvent));
-	dispatcher.dispatch<MouseReleaseEvent>(RLE_BIND_EVENT_FN(Eventable::onMouseReleaseEvent));
-	dispatcher.dispatch<MouseScrollEvent>(RLE_BIND_EVENT_FN(Eventable::onMouseScrollEvent));
-	dispatcher.dispatch<TextInputEvent>(RLE_BIND_EVENT_FN(Eventable::onTextInputEvent));
-	dispatcher.dispatch<WindowCloseEvent>(RLE_BIND_EVENT_FN(Eventable::onWindowCloseEvent));
+	dispatcher.dispatch<KeyPressEvent>(RLE_BIND_THIS_FN(Eventable::onKeyPressEvent, std::placeholders::_1));
+	dispatcher.dispatch<KeyReleaseEvent>(RLE_BIND_THIS_FN(Eventable::onKeyReleaseEvent, std::placeholders::_1));
+	dispatcher.dispatch<MouseMoveEvent>(RLE_BIND_THIS_FN(Eventable::onMouseMoveEvent, std::placeholders::_1));
+	dispatcher.dispatch<MousePressEvent>(RLE_BIND_THIS_FN(Eventable::onMousePressEvent, std::placeholders::_1));
+	dispatcher.dispatch<MouseReleaseEvent>(RLE_BIND_THIS_FN(Eventable::onMouseReleaseEvent, std::placeholders::_1));
+	dispatcher.dispatch<MouseScrollEvent>(RLE_BIND_THIS_FN(Eventable::onMouseScrollEvent, std::placeholders::_1));
+	dispatcher.dispatch<TextInputEvent>(RLE_BIND_THIS_FN(Eventable::onTextInputEvent, std::placeholders::_1));
+	dispatcher.dispatch<WindowCloseEvent>(RLE_BIND_THIS_FN(Eventable::onWindowCloseEvent, std::placeholders::_1));
 }
 
 bool rle::Eventable::onKeyPressEvent(const KeyPressEvent& event)
