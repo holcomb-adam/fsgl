@@ -1,5 +1,5 @@
 #include "RLEpch.hpp"
-#include "RLE/Scene/Node/Node.hpp"
+#include "RLE/Node/Node.hpp"
 
 // --- RLE ---
 #include "RLE/Debug/Log.hpp"

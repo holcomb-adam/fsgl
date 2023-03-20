@@ -9,7 +9,7 @@
 #include <RLE/Core/Engine.hpp>
 #include <RLE/Core/Input.hpp>
 #include <RLE/Rendering/RenderCommands.hpp>
-#include <RLE/Scene/Node/2D/ShapeNode.hpp>
+#include <RLE/Node/Node2D/ShapeNode.hpp>
 #include <RLE/Resources/CommonShapes.hpp>
 
 

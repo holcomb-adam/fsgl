@@ -1,5 +1,5 @@
 #include "RLEpch.hpp"
-#include "RLE/Scene/Node/2D/ShapeNode.hpp"
+#include "RLE/Node/Node2D/ShapeNode.hpp"
 
 // --- RLE ---
 #include "RLE/Core/Core.hpp"

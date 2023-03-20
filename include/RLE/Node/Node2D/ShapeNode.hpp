@@ -4,7 +4,7 @@
 #include "RLE/Rendering/Shader.hpp"
 #include "RLE/Rendering/VertexArray.hpp"
 #include "RLE/Resources/Shape.hpp"
-#include "RLE/Scene/Node/Node.hpp"
+#include "RLE/Node/Node.hpp"
 
 
 
