@@ -2,7 +2,9 @@
 #include "RLE/Core/Core.hpp"
 
 // --- RLE ---
+#include "RLE/Core/Window.hpp"
 #include "RLE/Debug/Log.hpp"
+#include "RLE/Node/Node.hpp"
 
 
 
@@ -20,11 +22,9 @@ bool rle::core::isCoreInitialized()
 
 bool rle::core::initialize()
 {
-    // Initialize the rle logging system
-    rle::log::init();
-	RLE_CORE_INFO("Initialized Logging System!");
+    log::init();
+    Node::initializeRootNode();
 
     s_CoreInitialized = true;
-
     return s_CoreInitialized;
 }

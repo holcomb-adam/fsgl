@@ -3,7 +3,7 @@
 
 
 
-std::shared_ptr<rle::Shape> rle::res::makeRect(const float w, const float h)
+std::shared_ptr<rle::Geometry> rle::res::makeRect(const float w, const float h)
 {
     const static std::vector<glm::vec2> rectangle_poly_info =
     {
@@ -18,6 +18,6 @@ std::shared_ptr<rle::Shape> rle::res::makeRect(const float w, const float h)
         { -0.5f, -0.5f }  // BL
     };
 
-    Shape* shape = new Shape(rectangle_poly_info);
-    return std::shared_ptr<Shape>(shape);
+    Geometry* shape = new Geometry(rectangle_poly_info);
+    return std::shared_ptr<Geometry>(shape);
 }

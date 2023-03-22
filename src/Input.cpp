@@ -13,6 +13,6 @@
 
 bool rle::input::isKeyPressed(const KeyCode code)
 {
-    auto* win = static_cast<GLFWwindow*>(Engine::get()->window()->nativeHandle());
+    auto* win = static_cast<GLFWwindow*>(Engine::get()->getWindow()->nativeHandle());
     return glfwGetKey(win, to_code(code)) == GLFW_PRESS;
 }

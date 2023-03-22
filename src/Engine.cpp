@@ -8,7 +8,6 @@
 #include "RLE/Debug/Log.hpp"
 #include "RLE/Events/EventDispatcher.hpp"
 #include "RLE/Rendering/RenderCommands.hpp"
-#include "RLE/UI/Layer.hpp"
 
 
 
@@ -45,48 +44,47 @@ rle::Engine::Engine(const Window::Properties& props) :
 	RenderCommands::init(props.api);
 }
 
-void rle::Engine::push(Layer* layer)
+std::unique_ptr<rle::Window>& rle::Engine::getWindow()
 {
-	m_LayerStack.push(layer);
+	return m_Window;
 }
 
-void rle::Engine::pushOverlay(Layer* layer)
+const std::unique_ptr<rle::Window>& rle::Engine::getWindow() const
 {
-	m_LayerStack.pushOverlay(layer);
+	return m_Window;
 }
 
-int rle::Engine::exec()
+void rle::Engine::pushState(EngineState* state)
 {
-	// Set the running flag
-	m_Running = true;
+    m_StateStack.emplace(state)->enter();
+}
 
-	// get a starting point to
-	auto last_elapsed = time::now();
+void rle::Engine::onProcessInit(int argc, char* argv[])
+{
+	onEngineInit(argc, argv);
+}
 
-	// being the application loop
-	while (m_Running)
-	{
-		// Calculate the time elapsed
-		const auto recent_time = time::now();
-		const auto elapsed_delta = recent_time - last_elapsed;
-		last_elapsed = recent_time;
+void rle::Engine::onProcessUpdate(const time::step_ms delta)
+{
+	// Update the window and handle event polling
+	m_Window->update();
 
-		// update the engine
-		impl_update(elapsed_delta);
+	// Update the any user engine components
+	onEngineUpdate(delta);
 
-		// Perform the rendering processes rendering
-		impl_render();
-	}
+	m_StateStack.top()->update(delta);
+}
 
+void rle::Engine::onProcessExit()
+{
 	// Destroy the window
 	m_Window.reset();
-
-	return 0;
 }
 
-void rle::Engine::exit()
+bool rle::Engine::windowCloseEvent(const WindowCloseEvent& event)
 {
-	m_Running = false;
+	exit();
+	return false;
 }
 
 void rle::Engine::onEvent(const Event& event)
@@ -95,67 +93,15 @@ void rle::Engine::onEvent(const Event& event)
 	EventDispatcher dispatcher(event);
 	dispatcher.dispatch<WindowCloseEvent>(RLE_BIND_THIS_FN(Engine::windowCloseEvent, std::placeholders::_1));
 
+
 	// Propagate the events down the layers
-	for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); it++)
-	{
-		// Check if the event has been handled
-		if (event.handled())
-			break;
+	// for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); it++)
+	// {
+	// 	// Check if the event has been handled
+	// 	if (event.handled())
+	// 		break;
 
-		// Try handling the event
-		(*it)->onEvent(event);
-	}
-}
-
-std::unique_ptr<rle::Window>& rle::Engine::window()
-{
-	return m_Window;
-}
-
-const std::unique_ptr<rle::Window>& rle::Engine::window() const
-{
-	return m_Window;
-}
-
-void rle::Engine::impl_update(const time::step_ms delta)
-{
-	// update our window
-	// this will handle event polling for us
-	m_Window->update();
-
-	// Update the client engine
-	onUpdate(delta);
-
-	// Iterate through and update the layers
-	for (auto* layer : m_LayerStack)
-		layer->onUpdate(delta);
-}
-
-void rle::Engine::impl_render()
-{
-	// Clear any current rendering
-	RenderCommands::setClearColor({ 1.00f, 0.00f, 1.0f, 1.0f });
-	RenderCommands::clear();
-
-	// Call client pre-rendering
-	onPreRender();
-
-	// Call client rendering
-	onRender(m_Renderer);
-
-	// Draw all the layers
-	for (const auto* layer : m_LayerStack)
-		layer->onRender(m_Renderer);
-
-	// End the rendering
-	m_Renderer.endScene();
-
-	// Call client post-rendering
-	onPostRender();
-}
-
-bool rle::Engine::windowCloseEvent(const WindowCloseEvent& event)
-{
-	exit();
-	return false;
+	// 	// Try handling the event
+	// 	(*it)->onEvent(event);
+	// }
 }

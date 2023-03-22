@@ -1,0 +1,58 @@
+#pragma once
+
+// --- GLM ---
+#include <glm/mat3x3.hpp>
+
+// --- Standard ---
+#include <memory>
+
+
+
+namespace rle
+{
+    // - Forward Declarations -
+    class Node;
+	class Shader;
+	class VertexArray;
+
+
+
+    /// @brief Dedicated 2D renderer for 2D nodes.
+    class Renderer2D
+    {
+    public:
+        ////////////////////////////////////////////////////////////////////////////////
+        // - CONSTRUCTORS / DESTRUCTORS ------------------------------------------------
+
+        /// @brief Default constructor
+        Renderer2D() = default;
+
+        /// @brief Default desturctor
+        ~Renderer2D() = default;
+
+
+
+        /// @brief Begin a scene for rendering.
+        void beginScene();
+
+        /// @brief End the scene rendering.
+        void endScene();
+
+        /// @brief 
+        /// @param node 
+        void draw(const Node& node);
+
+        /// @brief 
+        /// @param shader 
+        /// @param vao 
+        /// @param transform 
+        void draw(const std::shared_ptr<Shader> shader,
+                  const std::shared_ptr<VertexArray> vao,
+                  const glm::mat3& transform);
+
+
+
+    private:
+        glm::mat3 m_ViewProjection;
+    };
+}

@@ -17,14 +17,13 @@ namespace rle
 {
 	namespace impl
 	{
-        // [Abstract]
-        // Interface for creating an OS specific window class
+        /// @brief Interface for creating an OS specific window class
 		class GLFW_Window : public Window
 		{
 			// --- Friend Classes ---
 			friend class GLFW_Callback;
 
-			
+
 
         public:
 			////////////////////////////////////////////////////////////////////////////////

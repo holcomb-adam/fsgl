@@ -30,7 +30,7 @@ void anvil::ImGuiRenderer::init()
 
 	// Initialize the required ImGui backends
 	assert(ImGui_ImplGlfw_InitForOpenGL(
-		static_cast<GLFWwindow*>(m_Engine->window()->nativeHandle()),
+		static_cast<GLFWwindow*>(m_Engine->getWindow()->nativeHandle()),
 		true));
 	assert(ImGui_ImplOpenGL3_Init("#version 460"));
 
@@ -44,7 +44,7 @@ void anvil::ImGuiRenderer::update(const rle::time::step_ms delta)
 	auto& io = ImGui::GetIO();
 
 	// Get engine window
-	const auto& win = m_Engine->window();
+	const auto& win = m_Engine->getWindow();
 
 	// Convert our delta time to seconds since ImGui takes delta time in seconds
 	const auto delta_sec = std::chrono::duration_cast<rle::time::step_sec>(delta);

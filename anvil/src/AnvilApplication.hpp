@@ -2,10 +2,6 @@
 
 // --- RLE ---
 #include <RLE.hpp>
-#include <RLE/Rendering/Shader.hpp>
-
-// --- Anvil ---
-#include "UI/ImGui/ImGuiRenderer.hpp"
 
 
 
@@ -25,19 +21,12 @@ namespace anvil
 
 
 
+	private:
 		////////////////////////////////////////////////////////////////////////////////
 		// - OVERRIDES -----------------------------------------------------------------
 
 		// Inherited via rle::Engine
-		virtual std::size_t init() override;
-		virtual void onUpdate(const rle::time::step_ms delta) override;
-		virtual void onPreRender() override;
-		virtual void onRender(rle::Renderer& renderer) override;
-		virtual void onPostRender() override;
-
-
-
-	private:
-		ImGuiRenderer m_ImGuiRenderer;
+		virtual void onEngineUpdate(const rle::time::step_ms delta) override;
+		virtual void onEngineInit(int argc, char* argv[]) override;
 	};
 }

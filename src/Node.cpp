@@ -3,37 +3,41 @@
 
 // --- RLE ---
 #include "RLE/Debug/Log.hpp"
+#include "RLE/Node/Components/Render2D.hpp"
 #include "RLE/Rendering/Renderer.hpp"
 
 
 
 namespace
 {
-	
 	// - RLE Root Node -
-	// This is the root scene node. All main scenes should be be children of this node
-	static struct RootNode final : public rle::Node
+	// This is the root scene node. All main scenes should be a child of this node
+	struct RootNode : public rle::Node
 	{
 		// Default Constructor
 		inline RootNode() : 
-			Node(this, "root") {}
+			Node(nullptr, "root") {}
+	};
 
-		// Inherited via Node
-		inline virtual void onRender(rle::Renderer& target) const override
-		{
-			// Loop through the nodes and render them
-			for (const auto c : getChildren())
-				if (c) // Ensure the node exists
-					target.submit(*c);
-		}
-	} s_Root; // static root node instance
+	// static root node instance
+	static std::unique_ptr<RootNode> s_Root;
 }
 
 
 
+void rle::Node::initializeRootNode()
+{
+    s_Root.reset(new RootNode());
+
+    auto& render2d_comp = s_Root->addComponent<Render2D>("", ""); // Dont compile shader
+    render2d_comp.setIgnoreComponents(true); // Dont render components for root node
+
+    RLE_CORE_INFO("Initialized root node");
+}
+
 rle::Node* rle::Node::getRoot()
 {
-	return &s_Root;
+	return s_Root.get();
 }
 
 rle::Node::Node(Node* parent) :
@@ -57,6 +61,11 @@ void rle::Node::onInit(Node* parent)
 void rle::Node::onUpdate(const time::step_ms delta)
 {
 
+}
+
+const std::string & rle::Node::getName() const
+{
+	return m_Name;
 }
 
 rle::Node* rle::Node::getParent()
@@ -86,4 +95,17 @@ rle::Node* rle::Node::addNode(Node* node)
 	node->onInit(this);
 
 	return node;
+}
+
+void rle::Node::update(const time::step_ms delta)
+{
+	onUpdate(delta);
+
+	for (auto& component : m_Components)
+		if (component.second)
+			component.second->onUpdate(delta);
+	
+	for (auto& child : m_Children)
+		if (child)
+			child->update(delta);
 }

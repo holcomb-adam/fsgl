@@ -20,7 +20,7 @@ namespace rle
 	{
 	public:
 		////////////////////////////////////////////////////////////////////////////////
-		// - MEMBER TYPES --------------------------------------------------------------
+		// - STATIC MEMBERS ------------------------------------------------------------
 
 		// Type alias for event call back function
 		using EventCallback = std::function<void(Event&)>;
@@ -42,7 +42,7 @@ namespace rle
 			bool vsync = false;
 		};
 
-		
+
 
 	public:
 		////////////////////////////////////////////////////////////////////////////////
@@ -89,7 +89,7 @@ namespace rle
 	// - FACTORY METHODS -----------------------------------------------------------
 
 	template<>
-	struct factory<Window> final
+	struct factory<Window>
 	{
 		// Create a window instance for the compiled platform
 		// - 'props': A struct of properties to customize the window

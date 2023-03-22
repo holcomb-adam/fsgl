@@ -1,12 +1,15 @@
 #pragma once
 
+// --- Standard ---
+#include <stack>
+
 // --- RLE ---
 #include "Core.hpp"
-#include "Time.hpp"
+#include "EngineState.hpp"
+#include "Process.hpp"
 #include "Window.hpp"
 #include "RLE/Events/WindowCloseEvent.hpp"
 #include "RLE/Rendering/Renderer.hpp"
-#include "RLE/UI/LayerStack.hpp"
 
 
 
@@ -17,8 +20,8 @@ namespace rle
 
 
 
-	// This class represents the base application of the engine
-	class Engine
+	/// @brief This class represents the base application of the engine
+	class Engine : public Process
 	{
 	public:
 		////////////////////////////////////////////////////////////////////////////////
@@ -43,83 +46,55 @@ namespace rle
 
 
 		////////////////////////////////////////////////////////////////////////////////
-		// - PURE VIRTUALS -------------------------------------------------------------
+		// - GETTERS -------------------------------------------------------------------
 
-		// For post-instantiation initialization
-		// returns code (0 is considered a safe return)
-		virtual std::size_t init() = 0;
-
-		// Called once every frame to update the client engine
-		virtual void onUpdate(const time::step_ms delta) = 0;
-
-		// Called before rendering begins
-		virtual void onPreRender() = 0;
-
-		// Called when the rendering process begins
-		virtual void onRender(Renderer& renderer) = 0;
-
-		// Called after rendering has ended
-		virtual void onPostRender() = 0;
-
-
-
-		////////////////////////////////////////////////////////////////////////////////
-		// - WRAPPERS ------------------------------------------------------------------
-
-		// see: rle::LayerStack::push
-		void push(Layer* layer);
-
-		// see: rle::LayerStack::pushOverlay
-		void pushOverlay(Layer* layer);
+		/// @brief Window getter
+		/// @returns Get a reference to a unique_ptr of the engines window
+		std::unique_ptr<Window>& getWindow();
+		const std::unique_ptr<Window>& getWindow() const;
 
 
 
 		////////////////////////////////////////////////////////////////////////////////
 		// - OPERATIONS ----------------------------------------------------------------
 
-		// Begins the engine's application loop
-		int exec();
+		/// @brief Add a state to the top of the engines state stack
+		/// @param state The state pointer being pushed
+		/// @note Assumes ownership of the pointer taken
+		void pushState(EngineState* state);
 
-		// Ends the engine's application loop
-		void exit();
+
+
+	private:
+		////////////////////////////////////////////////////////////////////////////////
+		// - VIRTUALS ------------------------------------------------------------------
+
+		/// @brief Called once every frame to update the client engine
+		virtual void onEngineUpdate(const time::step_ms delta) = 0;
+
+		/// @brief 
+		/// @param argc 
+		/// @param argv 
+		virtual void onEngineInit(int argc, char* argv[]) = 0;
+
+
+
+		virtual void onProcessInit(int argc, char* argv[]) override;
+		virtual void onProcessUpdate(const time::step_ms delta) override;
+		virtual void onProcessExit() override;
+
+
 
 		// Called when the window recieves any events
 		void onEvent(const Event& event);
 
-
-
-		////////////////////////////////////////////////////////////////////////////////
-		// - GETTERS -------------------------------------------------------------------
-
-		// Get a ref to a unique_ptr to a window
-		std::unique_ptr<Window>& window();
-
-		// Get a const ref to a unique_ptr to a window
-		const std::unique_ptr<Window>& window() const;
-
-
-
-	private:
-		// Updates the engine and it's layers
-		// - Called once every frame
-		// - 'delta': Time in ms elapsed since last update cycle
-		void impl_update(const time::step_ms delta);
-
-		// Performs the rendering to the client engine and all the layers that are
-		// in the layer stack
-		// - Called once every frame
-		void impl_render();
-
 		// Called when the window close event is recieved
 		bool windowCloseEvent(const WindowCloseEvent& event);
-		
+
 
 
 	private:
-		bool m_Running = false;
-
 		std::unique_ptr<Window> m_Window;
-		LayerStack m_LayerStack;
-		Renderer m_Renderer;
+		std::stack<std::unique_ptr<EngineState>> m_StateStack;
 	};
 }

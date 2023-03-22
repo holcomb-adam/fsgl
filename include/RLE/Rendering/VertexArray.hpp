@@ -58,7 +58,7 @@ namespace rle
 	// - FACTORY METHODS -----------------------------------------------------------
 
 	template<>
-	struct factory<VertexArray> final
+	struct factory<VertexArray>
 	{
 		static std::shared_ptr<VertexArray> create();
 	};

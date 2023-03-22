@@ -28,6 +28,8 @@ void rle::log::init()
 	// initialize the core logger
 	s_ClientLogger = spdlog::stdout_color_mt("Client");
 	s_ClientLogger->set_level(spdlog::level::trace);
+
+    RLE_CORE_INFO("Initialized logging system!");
 }
 
 std::shared_ptr<spdlog::logger>& rle::log::coreLogger()

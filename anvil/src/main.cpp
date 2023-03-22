@@ -6,6 +6,7 @@
 
 // --- Anvil ---
 #include "AnvilApplication.hpp"
+#include "States/EditorState.hpp"
 
 
 
@@ -19,8 +20,12 @@ int main(int argc, char* argv[])
     std::unique_ptr<anvil::AnvilApplication> rle_engine = 
         std::make_unique<anvil::AnvilApplication>();
 
-    // Initialize the engine
-    rle_engine->init();
+    // Initialize the engine process
+    rle_engine->init(argc, argv);
 
-    return rle_engine->exec();
+    // Create the engine editor state
+    auto* editor_state = new anvil::EditorState();
+    rle_engine->pushState(editor_state);
+
+    return rle_engine->execute();
 }
