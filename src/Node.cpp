@@ -4,7 +4,6 @@
 // --- RLE ---
 #include "RLE/Debug/Log.hpp"
 #include "RLE/Node/Components/Render2D.hpp"
-#include "RLE/Rendering/Renderer.hpp"
 
 
 

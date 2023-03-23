@@ -9,7 +9,6 @@
 #include "Process.hpp"
 #include "Window.hpp"
 #include "RLE/Events/WindowCloseEvent.hpp"
-#include "RLE/Rendering/Renderer.hpp"
 
 
 

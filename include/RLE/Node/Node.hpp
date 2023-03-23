@@ -9,7 +9,6 @@
 // --- RLE ---
 #include "RLE/Core/Time.hpp"
 #include "RLE/Node/Component.hpp"
-#include "RLE/Rendering/Renderable.hpp"
 #include "RLE/Utils/UniqueID.hpp"
 
 
