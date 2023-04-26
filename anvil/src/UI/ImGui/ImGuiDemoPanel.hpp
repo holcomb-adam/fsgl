@@ -1,7 +1,7 @@
 #pragma once
 
-// --- RLE ---
-#include <RLE/UI/Panel.hpp>
+// --- Anvil ---
+#include "../ImGui/ImGuiPanel.hpp"
 
 
 
@@ -13,7 +13,7 @@ namespace anvil
 	// - Serves as a reference for rle::Layer with ImGui implementation
 	// - This is also a good tool for testing ImGui implementations
 	//   (i.e. Docking, Floating Windows, Rendering, etc.)
-	class ImGuiDemoPanel final : public rle::Panel
+	class ImGuiDemoPanel final : public ImGuiPanel
 	{
 	public:
 		////////////////////////////////////////////////////////////////////////////////
@@ -35,6 +35,8 @@ namespace anvil
 		virtual void onPanelEnter() override;
 		virtual void onPanelExit() override;
 		virtual void onPanelUpdate(const rle::time::step_ms delta) override;
-		virtual void onPanelDraw(rle::Renderer2D& renderer) override;
+
+		virtual void onDraw(rle::Renderer2D& renderer) override;
+		virtual void onImGuiDraw() override;
 	};
 }

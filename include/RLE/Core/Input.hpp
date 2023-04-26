@@ -7,9 +7,9 @@
 
 namespace rle
 {
-	namespace input
-	{
-		// Check if a key is currently being pressed
-		bool isKeyPressed(const KeyCode code);
-	}
+    namespace input
+    {
+        // Check if a key is currently being pressed
+        bool isKeyPressed(const KeyCode code);
+    }
 }

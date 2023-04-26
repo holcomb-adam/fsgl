@@ -11,23 +11,29 @@
 namespace rle
 {
     /// @brief 
-    class Docker
+    class DockSpace
     {
     public:
         ////////////////////////////////////////////////////////////////////////////////
         // - CONSTRUCTORS / DESTRUCTORS ------------------------------------------------
 
-        /// @brief 
-        Docker() = default;
+
 
         /// @brief 
-        virtual ~Docker() = default;
+        DockSpace() = default;
+
+        /// @brief 
+        ~DockSpace() = default;
 
 
 
         ////////////////////////////////////////////////////////////////////////////////
-        // - GETTERS -------------------------------------------------------------------
+        // - SETTERS -------------------------------------------------------------------
 
+        /// @brief 
+        /// @param width 
+        /// @param height 
+        void setBoundingSize(std::uint32_t width, std::uint32_t height);
 
 
 
@@ -37,11 +43,16 @@ namespace rle
         void addPanel(Panel* panel);
 
         void updatePanels(const time::step_ms delta);
-        void drawPanels(Renderer2D& renderer);
+
+        void draw(Renderer2D& renderer);
 
 
 
     private:
+        // - Info -
+        std::uint32_t m_Width = 0;
+        std::uint32_t m_Height = 0;
+
         std::vector<std::unique_ptr<Panel>> m_Panels;
     };
 }

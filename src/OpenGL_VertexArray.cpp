@@ -7,6 +7,7 @@
 // --- RLE ---
 #include "RLE/Rendering/IndexBuffer.hpp"
 #include "RLE/Rendering/VertexBuffer.hpp"
+#include "RLE/Rendering/2D/Vertex2D.hpp"
 
 
 
@@ -37,7 +38,9 @@ void rle::impl::OpenGL_VertexArray::addVertexBuffer(const std::shared_ptr<Vertex
 	vertex_buffer->bind();
 
 	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(float), nullptr);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex2D), nullptr);
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex2D), (const void*)offsetof(Vertex2D, color));
 
 	// add the buffer to the vector
 	m_VertexBuffers.push_back(vertex_buffer);

@@ -4,13 +4,13 @@
 #include <glm/gtx/matrix_transform_2d.hpp>
 
 // --- RLE ---
-#include "RLE/Node/Component.hpp"
+#include "RLE/Node/Aspect.hpp"
 
 
 
 namespace rle
 {
-    class Transform2D : public Component
+    class Transform2D : public Aspect
     {
     public:
         ////////////////////////////////////////////////////////////////////////////////

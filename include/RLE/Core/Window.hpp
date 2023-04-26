@@ -7,7 +7,7 @@
 #include "Core.hpp"
 #include "Factory.hpp"
 #include "RLE/Events/Event.hpp"
-#include "RLE/Rendering/RenderingAPI.hpp"
+#include "RLE/Rendering/GraphicsAPI.hpp"
 
 
 
@@ -37,7 +37,7 @@ namespace rle
 			std::uint32_t w = 800;
 			std::uint32_t h = 600;
 
-			RenderingAPI::API api = RenderingAPI::API::OpenGL; // OpenGL is the default api
+			GraphicsAPI::API api = GraphicsAPI::API::OpenGL; // OpenGL is the default api
 
 			bool vsync = false;
 		};

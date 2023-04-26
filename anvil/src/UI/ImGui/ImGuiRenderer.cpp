@@ -24,10 +24,6 @@ void anvil::ImGuiRenderer::init()
 	m_Engine = rle::Engine::get();
 	assert(m_Engine);
 
-	// Setup ImGui, set flags
-	auto& io = ImGui::GetIO();
-	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable; // Enable ImGui Docking
-
 	// Initialize the required ImGui backends
 	assert(ImGui_ImplGlfw_InitForOpenGL(
 		static_cast<GLFWwindow*>(m_Engine->getWindow()->nativeHandle()),

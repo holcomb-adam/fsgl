@@ -1,8 +1,8 @@
 #pragma once
 
 // --- RLE ---
-#include "RLE/Node/Component.hpp"
-#include "RLE/Rendering/Shader.hpp"
+#include "RLE/Node/Aspect.hpp"
+#include "RLE/Rendering/ShaderHandle.hpp"
 
 
 
@@ -16,7 +16,7 @@ namespace rle
     /// @brief Component for rendering other 2D Node components.
     /// @note This will not render any 3D components.
     /// @note Requires a Shape2D component for rendering.
-    class Render2D : public Component
+    class Render2D : public Aspect
     {
     public:
         ////////////////////////////////////////////////////////////////////////////////
@@ -58,7 +58,7 @@ namespace rle
         bool m_IgnoreComponents = false;
         bool m_IgnoreChildren = false;
 
-        std::shared_ptr<Shader> m_Shader;
+        std::shared_ptr<ShaderHandle> m_Shader;
         glm::vec4 m_Color = { 0.0f, 0.0f, 0.0f, 0.0f };
     };
 }

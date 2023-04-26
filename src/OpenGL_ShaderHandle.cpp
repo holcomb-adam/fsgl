@@ -1,8 +1,10 @@
 #include "RLEpch.hpp"
-#include "impl/API/OpenGL/OpenGL_Shader.hpp"
+#include "impl/API/OpenGL/OpenGL_ShaderHandle.hpp"
 
-// --- External ---
+// --- GLAD ---
 #include <glad/gl.h>
+
+// --- GLM ---
 #include <glm/gtc/type_ptr.hpp>
 
 // --- RLE ---
@@ -10,7 +12,7 @@
 
 
 
-rle::impl::OpenGL_Shader::OpenGL_Shader(const std::string& vertex_src, const std::string& fragment_src)
+rle::impl::OpenGL_ShaderHandle::OpenGL_ShaderHandle(const std::string& vertex_src, const std::string& fragment_src)
 {
 	// For reference on OpenGL shader compilation and where this code came from
 	//     see: https://www.khronos.org/opengl/wiki/Shader_Compilation
@@ -121,22 +123,22 @@ rle::impl::OpenGL_Shader::OpenGL_Shader(const std::string& vertex_src, const std
 	m_ID = program;
 }
 
-rle::impl::OpenGL_Shader::~OpenGL_Shader()
+rle::impl::OpenGL_ShaderHandle::~OpenGL_ShaderHandle()
 {
 	glDeleteProgram(m_ID);
 }
 
-void rle::impl::OpenGL_Shader::bind() const
+void rle::impl::OpenGL_ShaderHandle::bind() const
 {
 	glUseProgram(m_ID);
 }
 
-void rle::impl::OpenGL_Shader::unbind() const
+void rle::impl::OpenGL_ShaderHandle::unbind() const
 {
 	glUseProgram(0);
 }
 
-void rle::impl::OpenGL_Shader::uploadUniform(const std::string& name, const glm::mat4& matrix)
+void rle::impl::OpenGL_ShaderHandle::uploadUniform(const std::string& name, const glm::mat4& matrix)
 {
 	const auto location = glGetUniformLocation(m_ID, name.c_str());
 	glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));

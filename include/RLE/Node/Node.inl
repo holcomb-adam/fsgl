@@ -10,7 +10,7 @@ inline T& rle::Node::addComponent(Targs&&... targs)
     auto* ptr = new T(std::forward<Targs>(targs)...);
     auto& uptr = (*m_Components.emplace(
         impl::getComponentTypeID<T>(),
-        std::move(std::unique_ptr<Component>(ptr))).first).second;
+        std::move(std::unique_ptr<Aspect>(ptr))).first).second;
     uptr->m_Owner = this;
     uptr->onInit();
     return *ptr;

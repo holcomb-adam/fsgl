@@ -1,19 +1,20 @@
 #pragma once
 
-// --- GLM ---
-#include <glm/mat3x3.hpp>
-
 // --- Standard ---
 #include <memory>
+
+// --- RLE ---
+#include "RLE/Rendering/2D/View.hpp"
 
 
 
 namespace rle
 {
     // - Forward Declarations -
+    class GraphicsHandle;
     class Node;
-	class Shader;
-	class VertexArray;
+    class ShaderHandle;
+    class VertexArray;
 
 
 
@@ -27,15 +28,18 @@ namespace rle
         /// @brief Default constructor
         Renderer2D() = default;
 
-        /// @brief Default desturctor
+        /// @brief Default destructor
         ~Renderer2D() = default;
 
 
 
-        /// @brief Begin a scene for rendering.
-        void beginScene();
+        /// @brief Begin a scene for rendering
+        void beginScene(const std::shared_ptr<GraphicsHandle> handle,
+                        const View& view,
+                        const glm::ivec2& viewport_size,
+                        const glm::ivec2& viewport_pos = { 0, 0 });
 
-        /// @brief End the scene rendering.
+        /// @brief End the scene rendering
         void endScene();
 
         /// @brief 
@@ -46,13 +50,16 @@ namespace rle
         /// @param shader 
         /// @param vao 
         /// @param transform 
-        void draw(const std::shared_ptr<Shader> shader,
+        void draw(const std::shared_ptr<ShaderHandle> shader,
                   const std::shared_ptr<VertexArray> vao,
                   const glm::mat3& transform);
 
 
 
     private:
-        glm::mat3 m_ViewProjection;
+        std::shared_ptr<GraphicsHandle> m_GraphicsHandler;
+
+        glm::mat4 m_Projection;
+        glm::mat4 m_View;
     };
 }

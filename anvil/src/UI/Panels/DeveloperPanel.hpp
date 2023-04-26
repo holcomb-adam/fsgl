@@ -3,15 +3,15 @@
 // --- Standard ---
 #include <vector>
 
-// --- RLE ---
-#include <RLE/UI/Panel.hpp>
+// --- Anvil ---
+#include "../ImGui/ImGuiPanel.hpp"
 
 
 
 namespace anvil
 {
 	// Will provide debugging information through ImGui
-	class DeveloperPanel : public rle::Panel
+	class DeveloperPanel : public ImGuiPanel
 	{
 		static constexpr std::size_t FRAME_TIME_COUNTER_MAX_SIZE = 300;
 
@@ -25,7 +25,9 @@ namespace anvil
 		virtual void onPanelEnter() override;
 		virtual void onPanelExit() override;
 		virtual void onPanelUpdate(const rle::time::step_ms delta) override;
-		virtual void onPanelDraw(rle::Renderer2D& renderer) override;
+
+		virtual void onDraw(rle::Renderer2D& renderer) override;
+		virtual void onImGuiDraw() override;
 
 
 

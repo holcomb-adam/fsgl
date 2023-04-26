@@ -5,11 +5,32 @@
 rle::Panel::Panel(const std::string& name) :
     m_Name(name)
 {
+
 }
 
-const std::string& rle::Panel::name() const
+void rle::Panel::setSize(const glm::u32vec2& size)
+{
+    m_Size = size;
+}
+
+const std::string &rle::Panel::name() const
 {
     return m_Name;
+}
+
+const glm::vec2 &rle::Panel::getPosition() const
+{
+    return m_Position;
+}
+
+const glm::u32vec2 &rle::Panel::getSize() const
+{
+    return m_Size;
+}
+
+void rle::Panel::setPosition(const glm::vec2& position)
+{
+    m_Position = position;
 }
 
 void rle::Panel::enter()
@@ -29,8 +50,10 @@ void rle::Panel::draw(Renderer2D& renderer)
 
 void rle::Panel::onPanelEnter()
 {
+
 }
 
 void rle::Panel::onPanelExit()
 {
+
 }

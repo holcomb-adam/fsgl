@@ -55,6 +55,8 @@
 #	define RLE_GREEN 0.0f, 1.0f, 0.0f // Green
 #	define RLE_BLUE  0.0f, 0.0f, 1.0f // Blue
 
+#   define RLE_BUFFER_CLEAR_COLOR 1.0f, 0.0f, 1.0f // Rendering buffer clear color. Magenta
+
 // Macro to help with event functions
 // This will bind a function with "this" keyword and 1 placeholder argument
 #	define RLE_BIND_THIS_FN(fn, ...) std::bind(&fn, this, __VA_ARGS__)

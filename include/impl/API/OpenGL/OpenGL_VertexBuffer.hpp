@@ -12,7 +12,7 @@ namespace rle
 {
 	namespace impl
 	{
-		class OpenGL_VertexBuffer final : public VertexBuffer
+		class OpenGL_VertexBuffer : public VertexBuffer
 		{
 		public:
 			////////////////////////////////////////////////////////////////////////////////
@@ -22,7 +22,7 @@ namespace rle
 			// - Generates an underlying OpenGL VBO populated with data
 			// - 'data': The vertex data to be copied into the underlying VBO
 			// - 'size': The number of elements the vertex buffer allocates
-			OpenGL_VertexBuffer(const void* data, const std::size_t size);
+			OpenGL_VertexBuffer(const Vertex2D* data, const std::size_t count);
 
 			// Destructor
 			// - Destroys the underlying VBO
@@ -36,7 +36,7 @@ namespace rle
 			// Inherited via VertexBuffer
 			virtual void bind() const;
 			virtual void unbind() const;
-			virtual void setData(const void* data, const std::size_t size);
+			virtual void setData(const Vertex2D* data, const std::size_t count);
 
 
 

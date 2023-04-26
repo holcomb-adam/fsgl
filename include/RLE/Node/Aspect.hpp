@@ -12,9 +12,9 @@ namespace rle
 
 
 
-    class Component
+    class Aspect
     {
-        // - Friends -
+        // Friends
         friend class Node;
 
 
@@ -24,10 +24,10 @@ namespace rle
         // - CONSTRUCTORS / DESTRUCTORS ------------------------------------------------
 
         /// @brief Default constructor
-        Component() = default;
+        Aspect() = default;
 
         /// @brief Default destructor
-        virtual ~Component() = default;
+        virtual ~Aspect() = default;
 
 
 

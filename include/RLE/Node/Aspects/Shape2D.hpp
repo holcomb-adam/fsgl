@@ -1,7 +1,7 @@
 #pragma once
 
 // --- RLE ---
-#include "RLE/Node/Component.hpp"
+#include "RLE/Node/Aspect.hpp"
 #include "RLE/Rendering/VertexArray.hpp"
 #include "RLE/Resources/Geometry.hpp"
 
@@ -9,7 +9,7 @@
 
 namespace rle
 {
-    class Shape2D : public Component
+    class Shape2D : public Aspect
     {
     public:
         Shape2D() = default;

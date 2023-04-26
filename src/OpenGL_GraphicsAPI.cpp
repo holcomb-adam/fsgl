@@ -1,5 +1,5 @@
 #include "RLEpch.hpp"
-#include "impl/API/OpenGL/OpenGL_RenderingAPI.hpp"
+#include "impl/API/OpenGL/OpenGL_GraphicsAPI.hpp"
 
 // --- GLAD ---
 #include <glad/gl.h>
@@ -14,7 +14,7 @@
 
 
 
-namespace
+namespace // OpenGL House Keeping
 {
 	void gl_onDebugMessage(
 		GLenum source,
@@ -53,18 +53,18 @@ namespace
 
 
 
-rle::impl::OpenGL_RenderingAPI::OpenGL_RenderingAPI() :
-	RenderingAPI(RenderingAPI::API::OpenGL)
+rle::impl::OpenGL_GraphicsAPI::OpenGL_GraphicsAPI() :
+	GraphicsAPI(GraphicsAPI::API::OpenGL)
 {
 
 }
 
-rle::impl::OpenGL_RenderingAPI::~OpenGL_RenderingAPI()
+rle::impl::OpenGL_GraphicsAPI::~OpenGL_GraphicsAPI()
 {
 
 }
 
-void rle::impl::OpenGL_RenderingAPI::init()
+void rle::impl::OpenGL_GraphicsAPI::init()
 {
 	// Enable GLAD
 	const int version = gladLoadGL(glfwGetProcAddress);
@@ -82,22 +82,22 @@ void rle::impl::OpenGL_RenderingAPI::init()
 	RLE_CORE_INFO("-\tVersion: {0}", (const char*)glGetString(GL_VERSION));
 }
 
-void rle::impl::OpenGL_RenderingAPI::setClearColor(const glm::vec4& color) const
+void rle::impl::OpenGL_GraphicsAPI::setClearColor(const glm::vec4& color) const
 {
 	glClearColor(color.r, color.g, color.b, color.a);
 }
 
-void rle::impl::OpenGL_RenderingAPI::clear() const
+void rle::impl::OpenGL_GraphicsAPI::clear() const
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void rle::impl::OpenGL_RenderingAPI::viewport(const std::int32_t x, const std::int32_t y, const std::int32_t width, const std::int32_t height) const
+void rle::impl::OpenGL_GraphicsAPI::viewport(const std::int32_t x, const std::int32_t y, const std::int32_t width, const std::int32_t height) const
 {
 	glViewport(x, y, width, height);
 }
 
-void rle::impl::OpenGL_RenderingAPI::draw(const std::shared_ptr<VertexArray>& vao) const
+void rle::impl::OpenGL_GraphicsAPI::draw(const std::shared_ptr<VertexArray>& vao) const
 {
 	vao->bind();
 	glDrawElements(GL_TRIANGLES, vao->getIndexBuffer()->count(), GL_UNSIGNED_INT, nullptr);

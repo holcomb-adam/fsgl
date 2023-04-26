@@ -1,7 +1,7 @@
 #pragma once
 
 // RLE Library includes
-#include "RLE/Rendering/RenderingAPI.hpp"
+#include "RLE/Rendering/GraphicsAPI.hpp"
 
 
 
@@ -19,24 +19,24 @@ namespace rle
 
 	namespace impl
 	{
-		class OpenGL_RenderingAPI final : public RenderingAPI
+		class OpenGL_GraphicsAPI final : public GraphicsAPI
 		{
 		public:
 			////////////////////////////////////////////////////////////////////////////////
 			// - CONSTRUCTORS / DESTRUCTORS ------------------------------------------------
 
 			// Constructor
-			OpenGL_RenderingAPI();
+			OpenGL_GraphicsAPI();
 
 			// Default destructor
-			~OpenGL_RenderingAPI();
+			~OpenGL_GraphicsAPI();
 
 
 
 			////////////////////////////////////////////////////////////////////////////////
 			// - OVERRIDES -----------------------------------------------------------------
 
-			// Inherited via RenderingAPI
+			// Inherited via GraphicsHandle
 			virtual void init() override;
 			virtual void setClearColor(const glm::vec4& color) const override;
 			virtual void clear() const override;

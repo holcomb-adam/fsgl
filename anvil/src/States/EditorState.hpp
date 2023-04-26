@@ -2,8 +2,9 @@
 
 // --- RLE ---
 #include <RLE/Core/EngineState.hpp>
+#include <RLE/Rendering/GraphicsHandle.hpp>
 #include <RLE/Rendering/Renderer2D.hpp>
-#include <RLE/UI/Docker.hpp>
+#include <RLE/UI/DockSpace.hpp>
 
 // --- Anvil ---
 #include "../UI/ImGui/ImGuiRenderer.hpp"
@@ -15,6 +16,11 @@ namespace anvil
     /// @brief Creates the necessary components for a scene editor
     class EditorState : public rle::EngineState
     {
+    public:
+        static constexpr glm::vec4 SCREEN_CLEAR_COLOR = { 0.2f, 0.2f, 0.2f, 1.0f };
+
+
+
     public:
         ////////////////////////////////////////////////////////////////////////////////
         // - CONSTRUCTORS / DESTRUCTORS ------------------------------------------------
@@ -38,12 +44,24 @@ namespace anvil
 
 
 
+        // - Helpers -
+        void slot_onNodeSelect(rle::Node* node);
+
+
+
     private:
+        // Access to graphics
+        std::shared_ptr<rle::GraphicsHandle> m_GraphicsHandle;
+
         // UI
         ImGuiRenderer m_ImGuiRenderer;
-        rle::Docker m_Docker;
+        rle::DockSpace m_DockSpace;
 
         // 2D Scene rendering
         rle::Renderer2D m_Renderer2D;
+
+        // Scene Information
+        std::shared_ptr<rle::Node> m_SceneNode;
+        std::weak_ptr<rle::Node> m_SelectedNode;
     };
 }

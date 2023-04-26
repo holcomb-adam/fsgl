@@ -32,7 +32,7 @@ inline bool rle::UniqueID<T>::operator!=(const UniqueID<T>& other) const
 
 
 template<class T>
-inline std::size_t rle::UniqueID<T>::UID() const
+inline std::size_t rle::UniqueID<T>::raw() const
 {
 	return m_Local;
 }

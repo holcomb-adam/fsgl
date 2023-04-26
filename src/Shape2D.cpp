@@ -1,9 +1,11 @@
 #include "RLEpch.hpp"
-#include "RLE/Node/Components/Shape2D.hpp"
+#include "RLE/Node/Aspects/Shape2D.hpp"
 
 // --- RLE ---
-#include "RLE/Rendering/VertexBuffer.hpp"
+#include "RLE/Core/Core.hpp"
 #include "RLE/Rendering/IndexBuffer.hpp"
+#include "RLE/Rendering/VertexBuffer.hpp"
+#include "RLE/Rendering/2D/Vertex2D.hpp"
 
 
 
@@ -21,9 +23,12 @@ void rle::Shape2D::setGeometry(std::shared_ptr<Geometry> geometry)
     m_VAO->bind();
 
     // Update vertex contents (this is not optimal rn)
-    m_VBO = factory<VertexBuffer>::create(
-        geometry->data(),
-        2 * sizeof(float) * geometry->count());
+    const auto* geometry_data = geometry->data();
+    const auto geometry_count = geometry->count();
+    std::vector<Vertex2D> vertex_data;
+    for (std::size_t i = 0; i < geometry_count; i++)
+        vertex_data.push_back(Vertex2D{geometry_data[i], glm::vec4(RLE_BLUE, 1.0f)});
+    m_VBO = factory<VertexBuffer>::create(vertex_data.data(), vertex_data.size());
     m_VBO->bind();
     m_VAO->addVertexBuffer(m_VBO);
 

@@ -6,24 +6,31 @@
 // --- Standard ---
 #include <string>
 
-// --- RLE ---
-#include "RLE/Core/Factory.hpp"
-
 
 
 namespace rle
 {
-	class Shader
+	class ShaderHandle
 	{
+	public:
+		/// @brief 
+		/// @param vertex_src 
+		/// @param fragment_src 
+		/// @return 
+		static std::shared_ptr<ShaderHandle> make(const std::string& vertex_src,
+											const std::string& fragment_src);
+
+
+
 	public:
 		////////////////////////////////////////////////////////////////////////////////
 		// - CONSTRUCTORS / DESTRUCTORS ------------------------------------------------
 
 		// Default constructor
-		Shader() = default;
+		ShaderHandle() = default;
 
 		// Virtual default destructor
-		virtual ~Shader() = default;
+		virtual ~ShaderHandle() = default;
 
 
 
@@ -36,21 +43,9 @@ namespace rle
 		// Unbind the shader from the underlying rendering API
 		virtual void unbind() const = 0;
 
-		// Upload Matrix 4x4 uniform
+		/// @brief 
+		/// @param name 
+		/// @param matrix 
 		virtual void uploadUniform(const std::string& name, const glm::mat4& matrix) = 0;
-	};
-
-
-
-
-
-	////////////////////////////////////////////////////////////////////////////////
-	// - FACTORY METHODS -----------------------------------------------------------
-
-	template<>
-	struct factory<Shader> final
-	{
-		// Creates and compiles a shader program 
-		static std::shared_ptr<Shader> create(const std::string& vertex_src, const std::string& fragment_src);
 	};
 }

@@ -1,12 +1,14 @@
 #include "DeveloperPanel.hpp"
 
-// --- RLE ---
+// --- imgui ---
 #include <imgui/imgui.h>
 
+// --- Anvil ---
+#include "../../Utils.hpp"
 
 
 anvil::DeveloperPanel::DeveloperPanel() :
-	rle::Panel("Developer Panel")
+	ImGuiPanel("Developer Panel")
 {
 
 }
@@ -46,7 +48,12 @@ void anvil::DeveloperPanel::onPanelUpdate(const rle::time::step_ms delta)
 	}
 }
 
-void anvil::DeveloperPanel::onPanelDraw(rle::Renderer2D& renderer)
+void anvil::DeveloperPanel::onDraw(rle::Renderer2D& renderer)
+{
+
+}
+
+void anvil::DeveloperPanel::onImGuiDraw()
 {
 	if (ImGui::Begin("Debugger", &m_Open))
 	{

@@ -1,10 +1,10 @@
-#include "RLE/Node/Components/Render2D.hpp"
+#include "RLE/Node/Aspects/Render2D.hpp"
 
 // --- RLE ---
 #include "RLE/Debug/Log.hpp"
 #include "RLE/Node/Node.hpp"
-#include "RLE/Node/Components/Shape2D.hpp"
-#include "RLE/Node/Components/Transform2D.hpp"
+#include "RLE/Node/Aspects/Shape2D.hpp"
+#include "RLE/Node/Aspects/Transform2D.hpp"
 #include "RLE/Rendering/Renderer2D.hpp"
 
 
@@ -17,16 +17,18 @@ R"(
 
 #version 330 core
 
-layout (location = 0) in vec2 i_pos;
+layout (location = 0) in vec2 pos_i;
+layout (location = 1) in vec4 color_i;
 
-uniform mat4 u_ProjectionMatrix;
+uniform mat4 u_RLE_cameraProjection;
+uniform mat4 u_RLE_cameraView;
 
-out vec4 v_color;
+out vec4 color_v;
 
 void main()
 {
-    gl_Position = vec4(i_pos, 0.0, 1.0);
-    v_color = vec4(abs(i_pos.x), abs(i_pos.y), 1.0, 1.0);
+    gl_Position = u_RLE_cameraProjection * u_RLE_cameraView * vec4(pos_i, 1.0, 1.0);
+    color_v = color_i;
 }
 
 )";
@@ -36,15 +38,13 @@ R"(
 
 #version 330 core
 
-in vec4 v_color;
+in vec4 color_v;
 
 out vec4 f_color;
 
 void main()
 {
-    //f_color = vec4(1.0, 1.0, 1.0, 1.0);
-    //f_color = vec4(0.95, 0.10, 0.76, 1.0);
-    f_color = v_color;
+    f_color = color_v;
 }
 
 )";
@@ -55,7 +55,7 @@ void main()
 
 
 rle::Render2D::Render2D() :
-    m_Shader(factory<Shader>::create(vtx, frg))
+    m_Shader(ShaderHandle::make(vtx, frg))
 {
 
 }
@@ -63,7 +63,7 @@ rle::Render2D::Render2D() :
 rle::Render2D::Render2D(const std::string& vertex_src, const std::string& frag_src)
 {
     if (!vertex_src.empty() && !frag_src.empty())
-        m_Shader = factory<Shader>::create(vtx, frg);
+        m_Shader = ShaderHandle::make(vtx, frg);
 }
 
 void rle::Render2D::setIgnoreComponents(const bool flag)
@@ -89,7 +89,7 @@ void rle::Render2D::drawComponents(Renderer2D& renderer) const
     {
         RLE_CORE_WARN("Ignoring rendering for node {0}:{1}."
                       "A Shape2D component is needed to renderer components.", 
-                       node.UID.UID(), node.getName());
+                       node.UID.raw(), node.getName());
         return;
     }
 
@@ -101,7 +101,7 @@ void rle::Render2D::drawComponents(Renderer2D& renderer) const
 
 void rle::Render2D::drawChildren(Renderer2D& renderer) const
 {
-    for (const auto* child : getNode().getChildren())
+    for (const auto& child : getNode().getChildren())
         if (child)
             renderer.draw(*child);
 }

@@ -1,28 +1,28 @@
-#include "RLE/Node/Component.hpp"
+#include "RLE/Node/Aspect.hpp"
 
 // --- RLE ---
 #include "RLE/Node/Node.hpp"
 
 
 
-rle::Node& rle::Component::getNode()
+rle::Node& rle::Aspect::getNode()
 {
     /// @bug Need to throw exceptions here if the node doesnt have a parent
     return *m_Owner;
 }
 
-const rle::Node& rle::Component::getNode() const
+const rle::Node& rle::Aspect::getNode() const
 {
     /// @bug Need to throw exceptions here if the node doesnt have a parent
     return *m_Owner;
 }
 
-void rle::Component::onInit()
+void rle::Aspect::onInit()
 {
     
 }
 
-void rle::Component::onUpdate(const time::step_ms delta)
+void rle::Aspect::onUpdate(const time::step_ms delta)
 {
     
 }

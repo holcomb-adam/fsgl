@@ -52,7 +52,7 @@ namespace rle
 		// - GETTERS -------------------------------------------------------------------
 
 		// Get the underlying ID
-		std::size_t UID() const;
+		std::size_t raw() const;
 
 
 
