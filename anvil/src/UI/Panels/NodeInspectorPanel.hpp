@@ -4,13 +4,13 @@
 #include <RLE/Node/Node.hpp>
 
 // --- Anvil ---
-#include "../ImGui/ImGuiPanel.hpp"
+#include "../ImGui_Panel.hpp"
 
 
 
 namespace anvil
 {
-    class NodeInspectorPanel : public ImGuiPanel
+    class NodeInspectorPanel : public ImGui_Panel
     {
     public:
         NodeInspectorPanel(std::weak_ptr<rle::Node> inspect_node);
@@ -24,7 +24,7 @@ namespace anvil
         virtual void onPanelUpdate(const rle::time::step_ms delta) override;
         
         virtual void onDraw(rle::Renderer2D& renderer) override;
-        virtual void onImGuiDraw() override;
+        virtual void onImGuiBegin() override;
 
 
 

@@ -1,22 +1,22 @@
 #pragma once
 
-// --- GLM ---
+// --- glm ---
 #include <glm/vec2.hpp>
 
-// --- RLE ---
+// --- rle ---
 #include <RLE/Node/Node.hpp>
 #include <RLE/Rendering/FrameBuffer.hpp>
 #include <RLE/Rendering/GraphicsHandle.hpp>
 #include <RLE/Rendering/2D/View.hpp>
 
-// --- Anvil ---
-#include "../ImGui/ImGuiPanel.hpp"
+// --- anvil ---
+#include "../ImGui_Panel.hpp"
 
 
 
 namespace anvil
 {
-    class SceneEditorPanel : public ImGuiPanel
+    class SceneEditorPanel : public ImGui_Panel
     {
     public:
         ////////////////////////////////////////////////////////////////////////////////
@@ -40,7 +40,7 @@ namespace anvil
 
         // Inherited via ImGuiPanel
         virtual void onDraw(rle::Renderer2D& renderer) override;
-        virtual void onImGuiDraw() override;
+        virtual void onImGuiBegin() override;
 
 
 

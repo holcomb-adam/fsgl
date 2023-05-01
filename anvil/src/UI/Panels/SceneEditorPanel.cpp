@@ -12,7 +12,7 @@
 
 
 anvil::SceneEditorPanel::SceneEditorPanel(std::weak_ptr<rle::Node> scene_node) :
-    ImGuiPanel("Empty Scene"),
+    ImGui_Panel("Empty Scene"),
     m_SceneNode(std::move(scene_node))
 {
 
@@ -42,7 +42,7 @@ void anvil::SceneEditorPanel::onPanelExit()
 void anvil::SceneEditorPanel::onPanelUpdate(const rle::time::step_ms delta)
 {
     // Get the ImGui window
-    const auto imgui_win = ImGui::FindWindowByName(name().c_str());
+    const auto imgui_win = ImGui::FindWindowByName(getName().c_str());
     if (imgui_win)
     {
         // If the viewport has been resized, then the camera and FBO must be updated
@@ -74,30 +74,23 @@ void anvil::SceneEditorPanel::onDraw(rle::Renderer2D& renderer)
     renderer.endScene();
 }
 
-void anvil::SceneEditorPanel::onImGuiDraw()
+void anvil::SceneEditorPanel::onImGuiBegin()
 {
-    // Begin an ImGui window
-    if (ImGui::Begin(name().c_str()))
+    const auto& cursor_pos = ImGui::GetCursorScreenPos();
+
+    // Create a child window. This will make the rendered scene to fit nicely 
+    // and uniformly into the window
+    if (ImGui::BeginChild(ImGui::GetID("Scene View")))
     {
-        const auto& cursor_pos = ImGui::GetCursorScreenPos();
+        // Add the rendered scene to the ImGui window draw list
+        ImGui::GetWindowDrawList()->AddImage(
+            reinterpret_cast<void*>(static_cast<std::size_t>(m_FrameBuffer->texture())), // Need to cast to a larger type first
+            cursor_pos,
+            { cursor_pos.x + m_ViewportSize.x, cursor_pos.y + m_ViewportSize.y },
+            { 0, 1 }, // Need to invert the coordinate system
+            { 1, 0 });
 
-        // Create a child window. This will make the rendered scene to fit nicely 
-        // and uniformly into the window
-        if (ImGui::BeginChild(ImGui::GetID("Scene View")))
-        {
-            // Add the rendered scene to the ImGui window draw list
-            ImGui::GetWindowDrawList()->AddImage(
-                reinterpret_cast<void*>(static_cast<std::size_t>(m_FrameBuffer->texture())), // Need to cast to a larger type first
-                cursor_pos,
-                { cursor_pos.x + m_ViewportSize.x, cursor_pos.y + m_ViewportSize.y },
-                { 0, 1 }, // Need to invert the coordinate system
-                { 1, 0 });
-
-            // End the child window
-            ImGui::EndChild();
-        }
-
-        // End the window
-        ImGui::End();
+        // End the child window
+        ImGui::EndChild();
     }
 }

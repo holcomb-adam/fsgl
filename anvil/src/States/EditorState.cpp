@@ -1,9 +1,9 @@
 #include "EditorState.hpp"
 
 // --- Anvil ---
-#include "../UI/ImGui/ImGuiDemoPanel.hpp"
 #include "../UI/Panels/DeveloperPanel.hpp"
 #include "../UI/Panels/FileExplorerPanel.hpp"
+#include "../UI/Panels/ImGui_DemoPanel.hpp"
 #include "../UI/Panels/NodeHierarchyPanel.hpp"
 #include "../UI/Panels/NodeInspectorPanel.hpp"
 #include "../UI/Panels/SceneEditorPanel.hpp"

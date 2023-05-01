@@ -1,4 +1,4 @@
-#include "ImGuiRenderer.hpp"
+#include "ImGui_Renderer.hpp"
 
 // External Library includes
 #include <imgui/imgui.h>
@@ -19,6 +19,10 @@ void anvil::ImGuiRenderer::init()
 {
 	// Create the ImGui context
 	ImGui::CreateContext();
+
+	// Set imgui config flags to enable docking
+	auto& io = ImGui::GetIO();
+	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
 	// Get access to the engine
 	m_Engine = rle::Engine::get();

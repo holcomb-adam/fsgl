@@ -1,13 +1,13 @@
 #pragma once
 
 // --- Anvil ---
-#include "../ImGui/ImGuiPanel.hpp"
+#include "../ImGui_Panel.hpp"
 
 
 
 namespace anvil
 {
-    class FileExplorerPanel : public ImGuiPanel
+    class FileExplorerPanel : public ImGui_Panel
     {
     public:
         FileExplorerPanel(const std::string& dir);
@@ -20,7 +20,7 @@ namespace anvil
         virtual void onPanelUpdate(const rle::time::step_ms delta) override;
 
         virtual void onDraw(rle::Renderer2D& renderer) override;
-        virtual void onImGuiDraw() override;
+        virtual void onImGuiBegin() override;
 
 
 

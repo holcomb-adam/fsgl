@@ -6,7 +6,7 @@
 
 
 anvil::FileExplorerPanel::FileExplorerPanel(const std::string& dir) : 
-    ImGuiPanel("File Explorer"),
+    ImGui_Panel("File Explorer"),
     m_Directory(dir)
 {
 
@@ -32,13 +32,7 @@ void anvil::FileExplorerPanel::onDraw(rle::Renderer2D& renderer)
 
 }
 
-void anvil::FileExplorerPanel::onImGuiDraw()
+void anvil::FileExplorerPanel::onImGuiBegin()
 {
-    if (ImGui::Begin(name().c_str()))
-    {
-        ImGui::Text("%s", m_Directory.c_str());
-        
-
-        ImGui::End();
-    }
+    ImGui::Text("%s", m_Directory.c_str());
 }

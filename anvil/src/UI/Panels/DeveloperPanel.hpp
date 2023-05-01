@@ -4,14 +4,14 @@
 #include <vector>
 
 // --- Anvil ---
-#include "../ImGui/ImGuiPanel.hpp"
+#include "../ImGui_Panel.hpp"
 
 
 
 namespace anvil
 {
 	// Will provide debugging information through ImGui
-	class DeveloperPanel : public ImGuiPanel
+	class DeveloperPanel : public ImGui_Panel
 	{
 		static constexpr std::size_t FRAME_TIME_COUNTER_MAX_SIZE = 300;
 
@@ -27,7 +27,7 @@ namespace anvil
 		virtual void onPanelUpdate(const rle::time::step_ms delta) override;
 
 		virtual void onDraw(rle::Renderer2D& renderer) override;
-		virtual void onImGuiDraw() override;
+		virtual void onImGuiBegin() override;
 
 
 

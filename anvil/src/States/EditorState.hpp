@@ -4,10 +4,10 @@
 #include <RLE/Core/EngineState.hpp>
 #include <RLE/Rendering/GraphicsHandle.hpp>
 #include <RLE/Rendering/Renderer2D.hpp>
-#include <RLE/UI/DockSpace.hpp>
 
 // --- Anvil ---
-#include "../UI/ImGui/ImGuiRenderer.hpp"
+#include "../UI/ImGui_DockSpace.hpp"
+#include "../UI/ImGui_Renderer.hpp"
 
 
 
@@ -55,7 +55,7 @@ namespace anvil
 
         // UI
         ImGuiRenderer m_ImGuiRenderer;
-        rle::DockSpace m_DockSpace;
+        ImGui_DockSpace m_DockSpace;
 
         // 2D Scene rendering
         rle::Renderer2D m_Renderer2D;

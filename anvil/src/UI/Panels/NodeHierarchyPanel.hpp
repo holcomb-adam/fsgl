@@ -7,13 +7,13 @@
 #include <RLE/Node/Node.hpp>
 
 // --- Anvil ---
-#include "../ImGui/ImGuiPanel.hpp"
+#include "../ImGui_Panel.hpp"
 
 
 
 namespace anvil
 {
-    class NodeHierarchyPanel : public ImGuiPanel
+    class NodeHierarchyPanel : public ImGui_Panel
     {
     public:
         /// @brief 
@@ -30,7 +30,7 @@ namespace anvil
         virtual void onPanelUpdate(const rle::time::step_ms delta) override;
 
         virtual void onDraw(rle::Renderer2D& renderer) override;
-        virtual void onImGuiDraw() override;
+        virtual void onImGuiBegin() override;
 
 
 

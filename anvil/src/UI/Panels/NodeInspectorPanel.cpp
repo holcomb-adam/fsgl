@@ -6,7 +6,7 @@
 
 
 anvil::NodeInspectorPanel::NodeInspectorPanel(std::weak_ptr<rle::Node> inspect_node) : 
-    ImGuiPanel("Node Inspector"),
+    ImGui_Panel("Node Inspector"),
     m_InspectNode(std::move(inspect_node))
 {
 
@@ -32,12 +32,7 @@ void anvil::NodeInspectorPanel::onDraw(rle::Renderer2D& renderer)
     
 }
 
-void anvil::NodeInspectorPanel::onImGuiDraw()
+void anvil::NodeInspectorPanel::onImGuiBegin()
 {
-    // Begin an imgui window
-    if (ImGui::Begin(name().c_str()))
-    {
-        ImGui::Text("%s", m_InspectNode.lock()->getName().c_str());
-        ImGui::End();
-    }
+    ImGui::Text("%s", m_InspectNode.lock()->getName().c_str());
 }
