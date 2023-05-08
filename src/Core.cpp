@@ -1,10 +1,10 @@
-#include "RLEpch.hpp"
-#include "RLE/Core/Core.hpp"
+#include "fsgl_pch.hpp"
+#include "fsgl/Core/Core.hpp"
 
-// --- RLE ---
-#include "RLE/Core/Window.hpp"
-#include "RLE/Debug/Log.hpp"
-#include "RLE/Node/Node.hpp"
+// --- fsgl ---
+#include "fsgl/Core/Window.hpp"
+#include "fsgl/Debug/Log.hpp"
+#include "fsgl/Node/Node.hpp"
 
 
 
@@ -15,12 +15,12 @@ namespace
 
 
 
-bool rle::core::isCoreInitialized()
+bool fsgl::core::isCoreInitialized()
 {
     return s_CoreInitialized;
 }
 
-bool rle::core::initialize()
+bool fsgl::core::initialize()
 {
     log::init();
     Node::initializeRootNode();

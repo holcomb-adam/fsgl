@@ -1,31 +1,31 @@
-#include "RLEpch.hpp"
-#include "RLE/Resources/Geometry.hpp"
+#include "fsgl_pch.hpp"
+#include "fsgl/Resources/Geometry.hpp"
 
-// --- RLE ---
-#include "RLE/Debug/Log.hpp"
+// --- fsgl ---
+#include "fsgl/Debug/Log.hpp"
 
 
 
-rle::Geometry::Geometry() : 
+fsgl::Geometry::Geometry() : 
 	Resource(true, "", "")
 {
 
 }
 
-rle::Geometry::Geometry(const std::vector<glm::vec2>& vertices) : 
+fsgl::Geometry::Geometry(const std::vector<glm::vec2>& vertices) : 
 	Resource(true, "","")
 {
 	load(vertices.data(), vertices.size());
 }
 
-rle::Geometry::Geometry(const std::string& path) :
+fsgl::Geometry::Geometry(const std::string& path) :
 	Resource(false, "", path)
 {
 	if (!load(path))
-		RLE_CORE_WARN("Node \"{0}\" failed to load from path \"{1}\"", name(), path);
+		FSGL_CORE_WARN("Node \"{0}\" failed to load from path \"{1}\"", name(), path);
 }
 
-void rle::Geometry::load(const glm::vec2* data, const std::size_t n)
+void fsgl::Geometry::load(const glm::vec2* data, const std::size_t n)
 {
 	m_Vertices.clear();
 
@@ -33,22 +33,22 @@ void rle::Geometry::load(const glm::vec2* data, const std::size_t n)
 		m_Vertices.push_back(data[i]);
 }
 
-bool rle::Geometry::load(const std::string& path)
+bool fsgl::Geometry::load(const std::string& path)
 {
 	return false;
 }
 
-std::size_t rle::Geometry::count() const
+std::size_t fsgl::Geometry::count() const
 {
 	return m_Vertices.size();
 }
 
-const glm::vec2* rle::Geometry::data() const
+const glm::vec2* fsgl::Geometry::data() const
 {
 	return m_Vertices.data();
 }
 
-std::vector<std::uint32_t> rle::Geometry::indices() const
+std::vector<std::uint32_t> fsgl::Geometry::indices() const
 {
 	std::vector<std::uint32_t> vec;
 	
@@ -58,7 +58,7 @@ std::vector<std::uint32_t> rle::Geometry::indices() const
 	///      geometry satisfies the triangle array requirement.
 	if (m_Vertices.size() % 3 != 0)
 	{
-		RLE_CORE_WARN(
+		FSGL_CORE_WARN(
 			"Geometry has invalid geometry. Expected a multiple of 3, has {0}.",
 			m_Vertices.size());
 		return vec;

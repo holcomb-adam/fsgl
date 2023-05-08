@@ -1,28 +1,29 @@
-#include "RLE/Node/Aspect.hpp"
+#include "fsgl_pch.hpp"
+#include "fsgl/Node/Aspect.hpp"
 
-// --- RLE ---
-#include "RLE/Node/Node.hpp"
+// --- fsgl ---
+#include "fsgl/Node/Node.hpp"
 
 
 
-rle::Node& rle::Aspect::getNode()
+fsgl::Node& fsgl::Aspect::getNode()
 {
     /// @bug Need to throw exceptions here if the node doesnt have a parent
     return *m_Owner;
 }
 
-const rle::Node& rle::Aspect::getNode() const
+const fsgl::Node& fsgl::Aspect::getNode() const
 {
     /// @bug Need to throw exceptions here if the node doesnt have a parent
     return *m_Owner;
 }
 
-void rle::Aspect::onInit()
+void fsgl::Aspect::onInit()
 {
     
 }
 
-void rle::Aspect::onUpdate(const time::step_ms delta)
+void fsgl::Aspect::onUpdate(const time::step_ms delta)
 {
     
 }

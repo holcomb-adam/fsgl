@@ -1,20 +1,20 @@
-#include "RLEpch.hpp"
-#include "RLE/Node/Aspects/Shape2D.hpp"
+#include "fsgl_pch.hpp"
+#include "fsgl/Node/Aspects/Shape2D.hpp"
 
-// --- RLE ---
-#include "RLE/Core/Core.hpp"
-#include "RLE/Rendering/IndexBuffer.hpp"
-#include "RLE/Rendering/VertexBuffer.hpp"
-#include "RLE/Rendering/2D/Vertex2D.hpp"
+// --- fsgl ---
+#include "fsgl/Core/Core.hpp"
+#include "fsgl/Rendering/IndexBuffer.hpp"
+#include "fsgl/Rendering/VertexBuffer.hpp"
+#include "fsgl/Rendering/2D/Vertex2D.hpp"
 
 
 
-const std::shared_ptr<rle::VertexArray> rle::Shape2D::getVertexArray() const
+const std::shared_ptr<fsgl::VertexArray> fsgl::Shape2D::getVertexArray() const
 {
     return m_VAO;
 }
 
-void rle::Shape2D::setGeometry(std::shared_ptr<Geometry> geometry)
+void fsgl::Shape2D::setGeometry(std::shared_ptr<Geometry> geometry)
 {
     m_Geometry = geometry;
     
@@ -27,7 +27,7 @@ void rle::Shape2D::setGeometry(std::shared_ptr<Geometry> geometry)
     const auto geometry_count = geometry->count();
     std::vector<Vertex2D> vertex_data;
     for (std::size_t i = 0; i < geometry_count; i++)
-        vertex_data.push_back(Vertex2D{geometry_data[i], glm::vec4(RLE_BLUE, 1.0f)});
+        vertex_data.push_back(Vertex2D{geometry_data[i], glm::vec4(FSGL_BLUE, 1.0f)});
     m_VBO = factory<VertexBuffer>::create(vertex_data.data(), vertex_data.size());
     m_VBO->bind();
     m_VAO->addVertexBuffer(m_VBO);

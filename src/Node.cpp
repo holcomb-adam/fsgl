@@ -1,17 +1,17 @@
-#include "RLEpch.hpp"
-#include "RLE/Node/Node.hpp"
+#include "fsgl_pch.hpp"
+#include "fsgl/Node/Node.hpp"
 
-// --- RLE ---
-#include "RLE/Debug/Log.hpp"
-#include "RLE/Node/Aspects/Render2D.hpp"
+// --- fsgl ---
+#include "fsgl/Debug/Log.hpp"
+#include "fsgl/Node/Aspects/Render2D.hpp"
 
 
 
 namespace
 {
-    // - RLE Root Node -
+    // - fsgl Root Node -
     // This is the root scene node. All main scenes should be a child of this node
-    struct RootNode : public rle::Node
+    struct RootNode : public fsgl::Node
     {
         // Default Constructor
         inline RootNode() : 
@@ -19,58 +19,58 @@ namespace
     };
 
     // static root node instance
-    static std::shared_ptr<rle::Node> s_Root;
+    static std::shared_ptr<fsgl::Node> s_Root;
 }
 
 
 
-void rle::Node::initializeRootNode()
+void fsgl::Node::initializeRootNode()
 {
     s_Root.reset(new RootNode());
 
     auto& render2d_comp = s_Root->addComponent<Render2D>("", ""); // Dont compile shader
     render2d_comp.setIgnoreComponents(true); // Dont render components for root node
 
-    RLE_CORE_INFO("Initialized root node");
+    FSGL_CORE_INFO("Initialized root node");
 }
 
-const std::shared_ptr<rle::Node>& rle::Node::getRoot()
+const std::shared_ptr<fsgl::Node>& fsgl::Node::getRoot()
 {
     return s_Root;
 }
 
-rle::Node::Node(const std::string& name) : 
+fsgl::Node::Node(const std::string& name) : 
     m_Name(name)
 {
 
 }
 
-void rle::Node::onInit(Node* parent)
+void fsgl::Node::onInit(Node* parent)
 {
 
 }
 
-void rle::Node::onUpdate(const time::step_ms delta)
+void fsgl::Node::onUpdate(const time::step_ms delta)
 {
 
 }
 
-const std::string &rle::Node::getName() const
+const std::string &fsgl::Node::getName() const
 {
     return m_Name;
 }
 
-rle::Node* rle::Node::getParent()
+fsgl::Node* fsgl::Node::getParent()
 {
     return m_Parent;
 }
 
-const std::vector<std::unique_ptr<rle::Node>>& rle::Node::getChildren() const
+const std::vector<std::unique_ptr<fsgl::Node>>& fsgl::Node::getChildren() const
 {
     return m_Children;
 }
 
-std::unique_ptr<rle::Node>& rle::Node::addNode(Node* node)
+std::unique_ptr<fsgl::Node>& fsgl::Node::addNode(Node* node)
 {
     // Add the child node
     auto& uptr = m_Children.emplace_back(node);
@@ -82,7 +82,7 @@ std::unique_ptr<rle::Node>& rle::Node::addNode(Node* node)
     return uptr;
 }
 
-void rle::Node::update(const time::step_ms delta)
+void fsgl::Node::update(const time::step_ms delta)
 {
     onUpdate(delta);
 

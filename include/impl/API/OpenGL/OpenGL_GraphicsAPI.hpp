@@ -1,7 +1,7 @@
 #pragma once
 
-// RLE Library includes
-#include "RLE/Rendering/GraphicsAPI.hpp"
+// --- fsgl ---
+#include "fsgl/Rendering/GraphicsAPI.hpp"
 
 
 
@@ -10,9 +10,9 @@ struct GLFWwindow;
 
 
 
-namespace rle
+namespace fsgl
 {
-	// RLE Forward Declarations
+	// FSGL Forward Declarations
 	class Window;
 
 

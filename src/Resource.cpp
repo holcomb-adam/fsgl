@@ -1,9 +1,9 @@
-#include "RLEpch.hpp"
-#include "RLE/Resources/Resource.hpp"
+#include "fsgl_pch.hpp"
+#include "fsgl/Resources/Resource.hpp"
 
 
 
-rle::Resource::Resource(const bool local, const std::string& name, const std::string& path) : 
+fsgl::Resource::Resource(const bool local, const std::string& name, const std::string& path) : 
 	m_Local(local),
 	m_Name(name),
 	m_Path(path)
@@ -11,17 +11,17 @@ rle::Resource::Resource(const bool local, const std::string& name, const std::st
 
 }
 
-bool rle::Resource::getIsLocal() const
+bool fsgl::Resource::getIsLocal() const
 {
 	return m_Local;
 }
 
-const std::string& rle::Resource::name() const
+const std::string& fsgl::Resource::name() const
 {
 	return m_Name;
 }
 
-const std::string& rle::Resource::path() const
+const std::string& fsgl::Resource::path() const
 {
 	return m_Path;
 }

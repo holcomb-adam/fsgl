@@ -3,12 +3,12 @@
 // Standard Library includes
 #include <cstdint>
 
-// RLE Library includes
-#include "RLE/Rendering/VertexBuffer.hpp"
+// --- fsgl ---
+#include "fsgl/Rendering/VertexBuffer.hpp"
 
 
 
-namespace rle
+namespace fsgl
 {
 	namespace impl
 	{

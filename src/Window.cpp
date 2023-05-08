@@ -1,23 +1,23 @@
-#include "RLEpch.hpp"
-#include "RLE/Core/Window.hpp"
+#include "fsgl_pch.hpp"
+#include "fsgl/Core/Window.hpp"
 
 
 
 // Check the windowing API that is being used
-#   if defined(RLE_API_WINDOW_GLFW)
+#   if defined(FSGL_API_WINDOW_GLFW)
 #       include "impl/API/GLFW/GLFW_Window.hpp"
-#       define RLE_API_WINDOW_T ::rle::impl::GLFW_Window
+#       define FSGL_API_WINDOW_T ::fsgl::impl::GLFW_Window
 
 #   else
-#       error RLE doesnt support console windowing yet!
+#       error FSGL doesnt support console windowing yet!
 
 #   endif
 
 
 
-std::unique_ptr<rle::Window> rle::factory<rle::Window>::create(const Window::Properties& props)
+std::unique_ptr<fsgl::Window> fsgl::factory<fsgl::Window>::create(const Window::Properties& props)
 {
 	// Create API window instance
-	auto api_win = factory<RLE_API_WINDOW_T>::create(props);
+	auto api_win = factory<FSGL_API_WINDOW_T>::create(props);
 	return std::move(api_win);
 }

@@ -1,7 +1,7 @@
 #pragma once
 
-// --- RLE ---
-#include "RLE/Core/Window.hpp"
+// --- fsgl ---
+#include "fsgl/Core/Window.hpp"
 
 
 
@@ -10,7 +10,7 @@ struct GLFWwindow;
 
 
 
-namespace rle
+namespace fsgl
 {
     namespace impl
     {

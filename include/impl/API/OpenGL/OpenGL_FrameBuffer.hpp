@@ -3,12 +3,12 @@
 // --- Standard ---
 #include <cstdint>
 
-// --- RLE ---
-#include "RLE/Rendering/FrameBuffer.hpp"
+// --- fsgl ---
+#include "fsgl/Rendering/FrameBuffer.hpp"
 
 
 
-namespace rle
+namespace fsgl
 {
 	namespace impl
 	{

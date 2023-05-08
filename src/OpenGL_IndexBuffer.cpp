@@ -1,4 +1,4 @@
-#include "RLEpch.hpp"
+#include "fsgl_pch.hpp"
 #include "impl/API/OpenGL/OpenGL_IndexBuffer.hpp"
 
 // --- GLAD ---
@@ -6,7 +6,7 @@
 
 
 
-rle::impl::OpenGL_IndexBuffer::OpenGL_IndexBuffer(const std::uint32_t count, const std::uint32_t* indices) :
+fsgl::impl::OpenGL_IndexBuffer::OpenGL_IndexBuffer(const std::uint32_t count, const std::uint32_t* indices) :
 	m_Count(count)
 {
 	glCreateBuffers(1, &m_ID);
@@ -18,22 +18,22 @@ rle::impl::OpenGL_IndexBuffer::OpenGL_IndexBuffer(const std::uint32_t count, con
 	glBufferData(GL_COPY_WRITE_BUFFER, count * sizeof(std::uint32_t), indices, GL_STATIC_DRAW);
 }
 
-rle::impl::OpenGL_IndexBuffer::~OpenGL_IndexBuffer()
+fsgl::impl::OpenGL_IndexBuffer::~OpenGL_IndexBuffer()
 {
 	glDeleteBuffers(1, &m_ID);
 }
 
-std::uint32_t rle::impl::OpenGL_IndexBuffer::count() const
+std::uint32_t fsgl::impl::OpenGL_IndexBuffer::count() const
 {
 	return m_Count;
 }
 
-void rle::impl::OpenGL_IndexBuffer::bind() const
+void fsgl::impl::OpenGL_IndexBuffer::bind() const
 {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_ID);
 }
 
-void rle::impl::OpenGL_IndexBuffer::unbind() const
+void fsgl::impl::OpenGL_IndexBuffer::unbind() const
 {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }

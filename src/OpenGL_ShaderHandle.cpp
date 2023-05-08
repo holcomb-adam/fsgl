@@ -1,4 +1,4 @@
-#include "RLEpch.hpp"
+#include "fsgl_pch.hpp"
 #include "impl/API/OpenGL/OpenGL_ShaderHandle.hpp"
 
 // --- GLAD ---
@@ -7,12 +7,12 @@
 // --- GLM ---
 #include <glm/gtc/type_ptr.hpp>
 
-// --- RLE ---
-#include "RLE/Debug/Log.hpp"
+// --- fsgl ---
+#include "fsgl/Debug/Log.hpp"
 
 
 
-rle::impl::OpenGL_ShaderHandle::OpenGL_ShaderHandle(const std::string& vertex_src, const std::string& fragment_src)
+fsgl::impl::OpenGL_ShaderHandle::OpenGL_ShaderHandle(const std::string& vertex_src, const std::string& fragment_src)
 {
 	// For reference on OpenGL shader compilation and where this code came from
 	//     see: https://www.khronos.org/opengl/wiki/Shader_Compilation
@@ -45,7 +45,7 @@ rle::impl::OpenGL_ShaderHandle::OpenGL_ShaderHandle(const std::string& vertex_sr
 		glDeleteShader(vertexShader);
 
 		// Log shader compilation data
-		RLE_CORE_ERROR("{0}", infoLog.data());
+		FSGL_CORE_ERROR("{0}", infoLog.data());
 		assert(false); // Vertex shader compilation has failed
 	}
 
@@ -76,7 +76,7 @@ rle::impl::OpenGL_ShaderHandle::OpenGL_ShaderHandle(const std::string& vertex_sr
 		glDeleteShader(vertexShader);
 
 		// Log shader compilation data
-		RLE_CORE_ERROR("{0}", infoLog.data());
+		FSGL_CORE_ERROR("{0}", infoLog.data());
 		assert(false); // Fragment shader compilation has failed
 	}
 
@@ -111,7 +111,7 @@ rle::impl::OpenGL_ShaderHandle::OpenGL_ShaderHandle(const std::string& vertex_sr
 		glDeleteShader(fragmentShader);
 
 		// Log shader compilation data
-		RLE_CORE_ERROR("{0}", infoLog.data());
+		FSGL_CORE_ERROR("{0}", infoLog.data());
 		assert(false); // Fragment shader compilation has failed
 	}
 
@@ -123,22 +123,22 @@ rle::impl::OpenGL_ShaderHandle::OpenGL_ShaderHandle(const std::string& vertex_sr
 	m_ID = program;
 }
 
-rle::impl::OpenGL_ShaderHandle::~OpenGL_ShaderHandle()
+fsgl::impl::OpenGL_ShaderHandle::~OpenGL_ShaderHandle()
 {
 	glDeleteProgram(m_ID);
 }
 
-void rle::impl::OpenGL_ShaderHandle::bind() const
+void fsgl::impl::OpenGL_ShaderHandle::bind() const
 {
 	glUseProgram(m_ID);
 }
 
-void rle::impl::OpenGL_ShaderHandle::unbind() const
+void fsgl::impl::OpenGL_ShaderHandle::unbind() const
 {
 	glUseProgram(0);
 }
 
-void rle::impl::OpenGL_ShaderHandle::uploadUniform(const std::string& name, const glm::mat4& matrix)
+void fsgl::impl::OpenGL_ShaderHandle::uploadUniform(const std::string& name, const glm::mat4& matrix)
 {
 	const auto location = glGetUniformLocation(m_ID, name.c_str());
 	glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));

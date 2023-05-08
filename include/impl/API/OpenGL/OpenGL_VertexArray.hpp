@@ -1,11 +1,11 @@
 #pragma once
 
-// RLE Library includes
-#include "RLE/Rendering/VertexArray.hpp"
+// --- fsgl ---
+#include "fsgl/Rendering/VertexArray.hpp"
 
 
 
-namespace rle
+namespace fsgl
 {
 	namespace impl
 	{

@@ -1,14 +1,14 @@
-#include "RLEpch.hpp"
-#include "RLE/Core/Process.hpp"
+#include "fsgl_pch.hpp"
+#include "fsgl/Core/Process.hpp"
 
 
 
-void rle::Process::init(int argc, char* argv[])
+void fsgl::Process::init(int argc, char* argv[])
 {
     onProcessInit(argc, argv);
 }
 
-int rle::Process::execute()
+int fsgl::Process::execute()
 {
     m_Executing = true;
 
@@ -27,17 +27,17 @@ int rle::Process::execute()
     return 0;
 }
 
-void rle::Process::exit()
+void fsgl::Process::exit()
 {
     m_Executing = false;
 }
 
-void rle::Process::onProcessInit(int argc, char* argv[])
+void fsgl::Process::onProcessInit(int argc, char* argv[])
 {
     
 }
 
-void rle::Process::onProcessExit()
+void fsgl::Process::onProcessExit()
 {
 
 }

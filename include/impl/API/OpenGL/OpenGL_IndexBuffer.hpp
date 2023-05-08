@@ -1,11 +1,11 @@
 #pragma once
 
-// RLE Library includes
-#include "RLE/Rendering/IndexBuffer.hpp"
+// --- fsgl ---
+#include "fsgl/Rendering/IndexBuffer.hpp"
 
 
 
-namespace rle
+namespace fsgl
 {
 	namespace impl
 	{

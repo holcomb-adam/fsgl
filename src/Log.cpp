@@ -1,5 +1,5 @@
-#include "RLEpch.hpp"
-#include "RLE/Debug/Log.hpp"
+#include "fsgl_pch.hpp"
+#include "fsgl/Debug/Log.hpp"
 
 // --- SPDLOG ---
 #include <spdlog/sinks/stdout_color_sinks.h>
@@ -17,7 +17,7 @@ namespace
 
 
 
-void rle::log::init()
+void fsgl::log::init()
 {
 	spdlog::set_pattern("%^[%l]: [%Y-%m-%d %T] [%n] %v%$");
 	
@@ -29,15 +29,15 @@ void rle::log::init()
 	s_ClientLogger = spdlog::stdout_color_mt("Client");
 	s_ClientLogger->set_level(spdlog::level::trace);
 
-    RLE_CORE_INFO("Initialized logging system!");
+    FSGL_CORE_INFO("Initialized logging system!");
 }
 
-std::shared_ptr<spdlog::logger>& rle::log::coreLogger()
+std::shared_ptr<spdlog::logger>& fsgl::log::coreLogger()
 {
 	return s_CoreLogger;
 }
 
-std::shared_ptr<spdlog::logger>& rle::log::clientLogger()
+std::shared_ptr<spdlog::logger>& fsgl::log::clientLogger()
 {
 	return s_ClientLogger;
 }

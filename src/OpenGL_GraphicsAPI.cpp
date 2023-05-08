@@ -1,4 +1,4 @@
-#include "RLEpch.hpp"
+#include "fsgl_pch.hpp"
 #include "impl/API/OpenGL/OpenGL_GraphicsAPI.hpp"
 
 // --- GLAD ---
@@ -7,10 +7,10 @@
 // --- GLFW ---
 #include <GLFW/glfw3.h>
 
-// --- RLE ---
-#include "RLE/Debug/Log.hpp"
-#include "RLE/Rendering/IndexBuffer.hpp"
-#include "RLE/Rendering/VertexArray.hpp"
+// --- fsgl ---
+#include "fsgl/Debug/Log.hpp"
+#include "fsgl/Rendering/IndexBuffer.hpp"
+#include "fsgl/Rendering/VertexArray.hpp"
 
 
 
@@ -28,23 +28,23 @@ namespace // OpenGL House Keeping
 		switch (severity)
 		{
 		case GL_DEBUG_SEVERITY_NOTIFICATION:
-			RLE_CORE_INFO("OpenGL[NOTIFICATION]: {0}", message);
+			FSGL_CORE_INFO("OpenGL[NOTIFICATION]: {0}", message);
 			break;
 
 		case GL_DEBUG_SEVERITY_LOW:
-			RLE_CORE_WARN("OpenGL[LOW]: {0}", message);
+			FSGL_CORE_WARN("OpenGL[LOW]: {0}", message);
 			break;
 
 		case GL_DEBUG_SEVERITY_MEDIUM:
-			RLE_CORE_ERROR("OpenGL[MEDIUM]: {0}", message);
+			FSGL_CORE_ERROR("OpenGL[MEDIUM]: {0}", message);
 			break;
 
 		case GL_DEBUG_SEVERITY_HIGH:
-			RLE_CORE_CRITICAL("OpenGL[HIGH]: {0}", message);
+			FSGL_CORE_CRITICAL("OpenGL[HIGH]: {0}", message);
 			break;
 
 		default:
-			RLE_CORE_CRITICAL("Unkown OpenGL severity level!");
+			FSGL_CORE_CRITICAL("Unkown OpenGL severity level!");
 			assert(false);
 			break;
 		}
@@ -53,22 +53,22 @@ namespace // OpenGL House Keeping
 
 
 
-rle::impl::OpenGL_GraphicsAPI::OpenGL_GraphicsAPI() :
+fsgl::impl::OpenGL_GraphicsAPI::OpenGL_GraphicsAPI() :
 	GraphicsAPI(GraphicsAPI::API::OpenGL)
 {
 
 }
 
-rle::impl::OpenGL_GraphicsAPI::~OpenGL_GraphicsAPI()
+fsgl::impl::OpenGL_GraphicsAPI::~OpenGL_GraphicsAPI()
 {
 
 }
 
-void rle::impl::OpenGL_GraphicsAPI::init()
+void fsgl::impl::OpenGL_GraphicsAPI::init()
 {
 	// Enable GLAD
 	const int version = gladLoadGL(glfwGetProcAddress);
-	RLE_CORE_INFO("GLAD: Successfully loaded glfw proc adress");
+	FSGL_CORE_INFO("GLAD: Successfully loaded glfw proc adress");
 
 	// Enable OpenGL debugging
 	glEnable(GL_DEBUG_OUTPUT);
@@ -76,28 +76,28 @@ void rle::impl::OpenGL_GraphicsAPI::init()
 	glDebugMessageCallback(&gl_onDebugMessage, nullptr);
 	glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION, 0, nullptr, GL_FALSE);
 
-	RLE_CORE_INFO("OpenGL info:");
-	RLE_CORE_INFO("-\tVendor: {0}", (const char*)glGetString(GL_VENDOR));
-	RLE_CORE_INFO("-\tRenderer: {0}", (const char*)glGetString(GL_RENDERER));
-	RLE_CORE_INFO("-\tVersion: {0}", (const char*)glGetString(GL_VERSION));
+	FSGL_CORE_INFO("OpenGL info:");
+	FSGL_CORE_INFO("-\tVendor: {0}", (const char*)glGetString(GL_VENDOR));
+	FSGL_CORE_INFO("-\tRenderer: {0}", (const char*)glGetString(GL_RENDERER));
+	FSGL_CORE_INFO("-\tVersion: {0}", (const char*)glGetString(GL_VERSION));
 }
 
-void rle::impl::OpenGL_GraphicsAPI::setClearColor(const glm::vec4& color) const
+void fsgl::impl::OpenGL_GraphicsAPI::setClearColor(const glm::vec4& color) const
 {
 	glClearColor(color.r, color.g, color.b, color.a);
 }
 
-void rle::impl::OpenGL_GraphicsAPI::clear() const
+void fsgl::impl::OpenGL_GraphicsAPI::clear() const
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void rle::impl::OpenGL_GraphicsAPI::viewport(const std::int32_t x, const std::int32_t y, const std::int32_t width, const std::int32_t height) const
+void fsgl::impl::OpenGL_GraphicsAPI::viewport(const std::int32_t x, const std::int32_t y, const std::int32_t width, const std::int32_t height) const
 {
 	glViewport(x, y, width, height);
 }
 
-void rle::impl::OpenGL_GraphicsAPI::draw(const std::shared_ptr<VertexArray>& vao) const
+void fsgl::impl::OpenGL_GraphicsAPI::draw(const std::shared_ptr<VertexArray>& vao) const
 {
 	vao->bind();
 	glDrawElements(GL_TRIANGLES, vao->getIndexBuffer()->count(), GL_UNSIGNED_INT, nullptr);

@@ -1,29 +1,29 @@
-#include "RLEpch.hpp" 
-#include "RLE/Core/Engine.hpp"
+#include "fsgl_pch.hpp" 
+#include "fsgl/Core/Engine.hpp"
 
 // --- Standard ---
 #include <cassert>
 
-// --- RLE ---
-#include "RLE/Debug/Log.hpp"
+// --- fsgl ---
+#include "fsgl/Debug/Log.hpp"
 
 
 
 namespace
 {
-    static rle::Engine* s_EngineInstance = nullptr;
+    static fsgl::Engine* s_EngineInstance = nullptr;
 }
 
 
 
-rle::Engine* rle::Engine::get()
+fsgl::Engine* fsgl::Engine::get()
 {
     return s_EngineInstance;
 }
 
 
 
-rle::Engine::Engine(const Window::Properties& props) :
+fsgl::Engine::Engine(const Window::Properties& props) :
     m_Window(factory<Window>::create(props))
 {
     // TODO: This should be converted to a better singleton design
@@ -43,28 +43,28 @@ rle::Engine::Engine(const Window::Properties& props) :
     GraphicsAPI::init(props.api);
 }
 
-std::unique_ptr<rle::Window>& rle::Engine::getWindow()
+std::unique_ptr<fsgl::Window>& fsgl::Engine::getWindow()
 {
     return m_Window;
 }
 
-const std::unique_ptr<rle::Window>& rle::Engine::getWindow() const
+const std::unique_ptr<fsgl::Window>& fsgl::Engine::getWindow() const
 {
     return m_Window;
 }
 
-void rle::Engine::pushState(EngineState* state)
+void fsgl::Engine::pushState(EngineState* state)
 {
     auto& uptr = m_StateStack.emplace(state);
     uptr->onStateEnter();
 }
 
-void rle::Engine::onProcessInit(int argc, char* argv[])
+void fsgl::Engine::onProcessInit(int argc, char* argv[])
 {
     onEngineInit(argc, argv);
 }
 
-void rle::Engine::onProcessUpdate(const time::step_ms delta)
+void fsgl::Engine::onProcessUpdate(const time::step_ms delta)
 {
     // Update the window and handle event polling
     m_Window->update();
@@ -75,14 +75,14 @@ void rle::Engine::onProcessUpdate(const time::step_ms delta)
     m_StateStack.top()->onStateUpdate(delta);
 }
 
-void rle::Engine::onProcessExit()
+void fsgl::Engine::onProcessExit()
 {
     // Destroy the window
     m_Window.reset();
 }
 
-void rle::Engine::onSignal_WindowClosed(Window& window)
+void fsgl::Engine::onSignal_WindowClosed(Window& window)
 {
-    RLE_CORE_TRACE("Window Closed Signal Recieved!");
+    FSGL_CORE_TRACE("Window Closed Signal Recieved!");
     Process::exit();
 }

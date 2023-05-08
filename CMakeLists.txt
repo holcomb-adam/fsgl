@@ -1,4 +1,4 @@
-# Rogue-like Engine CMake file
+# fsgl Cmake file
 
 cmake_minimum_required(VERSION 3.1)
 
@@ -7,8 +7,8 @@ cmake_minimum_required(VERSION 3.1)
 # Ensure git submodules are initialized
 find_package(Git QUIET)
 if (GIT_FOUND AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git")
-    option(RLE_CHECK_GITSUBMODULES "Check submodule statuses during build" ON)
-    if (RLE_CHECK_GITSUBMODULES)
+    option(FSGL_CHECK_GITSUBMODULES "Check submodule statuses during build" ON)
+    if (FSGL_CHECK_GITSUBMODULES)
         message(STATUS "Updating git submodules...")
         execute_process(COMMAND ${GIT_EXECUTABLE} submodule update --init --recursive
                         WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
@@ -21,7 +21,7 @@ endif()
 
 
 
-# Setup glad library before RLE project because for whatever reason glad will 
+# Setup glad library before fsgl project because for whatever reason glad will 
 # hijack the root cmake project causing linking issues
 include(external/glad/cmake/CMakeLists.txt)
 glad_add_library(glad_core45 STATIC API gl:core=4.5)
@@ -29,9 +29,8 @@ glad_add_library(glad_core45 STATIC API gl:core=4.5)
 
 
 # Root project for cmake
-project(rogue-like-engine LANGUAGES CXX)
-
-message(STATUS "Building rogue-like engine...")
+message(STATUS "Building fsgl project...")
+project(fsgl LANGUAGES CXX)
 
 
 
@@ -57,13 +56,12 @@ endif()
 # --- USER OPTIONS -------------------------------------------------------------
 
 # API
-option(RLE_BUILD_ANVIL "Build the rle editor Anvil" ON)
 
 
 
 # --- BUILD EXTERNAL PROJECTS --------------------------------------------------
 
-message(STATUS "Building rle dependencies...")
+message(STATUS "Building fsgl dependencies...")
 
 # spdlog
 add_subdirectory(external/spdlog)
@@ -80,37 +78,20 @@ add_subdirectory(external/glfw)
 
 
 
-# --- BUILD RLE ----------------------------------------------------------------
+# --- BUILD FSGL ----------------------------------------------------------------
 
 # Get project include files
-file(GLOB_RECURSE RLE_INCLUDE_FILES include/*.hpp)
-file(GLOB         RLE_SOURCE_FILES  src/*.cpp)
+file(GLOB_RECURSE FSGL_INCLUDE_FILES include/*.hpp)
+file(GLOB         FSGL_SOURCE_FILES  src/*.cpp)
 
 # Create library
-message(STATUS "Creating rle object library...")
-add_library(${PROJECT_NAME} STATIC ${RLE_SOURCE_FILES})
+message(STATUS "Creating fsgl object library...")
+add_library(${PROJECT_NAME} STATIC ${FSGL_SOURCE_FILES})
 
 # Set target options
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
-target_precompile_headers(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/include/RLEpch.hpp)
+target_precompile_headers(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/include/fsgl_pch.hpp)
 target_link_libraries(${PROJECT_NAME} spdlog)
 target_link_libraries(${PROJECT_NAME} glad_core45)
 target_link_libraries(${PROJECT_NAME} glfw)
 target_link_libraries(${PROJECT_NAME} glm)
-
-# Build anvil editor
-if (RLE_BUILD_ANVIL)
-    file(GLOB_RECURSE RLE_ANVIL_SOURCE_FILES anvil/src/**.cpp)
-
-    message(STATUS "Building rle-anvil dependencies...")
-    add_subdirectory(anvil/external/imgui)
-
-    message(STATUS "Building rle-anvil...")
-    add_executable(rle-anvil ${RLE_ANVIL_SOURCE_FILES})
-    target_include_directories(rle-anvil PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
-    target_include_directories(rle-anvil PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/external/glm)
-    target_include_directories(rle-anvil PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/anvil/external/imgui)
-    target_include_directories(rle-anvil PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/anvil/external/imgui/imgui)
-    target_link_libraries(rle-anvil rogue-like-engine)
-    target_link_libraries(rle-anvil imgui)
-endif()

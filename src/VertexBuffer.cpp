@@ -1,22 +1,22 @@
-#include "RLEpch.hpp"
-#include "RLE/Rendering/VertexBuffer.hpp"
+#include "fsgl_pch.hpp"
+#include "fsgl/Rendering/VertexBuffer.hpp"
 
-// --- RLE ---
-#include "RLE/Debug/Log.hpp"
-#include "RLE/Rendering/GraphicsAPI.hpp"
-#include "RLE/Rendering/2D/Vertex2D.hpp"
+// --- fsgl ---
+#include "fsgl/Debug/Log.hpp"
+#include "fsgl/Rendering/GraphicsAPI.hpp"
+#include "fsgl/Rendering/2D/Vertex2D.hpp"
 
-// --- RLE impl ---
+// --- fsgl impl ---
 #include "impl/API/OpenGL/OpenGL_VertexBuffer.hpp"
 
 
 
-std::shared_ptr<rle::VertexBuffer> rle::factory<rle::VertexBuffer>::create(const std::size_t count)
+std::shared_ptr<fsgl::VertexBuffer> fsgl::factory<fsgl::VertexBuffer>::create(const std::size_t count)
 {
     return create(nullptr, count);
 }
 
-std::shared_ptr<rle::VertexBuffer> rle::factory<rle::VertexBuffer>::create(
+std::shared_ptr<fsgl::VertexBuffer> fsgl::factory<fsgl::VertexBuffer>::create(
 	const Vertex2D* data,
 	const std::size_t count)
 {
@@ -29,7 +29,7 @@ std::shared_ptr<rle::VertexBuffer> rle::factory<rle::VertexBuffer>::create(
 		break;
 
 	case GraphicsAPI::API::None:
-		RLE_CORE_WARN("Trying to create VertexBuffer object with no active rendering API.");
+		FSGL_CORE_WARN("Trying to create VertexBuffer object with no active rendering API.");
 		break;
 	}
 	

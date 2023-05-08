@@ -1,15 +1,15 @@
-#include "RLEpch.hpp"
+#include "fsgl_pch.hpp"
 #include "impl/API/OpenGL/OpenGL_FrameBuffer.hpp"
 
 // --- GLAD ---
 #include <glad/gl.h>
 
-// --- RLE ---
-#include "RLE/Debug/Log.hpp"
+// --- fsgl ---
+#include "fsgl/Debug/Log.hpp"
 
 
 
-rle::impl::OpenGL_FrameBuffer::OpenGL_FrameBuffer(const std::uint32_t width, const std::uint32_t height)
+fsgl::impl::OpenGL_FrameBuffer::OpenGL_FrameBuffer(const std::uint32_t width, const std::uint32_t height)
 {
 	// Create the frame buffer
 	glCreateFramebuffers(1, &m_ID);
@@ -29,31 +29,31 @@ rle::impl::OpenGL_FrameBuffer::OpenGL_FrameBuffer(const std::uint32_t width, con
 
 	// Check if the frame buffer is complete
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
-		RLE_CORE_CRITICAL("OpenGL FBO is invalid!");
+		FSGL_CORE_CRITICAL("OpenGL FBO is invalid!");
 }
 
-rle::impl::OpenGL_FrameBuffer::~OpenGL_FrameBuffer()
+fsgl::impl::OpenGL_FrameBuffer::~OpenGL_FrameBuffer()
 {
 	glDeleteTextures(1, &m_TextureID);
 	glDeleteFramebuffers(1, &m_ID);
 }
 
-void rle::impl::OpenGL_FrameBuffer::bind() const
+void fsgl::impl::OpenGL_FrameBuffer::bind() const
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, m_TextureID);
 }
 
-void rle::impl::OpenGL_FrameBuffer::unbind() const
+void fsgl::impl::OpenGL_FrameBuffer::unbind() const
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-std::uint32_t rle::impl::OpenGL_FrameBuffer::texture() const
+std::uint32_t fsgl::impl::OpenGL_FrameBuffer::texture() const
 {
 	return m_TextureID;
 }
 
-void rle::impl::OpenGL_FrameBuffer::resizeTexture(const std::uint32_t width, const std::uint32_t height)
+void fsgl::impl::OpenGL_FrameBuffer::resizeTexture(const std::uint32_t width, const std::uint32_t height)
 {
 	glBindTexture(GL_TEXTURE_2D, m_TextureID);
 

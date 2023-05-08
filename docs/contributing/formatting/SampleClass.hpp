@@ -6,8 +6,8 @@
 // --- Standard ---
 #include <string>
 
-// --- RLE ---
-#include "RLE.hpp"
+// --- fsgl ---
+#include "fsgl.hpp"
 
 
 
@@ -16,7 +16,7 @@ class Foo;
 
 
 
-namespace rle
+namespace fsgl
 {
     // --- Forward Declarations ---
     class Bar;

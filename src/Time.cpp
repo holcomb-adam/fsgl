@@ -1,9 +1,9 @@
-#include "RLEpch.hpp"
-#include "RLE/Core/Time.hpp"
+#include "fsgl_pch.hpp"
+#include "fsgl/Core/Time.hpp"
 
 
 
-rle::time::point rle::time::now()
+fsgl::time::point fsgl::time::now()
 {
 	return std::chrono::time_point_cast<step_ms>(clock::now());
 }

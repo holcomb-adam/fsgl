@@ -3,16 +3,16 @@
 // --- Standard ---
 #include <string>
 
-// --- RLE ---
-#include "RLE/Rendering/ShaderHandle.hpp"
+// --- fsgl ---
+#include "fsgl/Rendering/ShaderHandle.hpp"
 
 
 
-namespace rle
+namespace fsgl
 {
 	namespace impl
 	{
-		class OpenGL_ShaderHandle final : public rle::ShaderHandle
+		class OpenGL_ShaderHandle final : public fsgl::ShaderHandle
 		{
 		public:
 			////////////////////////////////////////////////////////////////////////////////

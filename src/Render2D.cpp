@@ -1,11 +1,11 @@
-#include "RLE/Node/Aspects/Render2D.hpp"
+#include "fsgl/Node/Aspects/Render2D.hpp"
 
-// --- RLE ---
-#include "RLE/Debug/Log.hpp"
-#include "RLE/Node/Node.hpp"
-#include "RLE/Node/Aspects/Shape2D.hpp"
-#include "RLE/Node/Aspects/Transform2D.hpp"
-#include "RLE/Rendering/Renderer2D.hpp"
+// --- fsgl ---
+#include "fsgl/Debug/Log.hpp"
+#include "fsgl/Node/Node.hpp"
+#include "fsgl/Node/Aspects/Shape2D.hpp"
+#include "fsgl/Node/Aspects/Transform2D.hpp"
+#include "fsgl/Rendering/Renderer2D.hpp"
 
 
 
@@ -20,14 +20,14 @@ R"(
 layout (location = 0) in vec2 pos_i;
 layout (location = 1) in vec4 color_i;
 
-uniform mat4 u_RLE_cameraProjection;
-uniform mat4 u_RLE_cameraView;
+uniform mat4 u_FSGL_cameraProjection;
+uniform mat4 u_FSGL_cameraView;
 
 out vec4 color_v;
 
 void main()
 {
-    gl_Position = u_RLE_cameraProjection * u_RLE_cameraView * vec4(pos_i, 1.0, 1.0);
+    gl_Position = u_FSGL_cameraProjection * u_FSGL_cameraView * vec4(pos_i, 1.0, 1.0);
     color_v = color_i;
 }
 
@@ -54,24 +54,24 @@ void main()
 
 
 
-rle::Render2D::Render2D() :
+fsgl::Render2D::Render2D() :
     m_Shader(ShaderHandle::make(vtx, frg))
 {
 
 }
 
-rle::Render2D::Render2D(const std::string& vertex_src, const std::string& frag_src)
+fsgl::Render2D::Render2D(const std::string& vertex_src, const std::string& frag_src)
 {
     if (!vertex_src.empty() && !frag_src.empty())
         m_Shader = ShaderHandle::make(vtx, frg);
 }
 
-void rle::Render2D::setIgnoreComponents(const bool flag)
+void fsgl::Render2D::setIgnoreComponents(const bool flag)
 {
     m_IgnoreComponents = flag;
 }
 
-void rle::Render2D::draw(Renderer2D& renderer) const
+void fsgl::Render2D::draw(Renderer2D& renderer) const
 {
     if (!m_IgnoreComponents)
         drawComponents(renderer);
@@ -79,7 +79,7 @@ void rle::Render2D::draw(Renderer2D& renderer) const
         drawChildren(renderer);
 }
 
-void rle::Render2D::drawComponents(Renderer2D& renderer) const
+void fsgl::Render2D::drawComponents(Renderer2D& renderer) const
 {
     // Retrieve rendering data from components
     const auto& node = getNode();
@@ -87,7 +87,7 @@ void rle::Render2D::drawComponents(Renderer2D& renderer) const
     // Dont bother rendering with no shape to render
     if (!node.hasComponent<Shape2D>())
     {
-        RLE_CORE_WARN("Ignoring rendering for node {0}:{1}."
+        FSGL_CORE_WARN("Ignoring rendering for node {0}:{1}."
                       "A Shape2D component is needed to renderer components.", 
                        node.UID.raw(), node.getName());
         return;
@@ -99,7 +99,7 @@ void rle::Render2D::drawComponents(Renderer2D& renderer) const
     renderer.draw(m_Shader, vao, transform);
 }
 
-void rle::Render2D::drawChildren(Renderer2D& renderer) const
+void fsgl::Render2D::drawChildren(Renderer2D& renderer) const
 {
     for (const auto& child : getNode().getChildren())
         if (child)

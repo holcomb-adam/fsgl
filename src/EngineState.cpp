@@ -1,9 +1,9 @@
-#include "RLEpch.hpp"
-#include "RLE/Core/EngineState.hpp"
+#include "fsgl_pch.hpp"
+#include "fsgl/Core/EngineState.hpp"
 
 
 
-const std::string& rle::EngineState::getName() const
+const std::string& fsgl::EngineState::getName() const
 {
     return m_Name;
 }

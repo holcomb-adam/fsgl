@@ -1,11 +1,11 @@
-#include "RLE/Rendering/2D/View.hpp"
+#include "fsgl/Rendering/2D/View.hpp"
 
 // --- GLM ---
 #include <glm/gtc/matrix_transform.hpp>
 
 
 
-rle::View::View(const float w,
+fsgl::View::View(const float w,
                 const float h,
                 const glm::vec2& position,
                 const float rotation) : 
@@ -17,33 +17,33 @@ rle::View::View(const float w,
 
 }
 
-glm::mat4 rle::View::getProjectionMatrix() const
+glm::mat4 fsgl::View::getProjectionMatrix() const
 {
     return glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, NEAR_CLIP, FAR_CLIP);
 }
 
-glm::mat4 rle::View::getViewMatrix() const
+glm::mat4 fsgl::View::getViewMatrix() const
 {
     return glm::translate(glm::mat4(1.0f), glm::vec3(m_Position, -2.0f));
 }
 
-void rle::View::setPosition(const glm::vec2& position)
+void fsgl::View::setPosition(const glm::vec2& position)
 {
     m_Position = position;
 }
 
-void rle::View::setRotation(const float rotation_deg)
+void fsgl::View::setRotation(const float rotation_deg)
 {
     m_Rotation = rotation_deg;
 }
 
-void rle::View::setSize(const float w, const float h)
+void fsgl::View::setSize(const float w, const float h)
 {
     m_Width = w;
     m_Height = h;
 }
 
-void rle::View::move(const glm::vec2& offset)
+void fsgl::View::move(const glm::vec2& offset)
 {
     m_Position += offset;
 }
