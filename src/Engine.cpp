@@ -6,7 +6,7 @@
 
 // --- RLE ---
 #include "RLE/Debug/Log.hpp"
-#include "RLE/Events/EventDispatcher.hpp"
+
 
 
 namespace
@@ -33,8 +33,11 @@ rle::Engine::Engine(const Window::Properties& props) :
     // Set the singleton instance
     s_EngineInstance = this;
 
-    // Give the window our event callback functions
-    m_Window->setEventCallback(RLE_BIND_THIS_FN(Engine::onEvent, std::placeholders::_1));
+    // Subscribe to window signals
+    m_Window->SIGNAL_WindowClosed.subscribe(std::bind(
+        &Engine::onSignal_WindowClosed,
+        this,
+        std::placeholders::_1));
 
     // Initialize the rendering systems
     GraphicsAPI::init(props.api);
@@ -52,7 +55,8 @@ const std::unique_ptr<rle::Window>& rle::Engine::getWindow() const
 
 void rle::Engine::pushState(EngineState* state)
 {
-    m_StateStack.emplace(state)->enter();
+    auto& uptr = m_StateStack.emplace(state);
+    uptr->onStateEnter();
 }
 
 void rle::Engine::onProcessInit(int argc, char* argv[])
@@ -68,7 +72,7 @@ void rle::Engine::onProcessUpdate(const time::step_ms delta)
     // Update the any user engine components
     onEngineUpdate(delta);
 
-    m_StateStack.top()->update(delta);
+    m_StateStack.top()->onStateUpdate(delta);
 }
 
 void rle::Engine::onProcessExit()
@@ -77,27 +81,8 @@ void rle::Engine::onProcessExit()
     m_Window.reset();
 }
 
-bool rle::Engine::windowCloseEvent(const WindowCloseEvent& event)
+void rle::Engine::onSignal_WindowClosed(Window& window)
 {
-    exit();
-    return false;
-}
-
-void rle::Engine::onEvent(const Event& event)
-{
-    // Dispatch events to the proper callers
-    EventDispatcher dispatcher(event);
-    dispatcher.dispatch<WindowCloseEvent>(RLE_BIND_THIS_FN(Engine::windowCloseEvent, std::placeholders::_1));
-
-
-    // Propagate the events down the layers
-    // for (auto it = m_LayerStack.rbegin(); it != m_LayerStack.rend(); it++)
-    // {
-    //     // Check if the event has been handled
-    //     if (event.handled())
-    //         break;
-
-    //     // Try handling the event
-    //     (*it)->onEvent(event);
-    // }
+    RLE_CORE_TRACE("Window Closed Signal Recieved!");
+    Process::exit();
 }

@@ -41,24 +41,24 @@ namespace anvil
         virtual void onStateEnter() override;
         virtual void onStateExit() override;
         virtual void onStateUpdate(const rle::time::step_ms delta) override;
+        virtual bool onStateHandleEvent(const rle::Event& event) override;
 
 
 
         // - Helpers -
         void slot_onNodeSelect(rle::Node* node);
 
+        void onSignal_WindowSized(rle::Window& window, int width, int height);
 
 
     private:
-        // Access to graphics
-        std::shared_ptr<rle::GraphicsHandle> m_GraphicsHandle;
-
-        // UI
+        // ImGui UI
         ImGuiRenderer m_ImGuiRenderer;
         ImGui_DockSpace m_DockSpace;
 
         // 2D Scene rendering
         rle::Renderer2D m_Renderer2D;
+        std::shared_ptr<rle::GraphicsHandle> m_GraphicsHandle; // Access to graphics
 
         // Scene Information
         std::shared_ptr<rle::Node> m_SceneNode;

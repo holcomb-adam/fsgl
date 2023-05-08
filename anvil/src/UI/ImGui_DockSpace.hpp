@@ -12,5 +12,10 @@ namespace anvil
     private:
         virtual void onAddPanel(std::unique_ptr<rle::Panel>& panel) override;
         virtual void onUIDraw() override;
+
+
+
+    private:
+        rle::Panel* m_FocusedPanel = nullptr;
     };
 }

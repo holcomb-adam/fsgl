@@ -36,6 +36,12 @@ void anvil::EditorState::onStateEnter()
     m_DockSpace.addPanel(new NodeHierarchyPanel(m_SceneNode, std::bind(&EditorState::slot_onNodeSelect, this, std::placeholders::_1)));
     m_DockSpace.addPanel(new NodeInspectorPanel(m_SceneNode));
     m_DockSpace.addPanel(new FileExplorerPanel("./"));
+    win->SIGNAL_WindowSized.subscribe(std::bind(
+        &EditorState::onSignal_WindowSized,
+        this,
+        std::placeholders::_1,
+        std::placeholders::_2,
+        std::placeholders::_3));
 
 
 
@@ -69,7 +75,17 @@ void anvil::EditorState::onStateUpdate(const rle::time::step_ms delta)
     m_ImGuiRenderer.end();
 }
 
+bool anvil::EditorState::onStateHandleEvent(const rle::Event& event)
+{
+    return false;
+}
+
 void anvil::EditorState::slot_onNodeSelect(rle::Node* node)
 {
     
+}
+
+void anvil::EditorState::onSignal_WindowSized(rle::Window& window, int width, int height)
+{
+    m_DockSpace.setBoundingSize(width, height);
 }

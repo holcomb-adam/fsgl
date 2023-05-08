@@ -1,23 +1,21 @@
 #include "RLEpch.hpp"
 #include "impl/API/GLFW/GLFW_Window.hpp"
 
-// --- GLFW ---
-#include <GLFW/glfw3.h>
-
 // --- RLE ---
 #include "RLE/Core/KeyCodes.hpp"
 #include "RLE/Debug/Log.hpp"
-#include "RLE/Events/Events.hpp"
 
 // --- RLE impl ---
+#include "impl/API/GLFW/GLFW_Callbacks.hpp"
 #include "impl/Platform/Windows/Win64_Window.hpp"
 #include "impl/Platform/Linux/Linux_Window.hpp"
 
 
 
-// - GLFW House Keeping -
 namespace
 {
+    // --- GLFW House Keeping ----
+
     // Number of windows currently open via GLFW
     static std::uint8_t GLFW_WindowCount = 0;
 
@@ -59,11 +57,6 @@ std::uint32_t rle::impl::GLFW_Window::width() const
 std::uint32_t rle::impl::GLFW_Window::height() const
 {
     return m_Height;
-}
-
-void rle::impl::GLFW_Window::setEventCallback(const EventCallback &callback)
-{
-    m_EventCallback = callback;
 }
 
 void rle::impl::GLFW_Window::setVSync(const bool enabled)
@@ -114,13 +107,13 @@ void rle::impl::GLFW_Window::init(const Properties &props)
     glfwSetWindowUserPointer(m_Window, this);
 
     // Set the window callbacks
-    glfwSetWindowCloseCallback(m_Window, &GLFW_Callback::onWindowClose);
-    glfwSetKeyCallback(m_Window, &GLFW_Callback::onKeyStateChange);
-    glfwSetCharCallback(m_Window, &GLFW_Callback::onTextInput);
-    glfwSetCursorPosCallback(m_Window, &GLFW_Callback::onMouseMove);
-    glfwSetMouseButtonCallback(m_Window, &GLFW_Callback::onMouseButtonStateChange);
-    glfwSetScrollCallback(m_Window, &GLFW_Callback::onScrollWheelUpdate);
-    glfwSetWindowSizeCallback(m_Window, &GLFW_Callback::onWindowSizeUpdate);
+    glfwSetKeyCallback(m_Window, ::rle::impl::glfw_key_callback);
+    glfwSetCursorPosCallback(m_Window, ::rle::impl::glfw_mouseMove_callback);
+    glfwSetMouseButtonCallback(m_Window, ::rle::impl::glfw_mouseButton_event);
+    glfwSetScrollCallback(m_Window, ::rle::impl::glfw_mouseWheel_callback);
+    glfwSetCharCallback(m_Window, ::rle::impl::glfw_textInput_callback);
+    glfwSetWindowCloseCallback(m_Window, ::rle::impl::glfw_windowClose_callback);
+    glfwSetWindowSizeCallback(m_Window, ::rle::impl::glfw_windowSized_callback);
 }
 
 

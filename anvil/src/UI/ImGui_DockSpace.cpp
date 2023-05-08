@@ -11,7 +11,7 @@
 
 void anvil::ImGui_DockSpace::onAddPanel(std::unique_ptr<rle::Panel>& panel)
 {
-    
+    m_FocusedPanel = panel.get();
 }
 
 void anvil::ImGui_DockSpace::onUIDraw()

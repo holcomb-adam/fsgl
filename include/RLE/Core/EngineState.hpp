@@ -11,6 +11,11 @@
 
 namespace rle
 {
+    // --- Forward Declarations ---
+    class Event;
+
+
+
     /// @brief Interface for defining how the engine process interacts with
     ///        other components of the engine.
     class EngineState
@@ -46,22 +51,9 @@ namespace rle
 
 
         ////////////////////////////////////////////////////////////////////////////////
-        // - OPERATIONS ----------------------------------------------------------------
-
-        /// @brief Tell the state to enter a working state.
-        void enter();
-
-        /// @brief Update the state
-        /// @param delta Time step since last update
-        void update(const time::step_ms delta);
-
-
-
-    private:
-        ////////////////////////////////////////////////////////////////////////////////
         // - VIRTUALS ------------------------------------------------------------------
 
-        /// @brief Initialize the state
+        /// @brief Initialize into a working state
         virtual void onStateEnter() = 0;
 
         /// @brief Cleanup and destroy state data
@@ -70,6 +62,10 @@ namespace rle
         /// @brief Update the state
         /// @param delta Time step since last update
         virtual void onStateUpdate(const time::step_ms delta) = 0;
+
+        /// @brief 
+        /// @param event 
+        virtual bool onStateHandleEvent(const Event& event) = 0;
 
 
 

@@ -5,27 +5,20 @@
 
 // --- rle ---
 #include "RLE/Core/Time.hpp"
-#include "RLE/Events/Eventable.hpp"
 
 
 
 namespace rle
 {
     // --- Forward Declarations ---
-    class UISpace;
     class Renderer2D;
 
 
 
     /// @brief Abstract class to represent a region of UI space for displaying
     ///        information to the user in a GUI format.
-    class Panel : public Eventable
+    class Panel
     {
-        // --- Friends ---
-        friend class UISpace;
-
-
-
     public:
         ////////////////////////////////////////////////////////////////////////////////
         // - CONSTRUCTORS / DESTRUCTORS ------------------------------------------------
@@ -61,9 +54,6 @@ namespace rle
         /// @param size The new size of the panel
         virtual void setSize(const glm::vec2& size) = 0;
 
-
-
-    private:
         /// @brief Called by the UI space to initialize the panel post-instantiation
         virtual void onPanelEnter() = 0;
 
