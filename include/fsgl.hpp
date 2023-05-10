@@ -14,8 +14,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 // - FSGL CORE -----------------------------------------------------------------
 
-#include "FSGL/Core/Core.hpp"
-#include "FSGL/Core/Engine.hpp"
+#include "fsgl/Core/Core.hpp"
+#include "fsgl/Core/Engine.hpp"
 
 
 

@@ -3,6 +3,9 @@
 // --- glm ---
 #include <glm/vec2.hpp>
 
+// --- Standard ---
+#include <string>
+
 // --- fsgl ---
 #include "fsgl/Core/Time.hpp"
 

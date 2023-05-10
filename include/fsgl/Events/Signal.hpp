@@ -2,6 +2,7 @@
 
 // --- Standard ---
 #include <functional>
+#include <vector>
 
 // --- fsgl ---
 #include "fsgl/Utils/UniqueID.hpp"
